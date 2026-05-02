@@ -55,7 +55,8 @@ export function CareersView() {
     try {
       const accountSid = import.meta.env.VITE_TWILIO_ACCOUNT_SID;
       const authToken = import.meta.env.VITE_TWILIO_AUTH_TOKEN;
-      const to = 'whatsapp:+919245464648';
+      const whatsappNumber = import.meta.env.VITE_WEBSITE_WHATSAPP_NUMBER;
+      const to = `whatsapp:${whatsappNumber}`;
       const from = 'whatsapp:+14155238886';
 
       const messageBody = `ASAY Technologies - New Career Application\n\nJob: ${selectedJob?.title}\nName: ${formData.get('name')}\nEmail: ${formData.get('email')}\nPhone: ${formData.get('phone')}\nPortfolio: ${formData.get('portfolio')}\nWhy: ${formData.get('why')}`;

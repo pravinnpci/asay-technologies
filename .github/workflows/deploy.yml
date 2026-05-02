@@ -33,6 +33,9 @@ jobs:
         run: npm run build
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          VITE_TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
+          VITE_TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
+          VITE_WEBSITE_WHATSAPP_NUMBER: ${{ secrets.WEBSITE_WHATSAPP_NUMBER }}
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v4
         with:
@@ -87,3 +90,19 @@ jobs:
           URL="http://${{ env.S3_BUCKET }}.s3-website.${{ env.AWS_REGION }}.amazonaws.com"
           echo "Checking website availability at $URL"
           curl -I $URL
+
+      - name: WhatsApp Integration Test
+        run: |
+          echo "Sending test WhatsApp message via Twilio API..."
+          RESPONSE=$(curl -s -X POST "https://api.twilio.com/2010-04-01/Accounts/${{ secrets.TWILIO_ACCOUNT_SID }}/Messages.json" \
+            --data-urlencode "To=whatsapp:${{ secrets.WEBSITE_WHATSAPP_NUMBER }}" \
+            --data-urlencode "From=whatsapp:+14155238886" \
+            --data-urlencode "Body=🚀 Asay Technologies Deployment Update: Static site is live and WhatsApp integration is verified!" \
+            -u "${{ secrets.TWILIO_ACCOUNT_SID }}:${{ secrets.TWILIO_AUTH_TOKEN }}")
+          
+          if echo "$RESPONSE" | grep -q '"status": "queued"'; then
+            echo "✅ WhatsApp test message sent successfully."
+          else
+            echo "❌ Failed to send WhatsApp message. Check your Twilio credentials."
+            echo "Response: $RESPONSE"
+          fi
