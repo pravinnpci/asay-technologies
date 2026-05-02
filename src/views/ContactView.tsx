@@ -73,11 +73,12 @@ export function ContactView() {
           body: new URLSearchParams(params)
         });
       } catch (error) {
-        if (error instanceof Error) {
-          console.error('Form Submission Failed:', error.message);
-        } else {
-          console.error('Form Submission Failed:', error);
-        }
+        const err = error as any;
+        console.error('Form Submission Failed:', {
+          message: err?.message || 'Unknown error',
+          hint: err?.hint,
+          details: err?.details
+        });
       }
 
       setSubmitted(true);
