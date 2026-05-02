@@ -1,5 +1,7 @@
 services:
   asay-tech:
+    container_name: asay-tech
+    image: asay-tech
     build: .
     ports:
       - "3000:3000"
