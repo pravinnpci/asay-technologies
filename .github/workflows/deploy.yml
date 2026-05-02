@@ -1,42 +1,61 @@
-name: Asay Technologies Static S3 Deployment
+name: "Asay Technologies: Production Static Deployment"
 
 on:
   push:
+    branches:
+      - main
+  pull_request:
     branches:
       - main
 
 permissions:
   contents: read
 
+env:
+  AWS_REGION: "ap-south-2"
+  S3_BUCKET: "asay-technologies-web-bucket"
+
 jobs:
-  build-and-deploy:
-    name: Build & Deploy to S3
+  build:
+    name: "1: Build Project"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
-
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
-
       - name: Install Dependencies
         run: npm install
-
       - name: Build Project
         run: npm run build
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-files
+          path: dist/
 
+  deploy:
+    name: "2: Sync to AWS S3"
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    steps:
+      - name: Download Build Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist-files
+          path: dist/
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ap-south-2
-
-      - name: Sync to S3 Bucket
+          aws-region: ${{ env.AWS_REGION }}
+      - name: Deploy to S3
         run: |
-          aws s3 sync dist/ s3://asay-technologies-web-bucket --delete
+          aws s3 sync dist/ s3://${{ env.S3_BUCKET }} --delete
