@@ -2,14 +2,6 @@ provider "aws" {
   region = var.aws_region
 }
 
-# New State Bucket Resource
-resource "aws_s3_bucket" "terraform_state" {
-  bucket = "asay-tech-tfstate-pravin"
-  lifecycle {
-    prevent_destroy = true
-  }
-}
-
 resource "aws_s3_bucket" "website_bucket" {
   bucket = var.bucket_name
 }
