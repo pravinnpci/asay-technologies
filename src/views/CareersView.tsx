@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Briefcase, MapPin, Clock, ArrowRight, Heart, Zap, Globe, Shield, X, Upload, Send, CheckCircle, GraduationCap } from 'lucide-react';
 import { cn } from '../lib/utils';
+import { supabase } from '../lib/supabase';
 
 const jobs = [
   { 
@@ -45,14 +46,42 @@ const jobs = [
 export function CareersView() {
   const [selectedJob, setSelectedJob] = useState<typeof jobs[0] | null>(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     const form = e.currentTarget as HTMLFormElement;
     const formData = new FormData(form);
+    const newErrors: Record<string, string> = {};
+
+    // Validation logic
+    if (!formData.get('name')) newErrors.name = 'Full name is required';
+    if (!formData.get('email')) newErrors.email = 'Email address is required';
+    else if (!/\S+@\S+\.\S+/.test(formData.get('email') as string)) newErrors.email = 'Please enter a valid email';
+    if (!formData.get('phone')) newErrors.phone = 'Phone number is required';
+    else if (!/^\+?[\d\s-]{10,}$/.test(formData.get('phone') as string)) newErrors.phone = 'Please enter a valid phone number';
+    if (!formData.get('portfolio')) newErrors.portfolio = 'Portfolio/Resume link is required';
+    if (!formData.get('why')) newErrors.why = 'Please tell us why you want to join';
+
+    setErrors(newErrors);
+    if (Object.keys(newErrors).length > 0) return;
 
     try {
+      // Save to Supabase
+      const { error: supabaseError } = await supabase
+        .from('career_applications')
+        .insert([{
+          job_title: selectedJob?.title,
+          full_name: formData.get('name'),
+          email: formData.get('email'),
+          phone: formData.get('phone'),
+          portfolio_link: formData.get('portfolio'),
+          why_asay: formData.get('why')
+        }]);
+
+      if (supabaseError) throw supabaseError;
+
       // Keep WhatsApp notification
       const accountSid = import.meta.env.VITE_TWILIO_ACCOUNT_SID;
       const authToken = import.meta.env.VITE_TWILIO_AUTH_TOKEN;
@@ -200,8 +229,8 @@ export function CareersView() {
             <motion.div
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="glass rounded-[2rem] w-full max-w-md shadow-2xl relative z-10 overflow-hidden border-white/60"
+              exit={{ opacity: 0, scale: 0.9, y: 20 }} 
+              className="glass rounded-[2rem] w-full max-w-sm shadow-2xl relative z-10 overflow-hidden border-white/60"
             >
               <button 
                 onClick={() => setSelectedJob(null)}
@@ -237,28 +266,49 @@ export function CareersView() {
                     <form onSubmit={handleSubmit} className="space-y-6">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-2">
-                           <label className="text-xs font-black text-secondary uppercase tracking-widest pl-2">Full Name</label>
-                           <input name="name" required type="text" className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-100 focus:border-primary outline-none transition-all font-bold text-sm" placeholder="John Doe" />
+                          <label className="text-xs font-black text-secondary uppercase tracking-widest pl-2">Full Name</label>
+                          <input 
+                            name="name" 
+                            type="text" 
+                            className={cn(
+                              "w-full px-4 py-3 rounded-xl bg-gray-50 border outline-none transition-all font-bold text-sm",
+                              errors.name ? "border-red-400 focus:border-red-500" : "border-gray-100 focus:border-primary"
+                            )} 
+                            placeholder="John Doe" 
+                          />
+                          {errors.name && <p className="text-[10px] text-red-500 font-bold pl-2">{errors.name}</p>}
                         </div>
                         <div className="space-y-2">
-                           <label className="text-xs font-black text-secondary uppercase tracking-widest pl-2">Email Address</label>
-                           <input name="email" required type="email" className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-100 focus:border-primary outline-none transition-all font-bold text-sm" placeholder="john@example.com" />
+                          <label className="text-xs font-black text-secondary uppercase tracking-widest pl-2">Email Address</label>
+                          <input 
+                            name="email" 
+                            type="email" 
+                            className={cn(
+                              "w-full px-4 py-3 rounded-xl bg-gray-50 border outline-none transition-all font-bold text-sm",
+                              errors.email ? "border-red-400 focus:border-red-500" : "border-gray-100 focus:border-primary"
+                            )} 
+                            placeholder="john@example.com" 
+                          />
+                          {errors.email && <p className="text-[10px] text-red-500 font-bold pl-2">{errors.email}</p>}
                         </div>
                       </div>
 
                       <div className="space-y-2">
-                         <label className="text-xs font-black text-secondary uppercase tracking-widest pl-2">Phone Number</label>
-                         <input name="phone" required type="tel" className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-100 focus:border-primary outline-none transition-all font-bold text-sm" placeholder="+91 98765 43210" />
+                        <label className="text-xs font-black text-secondary uppercase tracking-widest pl-2">Phone Number</label>
+                        <input name="phone" type="tel" className={cn("w-full px-4 py-3 rounded-xl bg-gray-50 border outline-none transition-all font-bold text-sm", errors.phone ? "border-red-400 focus:border-red-500" : "border-gray-100 focus:border-primary")} placeholder="+91 98765 43210" />
+                        {errors.phone && <p className="text-[10px] text-red-500 font-bold pl-2">{errors.phone}</p>}
                       </div>
 
                       <div className="space-y-2">
-                         <label className="text-xs font-black text-secondary uppercase tracking-widest pl-2">Resume / Portfolio Link</label>
-                         <input name="portfolio" required type="url" className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-100 focus:border-primary outline-none transition-all font-bold text-sm" placeholder="https://linkedin.com/in/..." />
+                        <label className="text-xs font-black text-secondary uppercase tracking-widest pl-2">Resume / Portfolio Link</label>
+                        <input name="portfolio" type="url" className={cn("w-full px-4 py-3 rounded-xl bg-gray-50 border outline-none transition-all font-bold text-sm", errors.portfolio ? "border-red-400 focus:border-red-500" : "border-gray-100 focus:border-primary")} placeholder="https://linkedin.com/in/..." />
+                        {errors.portfolio && <p className="text-[10px] text-red-500 font-bold pl-2">{errors.portfolio}</p>}
                       </div>
 
                       <div className="space-y-2">
-                         <label className="text-xs font-black text-secondary uppercase tracking-widest pl-2">Why Asay Technologies?</label>
-                         <textarea name="why" required rows={3} className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-100 focus:border-primary outline-none transition-all font-bold text-sm resize-none" placeholder="Tell us briefly about your passion..." />
+                        <label className="text-xs font-black text-secondary uppercase tracking-widest pl-2">Why Asay Technologies?</label>
+                        <textarea name="why" rows={3} className={cn("w-full px-4 py-3 rounded-xl bg-gray-50 border outline-none transition-all font-bold text-sm resize-none", errors.why ? "border-red-400 focus:border-red-500" : "border-gray-100 focus:border-primary")} placeholder="Tell us briefly about your passion..." />
+                        {errors.why && <p className="text-[10px] text-red-500 font-bold pl-2">{errors.why}</p>}
                       </div>
 
                       <button type="submit" className="w-full py-4 bg-primary text-white rounded-xl font-black shadow-xl shadow-primary/20 hover:bg-accent transition-all flex items-center justify-center gap-3 active:scale-95">

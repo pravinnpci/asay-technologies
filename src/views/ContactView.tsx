@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { Mail, Phone, MapPin, Send, CheckCircle, Globe, MessageSquare } from 'lucide-react';
 import { cn } from '../lib/utils';
+import { supabase } from '../lib/supabase';
 
 export function ContactView() {
   const [submitted, setSubmitted] = useState(false);
@@ -18,8 +19,9 @@ export function ContactView() {
     const newErrors: Record<string, string> = {};
     if (!formData.name) newErrors.name = 'Name is required';
     if (!formData.email) newErrors.email = 'Email is required';
-    if (!formData.phone) newErrors.phone = 'Phone number is required';
     else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Email is invalid';
+    if (!formData.phone) newErrors.phone = 'Phone number is required';
+    else if (!/^\+?[\d\s-]{10,}$/.test(formData.phone)) newErrors.phone = 'Phone number is invalid';
     if (!formData.message) newErrors.message = 'Message is required';
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -29,6 +31,19 @@ export function ContactView() {
     e.preventDefault();
     if (validate()) {
       try {
+        // Save to Supabase
+        const { error: supabaseError } = await supabase
+          .from('contact_requests')
+          .insert([{
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            subject: formData.subject,
+            message: formData.message
+          }]);
+
+        if (supabaseError) throw supabaseError;
+
         const accountSid = import.meta.env.VITE_TWILIO_ACCOUNT_SID;
         const authToken = import.meta.env.VITE_TWILIO_AUTH_TOKEN;
         const to = 'whatsapp:+919245464648';
