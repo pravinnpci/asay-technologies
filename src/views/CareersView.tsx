@@ -53,6 +53,7 @@ export function CareersView() {
     const formData = new FormData(form);
 
     try {
+      // Keep WhatsApp notification
       const accountSid = import.meta.env.VITE_TWILIO_ACCOUNT_SID;
       const authToken = import.meta.env.VITE_TWILIO_AUTH_TOKEN;
       const whatsappNumber = import.meta.env.VITE_WEBSITE_WHATSAPP_NUMBER;
