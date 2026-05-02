@@ -107,21 +107,21 @@ export function HomeView() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                name: 'Founder & CEO',
-                role: 'Strategic Visionary',
-                desc: 'Leading the charge in digital transformation with over a decade of expertise in AI and enterprise systems.',
+                name: 'Sivabarathi P',
+                role: 'CEO',
+                desc: 'Strategic leader driving the mission and vision of Asay Technologies.',
                 image: 'https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&q=80&w=800'
               },
               {
-                name: 'Chief Technology Officer',
-                role: 'Tech Architect',
-                desc: 'Expert in scalable architectures and emerging technologies, driving our technical excellence.',
+                name: 'Premkumar A',
+                role: 'Chief Technology Officer',
+                desc: 'Technical mastermind driving innovation across our ecosystem.',
                 image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=800'
               },
               {
-                name: 'Operations Manager',
-                role: 'Product Specialist',
-                desc: 'Ensuring seamless project delivery and operational efficiency across all client engagements.',
+                name: 'Pravinkumar A',
+                role: 'Manager and MD',
+                desc: 'Overseeing operations and ensuring technical and strategic excellence.',
                 image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=800'
               }
             ].map((member, i) => (

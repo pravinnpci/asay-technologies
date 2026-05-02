@@ -59,8 +59,8 @@ export default function AboutView() {
                 />
               </div>
               <div className="absolute -bottom-6 -right-6 lg:-bottom-10 lg:-right-10 glass p-8 rounded-3xl border-primary/20 shadow-2xl z-20 max-w-xs">
-                <h4 className="text-xl font-bold text-secondary mb-1">Managing Director</h4>
-                <p className="text-primary font-bold tracking-widest uppercase text-[10px]">Strategic Visionary</p>
+                <h4 className="text-xl font-bold text-secondary mb-1">Pravinkumar A</h4>
+                <p className="text-primary font-bold tracking-widest uppercase text-[10px]">Manager and MD</p>
               </div>
               <div className="absolute -top-10 -left-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl -z-10" />
             </motion.div>
@@ -74,7 +74,7 @@ export default function AboutView() {
               <div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary mb-6">
                 <Shield className="w-6 h-6" />
               </div>
-              <h2 className="text-3xl sm:text-4xl font-bold text-secondary tracking-tight leading-tight">Message From Managing Director</h2>
+              <h2 className="text-3xl sm:text-4xl font-bold text-secondary tracking-tight leading-tight">Message From Manager and MD</h2>
               <div className="space-y-6 text-gray-500 text-lg leading-relaxed">
                 <p>
                   "At Asay Technologies, we believe that technology is not just about code and servers; it's about solving real-world problems and creating meaningful impact. Our journey began with a simple vision: to empower businesses with the tools they need to succeed in the digital age."
@@ -172,21 +172,21 @@ export default function AboutView() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                name: 'K. Asai Thambi',
-                role: 'Founder & CEO',
-                desc: 'Visionary leader with over a decade of expertise in digital strategy.',
+                name: 'Sivabarathi P',
+                role: 'CEO',
+                desc: 'Strategic leader driving the mission and vision of Asay Technologies.',
                 image: 'https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&q=80&w=800'
               },
               {
-                name: 'S. Rajesh',
+                name: 'Premkumar A',
                 role: 'Chief Technology Officer',
                 desc: 'Technical mastermind driving innovation across our ecosystem.',
                 image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=800'
               },
               {
-                name: 'M. Priya',
-                role: 'Operations Manager',
-                desc: 'Ensuring seamless project delivery and operational excellence.',
+                name: 'Pravinkumar A',
+                role: 'Manager and MD',
+                desc: 'Overseeing operations and ensuring technical and strategic excellence.',
                 image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=800'
               }
             ].map((member, i) => (

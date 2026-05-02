@@ -1,13 +1,45 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Briefcase, MapPin, Clock, ArrowRight, Heart, Zap, Globe, Shield, X, Upload, Send, CheckCircle } from 'lucide-react';
+import { Briefcase, MapPin, Clock, ArrowRight, Heart, Zap, Globe, Shield, X, Upload, Send, CheckCircle, GraduationCap } from 'lucide-react';
 import { cn } from '../lib/utils';
 
 const jobs = [
-  { title: 'Senior React Developer', type: 'Full-time', location: 'Remote / US', dept: 'Engineering' },
-  { title: 'Cloud Infrastructure Architect', type: 'Full-time', location: 'Hybrid / Silicon Valley', dept: 'Operations' },
-  { title: 'Product UI/UX Designer', type: 'Contract', location: 'Remote / Global', dept: 'Design' },
-  { title: 'Technical Sales Lead', type: 'Full-time', location: 'Austin, TX', dept: 'Sales' },
+  { 
+    title: 'Senior React Developer', 
+    type: 'Full-time', 
+    location: 'Chennai (Guduvanchery)', 
+    dept: 'Engineering', 
+    exp: '3-5 Years', 
+    degree: 'B.E / B.Tech / MCA',
+    experience: 'Strong knowledge of React.js, TypeScript, and state management. Experience with Tailwind CSS and responsive design is required.'
+  },
+  { 
+    title: 'Cloud Infrastructure Architect', 
+    type: 'Full-time', 
+    location: 'Chennai (Guduvanchery)', 
+    dept: 'Operations', 
+    exp: '5+ Years', 
+    degree: 'B.E / B.Tech / MCA',
+    experience: 'Deep expertise in AWS, Kubernetes, and Terraform. Experience in managing CI/CD pipelines and infrastructure as code.'
+  },
+  { 
+    title: 'Product UI/UX Designer', 
+    type: 'Full-time', 
+    location: 'Chennai (Guduvanchery)', 
+    dept: 'Design', 
+    exp: '2-4 Years', 
+    degree: 'Any Degree / Design Specialization',
+    experience: 'Proficiency in Figma and user-centric design principles. Portfolio showcasing clean, modern web and mobile interfaces.'
+  },
+  { 
+    title: 'Technical Sales Lead', 
+    type: 'Full-time', 
+    location: 'Chennai (Guduvanchery)', 
+    dept: 'Sales', 
+    exp: '4+ Years', 
+    degree: 'MBA / Any Graduation',
+    experience: 'Experience in B2B IT service sales. Ability to effectively communicate technical concepts to non-technical stakeholders.'
+  },
 ];
 
 export function CareersView() {
@@ -102,10 +134,21 @@ export function CareersView() {
                   </div>
                 </div>
                 <h3 className="text-2xl font-bold text-secondary">{job.title}</h3>
-                <div className="flex items-center justify-center md:justify-start gap-4 text-gray-500">
-                  <div className="flex items-center gap-2">
-                    <MapPin className="w-4 h-4" />
+                <p className="text-gray-500 text-sm leading-relaxed max-w-xl group-hover:text-gray-600 transition-colors">
+                  {job.experience}
+                </p>
+                <div className="flex flex-wrap items-center justify-center md:justify-start gap-x-6 gap-y-2 text-gray-500 text-sm font-bold">
+                  <div className="flex items-center gap-1.5">
+                    <MapPin className="w-4 h-4 text-primary" />
                     {job.location}
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <Briefcase className="w-4 h-4 text-primary" />
+                    {job.exp} Exp.
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <GraduationCap className="w-4 h-4 text-primary" />
+                    {job.degree}
                   </div>
                 </div>
               </div>
@@ -181,9 +224,11 @@ export function CareersView() {
                         {selectedJob.dept}
                       </span>
                       <h2 className="text-2xl font-black text-secondary tracking-tighter leading-none mb-2">Apply for {selectedJob.title}</h2>
-                      <div className="flex items-center gap-4 text-gray-400 text-xs font-bold">
-                         <span className="flex items-center gap-1"><MapPin className="w-4 h-4" /> {selectedJob.location}</span>
-                         <span className="flex items-center gap-1"><Clock className="w-4 h-4" /> {selectedJob.type}</span>
+                      <div className="flex flex-wrap items-center gap-4 text-gray-400 text-xs font-bold">
+                         <span className="flex items-center gap-1"><MapPin className="w-4 h-4 text-primary" /> {selectedJob.location}</span>
+                         <span className="flex items-center gap-1"><Clock className="w-4 h-4 text-primary" /> {selectedJob.type}</span>
+                         <span className="flex items-center gap-1"><Briefcase className="w-4 h-4 text-primary" /> {selectedJob.exp} Exp.</span>
+                         <span className="flex items-center gap-1"><GraduationCap className="w-4 h-4 text-primary" /> {selectedJob.degree}</span>
                       </div>
                     </div>
 

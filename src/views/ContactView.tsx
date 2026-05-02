@@ -112,7 +112,7 @@ export function ContactView() {
             <div className="rounded-[2.5rem] overflow-hidden shadow-2xl glass p-3 border-white">
               <iframe
                 title="Google Maps"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.756241380927!2d80.1915!3d12.96!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDU3JzM2LjAiTiA4MMKwMTEnMjkuNCJF!5e0!3m2!1sen!2sin!4v1714594532000!5m2!1sen!2sin"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3890.34752!2d80.050441!3d12.86002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDUxJzM2LjEiTiA4MMKwMDMnMTAuOSJF!5e0!3m2!1sen!2sin!4v1731500000000!5m2!1sen!2sin"
                 width="100%"
                 height="300"
                 style={{ border: 0 }}
