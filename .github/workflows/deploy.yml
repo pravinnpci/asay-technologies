@@ -56,11 +56,11 @@ jobs:
             -backend-config="bucket=${{ env.STATE_BUCKET }}" \
             -backend-config="key=terraform.tfstate" \
             -backend-config="region=${{ env.AWS_REGION }}"
-        working-directory: ./terraform_aws
+        working-directory: ./
       - name: Terraform Apply
         id: apply
         run: terraform apply -auto-approve
-        working-directory: ./terraform_aws
+        working-directory: ./
 
   s3-asset-sync:
     name: "3: S3 Asset Sync"
