@@ -41,29 +41,11 @@ jobs:
           name: dist-files
           path: dist/
 
-  aws-infrastructure:
-    name: "2: AWS Infrastructure"
+  s3-asset-sync:
+    name: "2: S3 Asset Sync"
     needs: build
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    steps:
-      - uses: actions/checkout@v4
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
-        with:
-          terraform_wrapper: false
-      - name: Terraform Init
-        run: terraform init
-        working-directory: ./
-      - name: Terraform Apply
-        id: apply
-        run: terraform apply -auto-approve
-        working-directory: ./
-
-  s3-asset-sync:
-    name: "3: S3 Asset Sync"
-    needs: aws-infrastructure
-    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Download Build Artifact
@@ -76,9 +58,10 @@ jobs:
           aws s3 sync dist/ s3://${{ env.S3_BUCKET }} --delete --region ${{ env.AWS_REGION }}
 
   connectivity-check:
-    name: "4: Verification"
+    name: "3: Verification"
     needs: s3-asset-sync
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     steps:
       - name: Check Website URL
         run: |
