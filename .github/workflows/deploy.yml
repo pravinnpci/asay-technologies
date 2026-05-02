@@ -37,6 +37,7 @@ jobs:
           VITE_SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
           VITE_TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
           VITE_TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
+          VITE_TWILIO_CONTENT_SID: ${{ secrets.TWILIO_CONTENT_SID }}
           VITE_WEBSITE_WHATSAPP_NUMBER: ${{ secrets.WEBSITE_WHATSAPP_NUMBER }}
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v4
