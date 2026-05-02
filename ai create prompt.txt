@@ -1,0 +1,57 @@
+Build a complete, production-ready Multi-page (3-5 pages) SaaS / Landing Page from scratch.
+The website is for "Asay Technologies".
+About: Asay Technologies is an innovative IT startup focused on delivering modern, scalable, and reliable digital solutions for businesses of all sizes. We specialize in building high-performance web applications, SaaS platforms, and custom software tailored to meet real-world business needs.
+
+Our mission is to empower organizations with cutting-edge technology, enabling them to streamline operations, enhance customer experiences, and accelerate growth. From startups to enterprises, we provide end-to-end solutions including software development, cloud integration, and digital transformation services.
+
+At Asay Technologies, we combine technical expertise with creative thinking to build smart, secure, and future-ready products that drive success in a fast-evolving digital world.
+
+TECHNOLOGY:
+Use HTML with Bootstrap 5 framework. Write clean, well-structured, production-quality code.
+
+DESIGN DIRECTION:
+Style: Glassmorphism with frosted glass effects
+Colors: Lavender (#9b8ec4) and Soft Purple (#7c6daa) with light (#F5F3FF) background
+Tone & Voice: Professional and trustworthy
+Typography: looks professtionals
+
+LAYOUT STRUCTURE:
+Navigation: Hamburger menu only (hidden nav)
+Hero Section: Animated particle, 3D, or interactive canvas hero background
+Content Layout: Timeline / scroll-based storytelling layout
+Footer: Fat footer with newsletter signup, links, map, and social icons
+Section Spacing: Normal section spacing with balanced padding
+Scroll Animation: Fade-in animations on scroll for sections and elements
+
+SECTIONS TO INCLUDE:
+Hero Section About Us Services Products / Solutions Features / Why Choose Us Technologies We Use Clients / Testimonials Case Studies / Projects Careers Contact Us
+
+INTERACTIVE FEATURES:
+Include the following:
+- Responsive hamburger mobile menu
+- Smooth scroll navigation
+- Scroll-triggered fade-in animations
+- Contact form with validation
+- FAQ accordion section
+- Back to top button
+- Animated statistics counter section
+- Image lightbox gallery
+- Newsletter subscription form
+- Google Maps embed
+- Sticky call-to-action button
+
+TECHNICAL REQUIREMENTS:
+- Include detailed code comments
+- Use semantic HTML5 elements
+- Use CSS custom properties (variables)
+- Include Google Fonts
+- Use Font Awesome or Lucide icons
+- Ensure WCAG accessibility standards
+
+IMPORTANT GUIDELINES:
+- Make the website fully responsive across desktop, tablet, and mobile
+- Use smooth transitions and micro-interactions for a polished feel
+- Use placeholder images (via picsum.photos or placehold.co) where needed
+- Write realistic placeholder text instead of generic lorem ipsum
+- Ensure consistent spacing, alignment, and visual hierarchy throughout
+- Provide the complete, ready-to-use code
