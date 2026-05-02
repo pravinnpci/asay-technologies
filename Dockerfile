@@ -31,11 +31,21 @@ RUN npm run build
 # Stage 2: Serve the application using Nginx
 FROM nginx:stable-alpine
 
+# Remove the default Nginx configuration file
+RUN rm /etc/nginx/conf.d/default.conf
+
 # Copy built files from the build stage
 COPY --from=build /app/dist /usr/share/nginx/html
 
-# Custom Nginx config to handle SPA routing (redirect all 404s to index.html)
-RUN echo "server { listen 80; location / { root /usr/share/nginx/html; index index.html; try_files \$uri \$uri/ /index.html; } }" > /etc/nginx/conf.d/default.conf
+# Create a robust configuration for React Router (SPA)
+RUN echo 'server { \
+    listen 80; \
+    location / { \
+        root /usr/share/nginx/html; \
+        index index.html; \
+        try_files $uri $uri/ /index.html; \
+    } \
+}' > /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]

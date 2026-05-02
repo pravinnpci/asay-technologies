@@ -73,7 +73,11 @@ export function ContactView() {
           body: new URLSearchParams(params)
         });
       } catch (error) {
-        console.error('Twilio API Error:', error);
+        if (error instanceof Error) {
+          console.error('Form Submission Failed:', error.message);
+        } else {
+          console.error('Form Submission Failed:', error);
+        }
       }
 
       setSubmitted(true);

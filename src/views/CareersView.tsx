@@ -85,11 +85,23 @@ export function CareersView() {
       // Keep WhatsApp notification
       const accountSid = import.meta.env.VITE_TWILIO_ACCOUNT_SID;
       const authToken = import.meta.env.VITE_TWILIO_AUTH_TOKEN;
+      const contentSid = import.meta.env.VITE_TWILIO_CONTENT_SID;
       const whatsappNumber = import.meta.env.VITE_WEBSITE_WHATSAPP_NUMBER;
       const to = `whatsapp:${whatsappNumber}`;
       const from = 'whatsapp:+14155238886';
 
       const messageBody = `ASAY Technologies - New Career Application\n\nJob: ${selectedJob?.title}\nName: ${formData.get('name')}\nEmail: ${formData.get('email')}\nPhone: ${formData.get('phone')}\nPortfolio: ${formData.get('portfolio')}\nWhy: ${formData.get('why')}`;
+
+      const params: Record<string, string> = {
+        'To': to,
+        'From': from,
+      };
+
+      if (contentSid) {
+        params['ContentSid'] = contentSid;
+      } else {
+        params['Body'] = messageBody;
+      }
 
       await fetch(`https://api.twilio.com/2010-04-01/Accounts/${accountSid}/Messages.json`, {
         method: 'POST',
@@ -97,14 +109,14 @@ export function CareersView() {
           'Authorization': 'Basic ' + btoa(`${accountSid}:${authToken}`),
           'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: new URLSearchParams({
-          'To': to,
-          'From': from,
-          'Body': messageBody
-        })
+        body: new URLSearchParams(params)
       });
     } catch (error) {
-      console.error('Twilio API Error:', error);
+      if (error instanceof Error) {
+        console.error('Career Application Failed:', error.message);
+      } else {
+        console.error('Career Application Failed:', error);
+      }
     }
 
     setIsSubmitted(true);
