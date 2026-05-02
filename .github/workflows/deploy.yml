@@ -14,9 +14,8 @@ env:
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   AWS_REGION: "ap-south-2"
   DOCKER_IMAGE: pravinnpci/asay-tech
-  EXISTING_EIP: "18.60.246.115"
   S3_BUCKET: "asay-technologies-web-bucket"
-  STATE_BUCKET: "siva-medicals-tfstate-pravin"
+  STATE_BUCKET: "asay-tech-tfstate-pravin"
 
 jobs:
   build-and-test:
@@ -59,19 +58,28 @@ jobs:
     needs: docker-ci
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    outputs:
+      server_ip: ${{ steps.get_ip.outputs.server_ip }}
     steps:
       - uses: actions/checkout@v4
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_wrapper: false
       - name: Terraform Init
         run: |
           terraform init \
             -backend-config="bucket=${{ env.STATE_BUCKET }}" \
-            -backend-config="key=asay-tech/terraform.tfstate" \
+            -backend-config="key=terraform.tfstate" \
             -backend-config="region=${{ env.AWS_REGION }}"
         working-directory: ./terraform_aws
       - name: Terraform Apply
+        id: apply
         run: terraform apply -auto-approve
+        working-directory: ./terraform_aws
+      - name: Get Server IP
+        id: get_ip
+        run: echo "server_ip=$(terraform output -raw server_ip)" >> $GITHUB_OUTPUT
         working-directory: ./terraform_aws
 
   s3-asset-sync:
@@ -96,7 +104,7 @@ jobs:
       - name: Setup K3s on EC2
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ env.EXISTING_EIP }}
+          host: ${{ needs.aws-infrastructure.outputs.server_ip }}
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
@@ -112,7 +120,7 @@ jobs:
       - name: Deploy Manifests
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ env.EXISTING_EIP }}
+          host: ${{ needs.aws-infrastructure.outputs.server_ip }}
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
@@ -147,8 +155,12 @@ jobs:
     steps:
       - name: Verify App and WhatsApp Integration
         run: |
-          echo "Checking site availability at http://${{ env.EXISTING_EIP }}"
-          curl --retry 5 --retry-delay 5 -I http://${{ env.EXISTING_EIP }} || echo "App might be starting up..."
-          echo "WhatsApp message test from contact form: Verifying Twilio credentials..."
-          if [ -z "${{ secrets.TWILIO_ACCOUNT_SID }}" ]; then echo "Error: TWILIO_ACCOUNT_SID missing"; exit 1; fi
+          SERVER_IP=${{ needs.aws-infrastructure.outputs.server_ip }}
+          echo "Checking site availability at http://$SERVER_IP"
+          curl --retry 5 --retry-delay 5 -I http://$SERVER_IP || echo "App might be starting up..."
+          
+          echo "WhatsApp message test: Verifying environment configuration..."
+          if [ -z "$TWILIO_SID" ]; then echo "Error: TWILIO_ACCOUNT_SID secret is not set in GitHub"; exit 1; fi
           echo "✅ WhatsApp configuration verified."
+        env:
+          TWILIO_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
