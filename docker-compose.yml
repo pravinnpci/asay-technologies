@@ -3,8 +3,6 @@ services:
     build:
       context: .
       args:
-        - VITE_SUPABASE_URL
-        - VITE_SUPABASE_ANON_KEY
         - VITE_TWILIO_ACCOUNT_SID
         - VITE_TWILIO_AUTH_TOKEN
         - VITE_TWILIO_CONTENT_SID

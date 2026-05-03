@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Briefcase, MapPin, Clock, ArrowRight, Heart, Zap, Globe, Shield, X, Upload, Send, CheckCircle, GraduationCap } from 'lucide-react';
 import { cn } from '../lib/utils';
-import { supabase } from '../lib/supabase';
 
 const jobs = [
   { 
@@ -68,42 +67,26 @@ export function CareersView() {
     if (Object.keys(newErrors).length > 0) return;
 
     try {
-      // Save to Supabase
-      const { error: supabaseError } = await supabase
-        .from('career_applications')
-        .insert([{
-          job_title: selectedJob?.title,
-          full_name: formData.get('name'),
-          email: formData.get('email'),
-          phone: formData.get('phone'),
-          portfolio_link: formData.get('portfolio'),
-          why_asay: formData.get('why')
-        }]);
-
-      if (supabaseError) throw supabaseError;
-
       // Keep WhatsApp notification
       const accountSid = import.meta.env.VITE_TWILIO_ACCOUNT_SID;
       const authToken = import.meta.env.VITE_TWILIO_AUTH_TOKEN;
-      const contentSid = import.meta.env.VITE_TWILIO_CONTENT_SID;
       const whatsappNumber = import.meta.env.VITE_WEBSITE_WHATSAPP_NUMBER;
       const to = `whatsapp:${whatsappNumber}`;
       const from = 'whatsapp:+14155238886';
+
+      if (authToken?.startsWith('AC')) {
+        console.error('Twilio Configuration Error: Your Auth Token looks like an Account SID.');
+      }
 
       const messageBody = `ASAY Technologies - New Career Application\n\nJob: ${selectedJob?.title}\nName: ${formData.get('name')}\nEmail: ${formData.get('email')}\nPhone: ${formData.get('phone')}\nPortfolio: ${formData.get('portfolio')}\nWhy: ${formData.get('why')}`;
 
       const params: Record<string, string> = {
         'To': to,
         'From': from,
+        'Body': messageBody
       };
 
-      if (contentSid) {
-        params['ContentSid'] = contentSid;
-      } else {
-        params['Body'] = messageBody;
-      }
-
-      await fetch(`https://api.twilio.com/2010-04-01/Accounts/${accountSid}/Messages.json`, {
+      const response = await fetch(`https://api.twilio.com/2010-04-01/Accounts/${accountSid}/Messages.json`, {
         method: 'POST',
         headers: {
           'Authorization': 'Basic ' + btoa(`${accountSid}:${authToken}`),
@@ -111,6 +94,17 @@ export function CareersView() {
         },
         body: new URLSearchParams(params)
       });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Twilio API Error');
+      }
+
+      setIsSubmitted(true);
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setSelectedJob(null);
+      }, 3000);
     } catch (error) {
       const err = error as any;
       console.error('Career Application Failed:', {
@@ -118,13 +112,8 @@ export function CareersView() {
         hint: err?.hint,
         details: err?.details
       });
+      alert('Error submitting application. Please try again.');
     }
-
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setSelectedJob(null);
-    }, 3000);
   };
 
   return (

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { Mail, Phone, MapPin, Send, CheckCircle, Globe, MessageSquare } from 'lucide-react';
 import { cn } from '../lib/utils';
-import { supabase } from '../lib/supabase';
 
 export function ContactView() {
   const [submitted, setSubmitted] = useState(false);
@@ -31,22 +30,8 @@ export function ContactView() {
     e.preventDefault();
     if (validate()) {
       try {
-        // Save to Supabase
-        const { error: supabaseError } = await supabase
-          .from('contact_requests')
-          .insert([{
-            name: formData.name,
-            email: formData.email,
-            phone: formData.phone,
-            subject: formData.subject,
-            message: formData.message
-          }]);
-
-        if (supabaseError) throw supabaseError;
-
         const accountSid = import.meta.env.VITE_TWILIO_ACCOUNT_SID;
         const authToken = import.meta.env.VITE_TWILIO_AUTH_TOKEN;
-        const contentSid = import.meta.env.VITE_TWILIO_CONTENT_SID;
         const whatsappNumber = import.meta.env.VITE_WEBSITE_WHATSAPP_NUMBER;
         const to = `whatsapp:${whatsappNumber}`;
         const from = 'whatsapp:+14155238886'; // Your Twilio WhatsApp Sandbox number
@@ -56,13 +41,8 @@ export function ContactView() {
         const params: Record<string, string> = {
           'To': to,
           'From': from,
+          'Body': messageBody
         };
-
-        if (contentSid) {
-          params['ContentSid'] = contentSid;
-        } else {
-          params['Body'] = messageBody;
-        }
 
         await fetch(`https://api.twilio.com/2010-04-01/Accounts/${accountSid}/Messages.json`, {
           method: 'POST',
@@ -73,7 +53,7 @@ export function ContactView() {
           body: new URLSearchParams(params)
         });
       } catch (error) {
-        const err = error as any;
+        const err = error as { message?: string; hint?: string; details?: string };
         console.error('Form Submission Failed:', {
           message: err?.message || 'Unknown error',
           hint: err?.hint,
