@@ -67,9 +67,9 @@ jobs:
     steps:
       - name: Check Website URL
         run: |
-          URL="http://${{ env.S3_BUCKET }}.s3-website-${{ env.AWS_REGION }}.amazonaws.com"
+          URL="http://${{ env.S3_BUCKET }}.s3-website.${{ env.AWS_REGION }}.amazonaws.com"
           echo "Checking website availability at $URL"
-          curl -I $URL
+          curl --retry 5 --retry-delay 10 -I $URL
 
       - name: WhatsApp Integration Test
         run: |
