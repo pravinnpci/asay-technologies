@@ -12,6 +12,7 @@ import { CareersView } from './views/CareersView';
 import { ContactView } from './views/ContactView';
 import { PrivacyView } from './views/PrivacyView';
 import { FloatingActions } from './components/FloatingActions';
+import { ChatBot } from './components/ChatBot';
 import { cn } from './lib/utils';
 
 // Scroll to top on route change
@@ -68,6 +69,7 @@ export default function App() {
 
         <Footer />
         <FloatingActions />
+        <ChatBot />
 
         {/* Back To Top Button */}
         <AnimatePresence>
@@ -77,7 +79,7 @@ export default function App() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.5, y: 20 }}
               onClick={scrollToTop}
-              className="fixed bottom-40 right-9 w-12 h-12 bg-white text-secondary rounded-full shadow-2xl flex items-center justify-center border border-primary/20 hover:bg-primary z-[100] group transition-all"
+              className="fixed bottom-80 right-9 w-12 h-12 bg-white text-secondary rounded-full shadow-2xl flex items-center justify-center border border-primary/20 hover:bg-primary z-[100] group transition-all"
               aria-label="Back to top"
             >
               <ChevronUp className="w-7 h-7 group-hover:text-white group-hover:-translate-y-1 transition-all" />

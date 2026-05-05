@@ -32,7 +32,7 @@ jobs:
       - name: Build Frontend (Verification)
         run: npm run build
         env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          VITE_GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           VITE_TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
           VITE_TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
           VITE_TWILIO_CONTENT_SID: ${{ secrets.TWILIO_CONTENT_SID }}

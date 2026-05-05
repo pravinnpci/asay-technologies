@@ -30,9 +30,9 @@ export function ContactView() {
     e.preventDefault();
     if (validate()) {
       try {
-        const accountSid = import.meta.env.VITE_TWILIO_ACCOUNT_SID;
-        const authToken = import.meta.env.VITE_TWILIO_AUTH_TOKEN;
-        const whatsappNumber = import.meta.env.VITE_WEBSITE_WHATSAPP_NUMBER;
+        const accountSid = import.meta.env.VITE_TWILIO_ACCOUNT_SID || '';
+        const authToken = import.meta.env.VITE_TWILIO_AUTH_TOKEN || '';
+        const whatsappNumber = import.meta.env.VITE_WEBSITE_WHATSAPP_NUMBER || '';
         const to = `whatsapp:${whatsappNumber}`;
         const from = 'whatsapp:+14155238886'; // Your Twilio WhatsApp Sandbox number
 
