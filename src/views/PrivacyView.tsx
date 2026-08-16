@@ -24,7 +24,7 @@ export function PrivacyView() {
                 <Lock className="w-5 h-5 text-primary" /> 1. Data Protection
               </h2>
               <p className="leading-relaxed">
-                At Asay Technologies, we take your privacy seriously. This policy describes how we collect, use, and protect your personal information when you use our website and services. We are committed to ensuring that your data is handled with the highest level of security.
+                At Asay InfoTech, we take your privacy seriously. This policy describes how we collect, use, and protect your personal information when you use our website and services. We are committed to ensuring that your data is handled with the highest level of security.
               </p>
             </section>
 

@@ -78,7 +78,7 @@ export function CareersView() {
         console.error('Twilio Configuration Error: Your Auth Token looks like an Account SID.');
       }
 
-      const messageBody = `ASAY Technologies - New Career Application\n\nJob: ${selectedJob?.title}\nName: ${formData.get('name')}\nEmail: ${formData.get('email')}\nPhone: ${formData.get('phone')}\nPortfolio: ${formData.get('portfolio')}\nWhy: ${formData.get('why')}`;
+      const messageBody = `ASAY InfoTech - New Career Application\n\nJob: ${selectedJob?.title}\nName: ${formData.get('name')}\nEmail: ${formData.get('email')}\nPhone: ${formData.get('phone')}\nPortfolio: ${formData.get('portfolio')}\nWhy: ${formData.get('why')}`;
 
       const params: Record<string, string> = {
         'To': to,
@@ -199,7 +199,7 @@ export function CareersView() {
         {/* Perks Section */}
         <div className="mt-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 text-center lg:text-left">
             <div className="col-span-full text-center mb-12">
-               <h2 className="text-3xl font-bold text-secondary">Why Asay Tech?</h2>
+               <h2 className="text-3xl font-bold text-secondary">Why Asay InfoTech?</h2>
             </div>
             {[
                 { title: 'Global Impact', desc: 'Work on products used by millions across the globe.', icon: Globe },
@@ -308,7 +308,7 @@ export function CareersView() {
                       </div>
 
                       <div className="space-y-2">
-                        <label className="text-xs font-black text-secondary uppercase tracking-widest pl-2">Why Asay Technologies?</label>
+                        <label className="text-xs font-black text-secondary uppercase tracking-widest pl-2">Why Asay InfoTech?</label>
                         <textarea name="why" rows={3} className={cn("w-full px-4 py-3 rounded-xl bg-gray-50 border outline-none transition-all font-bold text-sm resize-none", errors.why ? "border-red-400 focus:border-red-500" : "border-gray-100 focus:border-primary")} placeholder="Tell us briefly about your passion..." />
                         {errors.why && <p className="text-[10px] text-red-500 font-bold pl-2">{errors.why}</p>}
                       </div>

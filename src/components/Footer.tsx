@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Mail, Phone, MapPin, Rocket, Twitter, Github, Linkedin, Instagram, ArrowRight } from 'lucide-react';
+import { Mail, Phone, MapPin, Twitter, Github, Linkedin, Instagram, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Logo } from './Logo';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -12,12 +13,12 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand Info */}
           <div className="col-span-1 lg:col-span-1">
-            <Link to="/" className="flex items-center gap-2 mb-6">
-              <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-lg transform rotate-12">
-                <Rocket className="text-white w-6 h-6 -rotate-12" />
+            <Link to="/" className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 flex items-center justify-center">
+                <Logo className="w-full h-full" size={40} />
               </div>
               <span className="text-xl font-bold tracking-tight text-white">
-                ASAY <span className="text-primary">Technologies</span>
+                ASAY <span className="text-primary">InfoTech</span>
               </span>
             </Link>
             <p className="text-gray-400 mb-8 leading-relaxed">
@@ -100,7 +101,7 @@ export function Footer() {
               </div>
               <div className="flex items-center gap-3">
                 <Phone className="text-primary w-5 h-5 shrink-0" />
-                <a href="tel:+919245464648" className="text-gray-400 hover:text-primary transition-colors font-medium">+91 9245464648</a>
+                <a href="tel:+916382907182" className="text-gray-400 hover:text-primary transition-colors font-medium">+91 6382907182</a>
               </div>
             </div>
 
@@ -132,7 +133,7 @@ export function Footer() {
         </div>
 
         <div className="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-500 font-medium">
-          <p>© {currentYear} Asay Technologies Inc. All rights reserved.</p>
+          <p>© {currentYear} Asay InfoTech Inc. All rights reserved.</p>
           <div className="flex gap-8">
             <a href="#" className="hover:text-primary transition-colors">Terms of Service</a>
             <a href="#" className="hover:text-primary transition-colors">Cookies Settings</a>

@@ -29,7 +29,7 @@ export default function AboutView() {
               transition={{ delay: 0.1 }}
               className="text-xl text-gray-500 leading-relaxed"
             >
-              Since our inception, Asay Technologies has been at the forefront of digital innovation, 
+              Since our inception, Asay InfoTech has been at the forefront of digital innovation, 
               crafting bespoke solutions that empower businesses to scale and thrive in an ever-evolving tech landscape.
             </motion.p>
           </div>
@@ -77,7 +77,7 @@ export default function AboutView() {
               <h2 className="text-3xl sm:text-4xl font-bold text-secondary tracking-tight leading-tight">Message From Manager and MD</h2>
               <div className="space-y-6 text-gray-500 text-lg leading-relaxed">
                 <p>
-                  "At Asay Technologies, we believe that technology is not just about code and servers; it's about solving real-world problems and creating meaningful impact. Our journey began with a simple vision: to empower businesses with the tools they need to succeed in the digital age."
+                  "At Asay InfoTech, we believe that technology is not just about code and servers; it's about solving real-world problems and creating meaningful impact. Our journey began with a simple vision: to empower businesses with the tools they need to succeed in the digital age."
                 </p>
                 <p>
                   "We take pride in our ability to understand our clients' unique challenges and deliver solutions that are not only technically superior but also strategically aligned with their long-term goals. Every project we undertake is a commitment to excellence and a testament to our passion for innovation."
@@ -174,7 +174,7 @@ export default function AboutView() {
               {
                 name: 'Sivabarathi P',
                 role: 'CEO',
-                desc: 'Strategic leader driving the mission and vision of Asay Technologies.',
+                desc: 'Strategic leader driving the mission and vision of Asay InfoTech.',
                 image: 'https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&q=80&w=800'
               },
               {

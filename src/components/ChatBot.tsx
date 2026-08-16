@@ -11,7 +11,7 @@ const genAI = new GoogleGenerativeAI(apiKey);
 export function ChatBot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<{ role: 'user' | 'model'; text: string }[]>([
-    { role: 'model', text: 'Hi! I\'m your Asay Tech assistant. How can I help you explore our digital solutions today?' }
+    { role: 'model', text: 'Hi! I\'m your Asay InfoTech assistant. How can I help you explore our digital solutions today?' }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -40,7 +40,7 @@ export function ChatBot() {
       // Initializing the model - Targeting the v1beta endpoint to match the working AI Studio configuration
       const model = genAI.getGenerativeModel({ 
         model: "gemini-flash-latest", // Using the alias that worked in your curl test
-        systemInstruction: "You are Asay AI, the professional assistant for Asay Technologies. We specialize in modern, scalable, and reliable digital solutions. Our services include: Web Development, Custom SaaS, Cloud Solutions, Mobile Apps, Data Analytics, Cybersecurity, Strategic Consulting, Global Scaling, and Rapid Prototyping. Our contact details are: WhatsApp +91 9245464648, Email hello@asaytech.com. Our Chennai office address is: First Floor, No 3/31 Jawaharayya Nagar, Aadhanoor Road, Madambakkam Po, Guduvanchery 603202. Always provide these details directly when asked. Be professional and concise. For detailed project inquiries, suggest visiting the 'Contact' page. For more in-depth service information, suggest visiting the 'Services' page."
+        systemInstruction: "You are Asay AI, the professional assistant for Asay InfoTech. We specialize in modern, scalable, and reliable digital solutions. Our services include: Web Development, Custom SaaS, Cloud Solutions, Mobile Apps, Data Analytics, Cybersecurity, Strategic Consulting, Global Scaling, and Rapid Prototyping. Our contact details are: WhatsApp +91 6382907182, Email hello@asaytech.com. Our Chennai office address is: First Floor, No 3/31 Jawaharayya Nagar, Aadhanoor Road, Madambakkam Po, Guduvanchery 603202. Always provide these details directly when asked. Be professional and concise. For detailed project inquiries, suggest visiting the 'Contact' page. For more in-depth service information, suggest visiting the 'Services' page."
       }, { apiVersion: 'v1beta' });
       
       // Build a prompt that includes the last few messages for context

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Menu, X, Rocket, ChevronRight } from 'lucide-react';
+import { Menu, X, ChevronRight } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '../lib/utils';
+import { Logo } from './Logo';
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -44,12 +45,12 @@ export function Navbar() {
           scrolled ? "bg-white/90 backdrop-blur-xl py-2 shadow-primary/10" : "bg-white/60 backdrop-blur-xl"
         )}>
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 group z-10 shrink-0 transition-transform active:scale-95">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary rounded-2xl flex items-center justify-center shadow-lg transform rotate-3 group-hover:rotate-0 transition-transform">
-              <Rocket className="text-white w-6 h-6 sm:w-8 sm:h-8" />
+          <Link to="/" className="flex items-center gap-3 group z-10 shrink-0 transition-transform active:scale-95">
+            <div className="w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center transform group-hover:scale-105 transition-transform">
+              <Logo className="w-full h-full" size={44} />
             </div>
             <span className="hidden sm:block text-2xl font-black tracking-tighter text-secondary">
-              ASAY <span className="text-primary">Technologies</span>
+              ASAY <span className="text-primary">InfoTech</span>
             </span>
           </Link>
 
@@ -128,7 +129,7 @@ export function Navbar() {
                   ))}
                 </ul>
                 <div className="mt-8 pt-6 border-t border-secondary/5 flex justify-center">
-                  <p className="text-[10px] font-black uppercase tracking-[0.3em] text-secondary/30">Asay Technologies © 2026</p>
+                  <p className="text-[10px] font-black uppercase tracking-[0.3em] text-secondary/30">Asay InfoTech © 2026</p>
                 </div>
               </div>
             </motion.div>

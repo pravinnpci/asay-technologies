@@ -30,7 +30,7 @@ export function HomeView() {
               <div className="absolute left-1/2 top-0 bottom-0 w-px bg-primary/30 hidden md:block" />
               
               {[
-                { year: '2022', title: 'The Vision', text: 'Asay Technologies founded with a mission to simplify enterprise digital transformation.' },
+                { year: '2022', title: 'The Vision', text: 'Asay InfoTech founded with a mission to simplify enterprise digital transformation.' },
                 { year: '2023', title: 'Scaling Up', text: 'Expanded our core team and launched our first international SaaS platform.' },
                 { year: '2024', title: 'Global Impact', text: 'Serving 100+ clients across 5 continents with cutting-edge cloud solutions.' },
                 { year: '2025', title: 'Innovation Lead', text: 'Integrating AI and modern architectures to redefine industry standards.' }
@@ -101,7 +101,7 @@ export function HomeView() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4 text-secondary tracking-tight">Our Leadership</h2>
-            <p className="text-gray-500 max-w-2xl mx-auto text-lg">The visionaries behind Asay Technologies, committed to innovation and excellence.</p>
+            <p className="text-gray-500 max-w-2xl mx-auto text-lg">The visionaries behind Asay InfoTech, committed to innovation and excellence.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -109,7 +109,7 @@ export function HomeView() {
               {
                 name: 'Sivabarathi P',
                 role: 'CEO',
-                desc: 'Strategic leader driving the mission and vision of Asay Technologies.',
+                desc: 'Strategic leader driving the mission and vision of Asay InfoTech.',
                 image: 'https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&q=80&w=800'
               },
               {

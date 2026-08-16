@@ -54,7 +54,7 @@ export function Hero() {
             </h1>
 
             <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto lg:mx-0">
-              Asay Technologies is a top-tier software development company excelling in custom solutions, AI/ML, and cloud integration. 
+              Asay InfoTech is a top-tier software development company excelling in custom solutions, AI/ML, and cloud integration. 
               We deliver high-quality products with 99.5% global client satisfaction.
             </p>
 

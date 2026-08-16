@@ -3,8 +3,8 @@ import { MessageSquare, PhoneCall } from 'lucide-react';
 import { motion } from 'motion/react';
 
 export function FloatingActions() {
-  const whatsappNumber = "+919245464648";
-  const message = "Hi Asay Tech, I'd like to inquire about your services.";
+  const whatsappNumber = "+916382907182";
+  const message = "Hi Asay InfoTech, I'd like to inquire about your services.";
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 
   return (
@@ -28,7 +28,7 @@ export function FloatingActions() {
 
       {/* Call Button (Mobile only logic usually, but here for convenience) */}
       <motion.a
-        href="tel:+919245464648"
+        href="tel:+916382907182"
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 0.1 }}

@@ -36,7 +36,7 @@ export function ContactView() {
         const to = `whatsapp:${whatsappNumber}`;
         const from = 'whatsapp:+14155238886'; // Your Twilio WhatsApp Sandbox number
 
-        const messageBody = `ASAY Technologies - New Contact Request\n\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nSubject: ${formData.subject || 'N/A'}\nMessage: ${formData.message}`;
+        const messageBody = `ASAY InfoTech - New Contact Request\n\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nSubject: ${formData.subject || 'N/A'}\nMessage: ${formData.message}`;
 
         const params: Record<string, string> = {
           'To': to,
@@ -96,12 +96,12 @@ export function ContactView() {
                   value: 'First Floor, No 3/31 Jawaharayya Nagar, Aadhanoor Road, Madambakkam Po, Guduvanchery 603202',
                   href: '#' 
                 },
-                { icon: Phone, label: 'Contact Number', value: '+91 9245464648', href: 'tel:+919245464648' },
+                { icon: Phone, label: 'Contact Number', value: '+91 6382907182', href: 'tel:+916382907182' },
                 { 
                   icon: MessageSquare, 
                   label: 'WhatsApp Chat', 
-                  value: '+91 9245464648',
-                  href: 'https://wa.me/919245464648'
+                  value: '+91 6382907182',
+                  href: 'https://wa.me/916382907182'
                 },
                 { icon: Mail, label: 'Email Address', value: 'hello@asaytech.com', href: 'mailto:hello@asaytech.com' },
               ].map((item, i) => (
@@ -141,7 +141,7 @@ export function ContactView() {
                   <div className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center text-white text-[10px] font-black italic">GPay</div>
                   <div>
                     <p className="text-[10px] uppercase tracking-widest font-black text-secondary">Pay on Google Pay</p>
-                    <p className="text-xs font-bold text-primary">+91 9245464648</p>
+                    <p className="text-xs font-bold text-primary">+91 6382907182</p>
                   </div>
                 </div>
                 <div className="px-6 py-3 bg-white rounded-xl shadow-sm border border-gray-100 flex items-center gap-3">
