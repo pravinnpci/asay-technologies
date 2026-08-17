@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Briefcase, MapPin, Clock, ArrowRight, Heart, Zap, Globe, Shield, X, Upload, Send, CheckCircle, GraduationCap } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { ENV } from '../config/env';
+import { sendEmailSubmission } from '../lib/mail';
 
 const jobs = [
   { 
@@ -74,46 +75,16 @@ export function CareersView() {
     setIsSubmitting(true);
 
     try {
-      // 1. Send Application to company email via FormSubmit with auto-response to applicant
-      const applicationPayload = {
+      await sendEmailSubmission({
+        formType: 'career',
         name: applicantName,
         email: applicantEmail,
-        _replyto: applicantEmail,
-        phone: formData.get('phone'),
-        Job_Position: selectedJob?.title || 'Open Application',
-        Department: selectedJob?.dept || 'General',
-        Resume_Portfolio_Link: formData.get('portfolio'),
-        Why_Asay_InfoTech: formData.get('why'),
-        _subject: `New Job Application: ${selectedJob?.title} - ${applicantName}`,
-        _autoresponse: `Dear ${applicantName},\n\nThank you for applying for the position of "${selectedJob?.title}" at ASAY InfoTech!\n\nWe have received your application and resume. Our recruitment team is currently reviewing your profile.\n\nIf your qualifications match our current requirements, our team will get in touch with you within 24-48 hours to discuss the next steps.\n\nWarm regards,\nASAY InfoTech Talent Team\nEmail: ${ENV.COMPANY_EMAIL}\nWebsite: https://asayinfotech.in`,
-        _template: 'table',
-        _captcha: 'false'
-      };
-
-      await fetch(ENV.FORMSUBMIT_ENDPOINT, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify(applicationPayload)
-      }).catch(err => console.log('Job application email initiated:', err));
-
-      // 2. Optional Twilio notification
-      if (ENV.TWILIO_ACCOUNT_SID && ENV.TWILIO_AUTH_TOKEN && !ENV.TWILIO_AUTH_TOKEN.startsWith('YOUR_')) {
-        const to = `whatsapp:${ENV.WHATSAPP_NUMBER}`;
-        const from = 'whatsapp:+14155238886';
-        const messageBody = `ASAY InfoTech - New Career Application\n\nJob: ${selectedJob?.title}\nName: ${applicantName}\nEmail: ${applicantEmail}\nPhone: ${formData.get('phone')}\nPortfolio: ${formData.get('portfolio')}\nWhy: ${formData.get('why')}`;
-
-        await fetch(`https://api.twilio.com/2010-04-01/Accounts/${ENV.TWILIO_ACCOUNT_SID}/Messages.json`, {
-          method: 'POST',
-          headers: {
-            'Authorization': 'Basic ' + btoa(`${ENV.TWILIO_ACCOUNT_SID}:${ENV.TWILIO_AUTH_TOKEN}`),
-            'Content-Type': 'application/x-www-form-urlencoded'
-          },
-          body: new URLSearchParams({ 'To': to, 'From': from, 'Body': messageBody })
-        }).catch(e => console.log('Twilio career notify:', e));
-      }
+        phone: formData.get('phone') as string,
+        jobTitle: selectedJob?.title || 'Open Application',
+        department: selectedJob?.dept || 'General',
+        portfolio: formData.get('portfolio') as string,
+        why: formData.get('why') as string
+      });
 
       setIsSubmitted(true);
     } catch (error) {

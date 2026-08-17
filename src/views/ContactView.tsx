@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { Mail, Phone, MapPin, Send, CheckCircle, Globe, MessageSquare } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { ENV } from '../config/env';
+import { sendEmailSubmission } from '../lib/mail';
 
 export function ContactView() {
   const [submitted, setSubmitted] = useState(false);
@@ -35,44 +36,14 @@ export function ContactView() {
     setIsSubmitting(true);
 
     try {
-      // 1. Primary Email Delivery via FormSubmit to company email + Auto-Response to client email
-      const emailPayload = {
+      await sendEmailSubmission({
+        formType: 'contact',
         name: formData.name,
         email: formData.email,
-        _replyto: formData.email,
         phone: formData.phone,
-        subject: formData.subject || 'New Contact Request',
-        message: formData.message,
-        _subject: `New ASAY InfoTech Inquiry: ${formData.subject || 'General'} from ${formData.name}`,
-        _autoresponse: `Dear ${formData.name},\n\nThank you for getting in touch with ASAY InfoTech!\n\nWe have received your message regarding "${formData.subject || 'your project inquiry'}". Our team is reviewing your requirements and will reach out to you within 24 hours.\n\nFor immediate assistance, you can also chat with us directly on WhatsApp at ${ENV.WHATSAPP_NUMBER}.\n\nWarm regards,\nASAY InfoTech Client Relations Team\nEmail: ${ENV.COMPANY_EMAIL}\nWebsite: https://asayinfotech.in`,
-        _template: 'table',
-        _captcha: 'false'
-      };
-
-      await fetch(ENV.FORMSUBMIT_ENDPOINT, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify(emailPayload)
-      }).catch(err => console.log('Email delivery initiated:', err));
-
-      // 2. Optional Twilio WhatsApp notification if configured
-      if (ENV.TWILIO_ACCOUNT_SID && ENV.TWILIO_AUTH_TOKEN && !ENV.TWILIO_AUTH_TOKEN.startsWith('YOUR_')) {
-        const to = `whatsapp:${ENV.WHATSAPP_NUMBER}`;
-        const from = 'whatsapp:+14155238886';
-        const messageBody = `ASAY InfoTech - New Contact Request\n\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nSubject: ${formData.subject || 'N/A'}\nMessage: ${formData.message}`;
-
-        await fetch(`https://api.twilio.com/2010-04-01/Accounts/${ENV.TWILIO_ACCOUNT_SID}/Messages.json`, {
-          method: 'POST',
-          headers: {
-            'Authorization': 'Basic ' + btoa(`${ENV.TWILIO_ACCOUNT_SID}:${ENV.TWILIO_AUTH_TOKEN}`),
-            'Content-Type': 'application/x-www-form-urlencoded'
-          },
-          body: new URLSearchParams({ 'To': to, 'From': from, 'Body': messageBody })
-        }).catch(e => console.log('Twilio notify error:', e));
-      }
+        subject: formData.subject,
+        message: formData.message
+      });
 
       setSubmitted(true);
     } catch (error) {
