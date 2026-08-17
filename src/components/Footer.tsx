@@ -4,6 +4,7 @@ import { Mail, Phone, MapPin, Twitter, Github, Linkedin, Instagram, ArrowRight, 
 import { Link } from 'react-router-dom';
 import { Logo } from './Logo';
 import { ENV } from '../config/env';
+import { sendEmailSubmission } from '../lib/mail';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -21,21 +22,10 @@ export function Footer() {
 
     setNewsletterStatus('loading');
     try {
-      await fetch(ENV.FORMSUBMIT_ENDPOINT, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          email: newsletterEmail,
-          _replyto: newsletterEmail,
-          Subscription_Type: 'Weekly Tech & Product Updates',
-          _subject: `New Newsletter Subscriber: ${newsletterEmail}`,
-          _autoresponse: `Thank you for subscribing to ASAY InfoTech Newsletter! You will receive our latest digital transformation case studies, tech insights, and company updates.`,
-          _template: 'table',
-          _captcha: 'false'
-        })
+      await sendEmailSubmission({
+        formType: 'newsletter',
+        name: 'Newsletter Subscriber',
+        email: newsletterEmail
       });
 
       setNewsletterStatus('success');

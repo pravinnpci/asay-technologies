@@ -37,11 +37,15 @@ jobs:
       - name: Build Project
         run: npm run build
         env:
+          VITE_COMPANY_EMAIL: ${{ secrets.VITE_COMPANY_EMAIL || 'asayinfotech@gmail.com' }}
+          VITE_WEBSITE_WHATSAPP_NUMBER: ${{ secrets.VITE_WEBSITE_WHATSAPP_NUMBER || '+916382907182' }}
+          VITE_EMAILJS_SERVICE_ID: ${{ secrets.VITE_EMAILJS_SERVICE_ID }}
+          VITE_EMAILJS_TEMPLATE_ID: ${{ secrets.VITE_EMAILJS_TEMPLATE_ID }}
+          VITE_EMAILJS_PUBLIC_KEY: ${{ secrets.VITE_EMAILJS_PUBLIC_KEY }}
           VITE_GEMINI_API_KEY: ${{ secrets.VITE_GEMINI_API_KEY }}
           VITE_TWILIO_ACCOUNT_SID: ${{ secrets.VITE_TWILIO_ACCOUNT_SID }}
           VITE_TWILIO_AUTH_TOKEN: ${{ secrets.VITE_TWILIO_AUTH_TOKEN }}
           VITE_TWILIO_CONTENT_SID: ${{ secrets.VITE_TWILIO_CONTENT_SID }}
-          VITE_WEBSITE_WHATSAPP_NUMBER: ${{ secrets.VITE_WEBSITE_WHATSAPP_NUMBER }}
 
       - name: SPA 404 Fallback
         run: cp dist/index.html dist/404.html

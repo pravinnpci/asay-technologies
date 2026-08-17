@@ -1,4 +1,5 @@
 // Reliable Form & Auto-Response Email Dispatch Service
+import emailjs from '@emailjs/browser';
 import { ENV } from '../config/env';
 
 export interface FormSubmissionData {
@@ -31,7 +32,7 @@ export async function sendEmailSubmission(data: FormSubmissionData): Promise<{ s
       ? `Thank you for subscribing to ASAY InfoTech Newsletter! You will receive our latest digital transformation case studies, tech insights, and company updates.\n\nBest regards,\nASAY InfoTech Team`
       : `Dear ${data.name},\n\nThank you for contacting ASAY InfoTech!\n\nWe have successfully received your inquiry regarding "${data.subject || 'your project'}". Our engineering and consulting team will review your requirements and get back to you within 24 hours.\n\nFor urgent project inquiries, feel free to chat directly on WhatsApp at ${ENV.WHATSAPP_NUMBER}.\n\nBest regards,\nASAY InfoTech Client Relations\nEmail: ${ENV.COMPANY_EMAIL}\nWebsite: https://asayinfotech.in`;
 
-    // 1. Prepare FormData (FormSubmit reliably triggers autoresponse with FormData)
+    // 1. Primary Dispatch to FormSubmit (notifies asayinfotech@gmail.com)
     const formData = new FormData();
     formData.append('name', data.name);
     formData.append('email', data.email);
@@ -49,18 +50,38 @@ export async function sendEmailSubmission(data: FormSubmissionData): Promise<{ s
     formData.append('_template', 'table');
     formData.append('_captcha', 'false');
 
-    // 2. Dispatch to FormSubmit AJAX endpoint
-    const response = await fetch(`https://formsubmit.co/ajax/${ENV.COMPANY_EMAIL}`, {
+    await fetch(`https://formsubmit.co/ajax/${ENV.COMPANY_EMAIL}`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json'
       },
       body: formData
-    });
+    }).catch(e => console.log('FormSubmit notify:', e));
 
-    const result = await response.json().catch(() => ({ success: 'true' }));
+    // 2. Direct Acknowledgment Email to User via EmailJS (if configured)
+    if (ENV.EMAILJS_SERVICE_ID && ENV.EMAILJS_TEMPLATE_ID && ENV.EMAILJS_PUBLIC_KEY) {
+      try {
+        await emailjs.send(
+          ENV.EMAILJS_SERVICE_ID,
+          ENV.EMAILJS_TEMPLATE_ID,
+          {
+            to_name: data.name || 'Valued Visitor',
+            to_email: data.email,
+            reply_to: ENV.COMPANY_EMAIL,
+            subject: `ASAY InfoTech - Confirmation: We received your ${isCareer ? 'application' : 'inquiry'}`,
+            message: autoresponseMessage,
+            form_type: data.formType,
+            company_phone: ENV.WHATSAPP_NUMBER,
+            company_email: ENV.COMPANY_EMAIL,
+          },
+          ENV.EMAILJS_PUBLIC_KEY
+        );
+      } catch (emailjsErr) {
+        console.warn('EmailJS auto-ack dispatch error:', emailjsErr);
+      }
+    }
 
-    // 3. If Twilio WhatsApp alerts are configured, send admin alert
+    // 3. Twilio WhatsApp notification for Admin (optional)
     if (ENV.TWILIO_ACCOUNT_SID && ENV.TWILIO_AUTH_TOKEN && !ENV.TWILIO_AUTH_TOKEN.startsWith('YOUR_')) {
       const whatsappNumber = ENV.WHATSAPP_NUMBER;
       const to = `whatsapp:${whatsappNumber}`;
@@ -84,7 +105,7 @@ export async function sendEmailSubmission(data: FormSubmissionData): Promise<{ s
   } catch (error) {
     console.error('Email dispatch error:', error);
     return {
-      success: true, // Graceful UI handling
+      success: true,
       message: 'Submission recorded'
     };
   }

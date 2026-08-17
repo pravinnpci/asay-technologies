@@ -11,6 +11,11 @@ export const ENV = {
   // Form Submission Endpoint (FormSubmit.co - Free & Unlimited)
   FORMSUBMIT_ENDPOINT: `https://formsubmit.co/ajax/${import.meta.env.VITE_COMPANY_EMAIL || 'asayinfotech@gmail.com'}`,
 
+  // EmailJS Configuration (Optional - for direct ACK emails to submitter)
+  EMAILJS_SERVICE_ID: (import.meta.env.VITE_EMAILJS_SERVICE_ID || '').trim(),
+  EMAILJS_TEMPLATE_ID: (import.meta.env.VITE_EMAILJS_TEMPLATE_ID || '').trim(),
+  EMAILJS_PUBLIC_KEY: (import.meta.env.VITE_EMAILJS_PUBLIC_KEY || '').trim(),
+
   // Gemini AI Key (if configured)
   GEMINI_API_KEY: (import.meta.env.VITE_GEMINI_API_KEY || '').trim(),
 
