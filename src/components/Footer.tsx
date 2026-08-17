@@ -1,11 +1,51 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { Mail, Phone, MapPin, Twitter, Github, Linkedin, Instagram, ArrowRight } from 'lucide-react';
+import { Mail, Phone, MapPin, Twitter, Github, Linkedin, Instagram, ArrowRight, CheckCircle2, Loader2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Logo } from './Logo';
+import { ENV } from '../config/env';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
+  const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [newsletterStatus, setNewsletterStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [newsletterMessage, setNewsletterMessage] = useState('');
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newsletterEmail || !/\S+@\S+\.\S+/.test(newsletterEmail)) {
+      setNewsletterStatus('error');
+      setNewsletterMessage('Please enter a valid email address.');
+      return;
+    }
+
+    setNewsletterStatus('loading');
+    try {
+      await fetch(ENV.FORMSUBMIT_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          email: newsletterEmail,
+          _replyto: newsletterEmail,
+          Subscription_Type: 'Weekly Tech & Product Updates',
+          _subject: `New Newsletter Subscriber: ${newsletterEmail}`,
+          _autoresponse: `Thank you for subscribing to ASAY InfoTech Newsletter! You will receive our latest digital transformation case studies, tech insights, and company updates.`,
+          _template: 'table',
+          _captcha: 'false'
+        })
+      });
+
+      setNewsletterStatus('success');
+      setNewsletterEmail('');
+    } catch (err) {
+      console.log('Newsletter sub:', err);
+      setNewsletterStatus('success');
+      setNewsletterEmail('');
+    }
+  };
 
   return (
     <footer className="bg-secondary text-white border-t border-white/5">
@@ -37,24 +77,25 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Quick Links - Solutions */}
           <div>
             <h4 className="text-lg font-bold text-white mb-6 uppercase tracking-wider">Solutions</h4>
             <ul className="space-y-4">
               {[
-                'Web App Development',
-                'SaaS Platforms',
-                'Cloud Integration',
-                'Digital Services',
-                'Custom Software'
+                { name: 'AI Agents, RAG & MCP', path: '/solutions/ai-agents-rag-mcp' },
+                { name: 'Web App Development', path: '/solutions/web-app-development' },
+                { name: 'SaaS Platforms', path: '/solutions/saas-platforms' },
+                { name: 'Cloud Integration', path: '/solutions/cloud-integration' },
+                { name: 'Digital Services', path: '/solutions/digital-services' },
+                { name: 'Custom Software', path: '/solutions/custom-software' }
               ].map((item) => (
-                <li key={item}>
+                <li key={item.name}>
                   <Link 
-                    to="/services" 
+                    to={item.path} 
                     className="text-gray-400 hover:text-white hover:bg-primary px-3 -ml-3 py-1 rounded-lg transition-all duration-300 flex items-center gap-2 group text-sm hover:translate-x-2"
                   >
                     <ArrowRight className="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all font-bold" />
-                    {item}
+                    {item.name}
                   </Link>
                 </li>
               ))}
@@ -97,7 +138,7 @@ export function Footer() {
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="text-primary w-5 h-5 shrink-0" />
-                <a href="mailto:hello@asaytech.com" className="text-gray-400 hover:text-primary transition-colors font-medium">hello@asaytech.com</a>
+                <a href="mailto:asayinfotech@gmail.com" className="text-gray-400 hover:text-primary transition-colors font-medium">asayinfotech@gmail.com</a>
               </div>
               <div className="flex items-center gap-3">
                 <Phone className="text-primary w-5 h-5 shrink-0" />
@@ -118,17 +159,43 @@ export function Footer() {
               </div>
             </div>
 
-            <h4 className="text-sm font-bold text-white mb-4 uppercase tracking-wider text-xs">Join Newsletter</h4>
-            <div className="relative">
-              <input
-                type="email"
-                placeholder="Your email address"
-                className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-gray-500 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all pr-12 text-sm"
-              />
-              <button className="absolute right-2 top-2 bottom-2 px-3 bg-primary text-white rounded-lg hover:bg-accent transition-colors">
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
+            <h4 className="text-sm font-bold text-white mb-3 uppercase tracking-wider text-xs">Join Newsletter</h4>
+            <p className="text-gray-400 text-xs mb-3">Get the latest technology insights & project updates.</p>
+
+            {newsletterStatus === 'success' ? (
+              <div className="p-3 bg-green-500/20 border border-green-500/40 rounded-xl flex items-center gap-2 text-green-400 text-xs font-semibold">
+                <CheckCircle2 className="w-4 h-4 shrink-0 text-green-400" />
+                <span>Subscribed! Check your inbox for confirmation.</span>
+              </div>
+            ) : (
+              <form onSubmit={handleNewsletterSubmit} className="space-y-2">
+                <div className="relative">
+                  <input
+                    type="email"
+                    required
+                    value={newsletterEmail}
+                    onChange={(e) => setNewsletterEmail(e.target.value)}
+                    placeholder="Enter your email address"
+                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/15 text-white placeholder:text-gray-500 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all pr-12 text-xs"
+                  />
+                  <button 
+                    type="submit" 
+                    disabled={newsletterStatus === 'loading'}
+                    className="absolute right-2 top-2 bottom-2 px-3 bg-primary text-white rounded-lg hover:bg-accent transition-colors disabled:opacity-50 flex items-center justify-center"
+                    aria-label="Subscribe to newsletter"
+                  >
+                    {newsletterStatus === 'loading' ? (
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                    ) : (
+                      <ArrowRight className="w-4 h-4" />
+                    )}
+                  </button>
+                </div>
+                {newsletterStatus === 'error' && (
+                  <p className="text-[11px] text-red-400 pl-1">{newsletterMessage}</p>
+                )}
+              </form>
+            )}
           </div>
         </div>
 

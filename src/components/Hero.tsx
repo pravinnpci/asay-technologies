@@ -45,17 +45,16 @@ export function Hero() {
               className="inline-flex items-center gap-2 px-4 py-2 glass rounded-full mb-6 border-primary/30"
             >
               <Zap className="w-4 h-4 text-primary" fill="currentColor" />
-              <span className="text-sm font-semibold text-secondary">Advanced IT Solutions</span>
+              <span className="text-sm font-semibold text-secondary">AI Agents • Enterprise RAG • MCP Protocol • Web Apps</span>
             </motion.div>
 
             <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-tight">
               Transitioning Ideas into <br />
-              <span className="text-gradient">Digital Reality</span>
+              <span className="text-gradient">Intelligent Digital Reality</span>
             </h1>
 
             <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto lg:mx-0">
-              Asay InfoTech is a top-tier software development company excelling in custom solutions, AI/ML, and cloud integration. 
-              We deliver high-quality products with 99.5% global client satisfaction.
+              Asay InfoTech is a top-tier software and AI engineering company specializing in Autonomous AI Agents, Enterprise RAG, Model Context Protocol (MCP) integrations, and high-performance Web & Cloud solutions.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">

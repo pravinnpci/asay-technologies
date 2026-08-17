@@ -1,13 +1,47 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Plus, Minus, X, Maximize2, Cpu, Globe, Zap, Shield, Database, Smartphone } from 'lucide-react';
+import { Plus, Minus, X, Maximize2, Cpu, Globe, Zap, Shield, Database, Smartphone, Bot, Sparkles, Brain, Network, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { cn } from '../lib/utils';
 
+const aiServices = [
+  {
+    icon: Brain,
+    title: 'Enterprise RAG Systems',
+    desc: 'Retrieval-Augmented Generation connecting LLMs with private company knowledge bases, pgvector/Pinecone vector databases, and semantic search with 100% citation accuracy.',
+    badge: 'Enterprise Knowledge',
+    link: '/solutions/ai-agents-rag-mcp'
+  },
+  {
+    icon: Network,
+    title: 'Model Context Protocol (MCP)',
+    desc: 'Custom MCP server architecture linking Claude, Gemini, and OpenAI models directly with enterprise databases, dev tools, and live internal APIs.',
+    badge: 'Standardized Integration',
+    link: '/solutions/ai-agents-rag-mcp'
+  },
+  {
+    icon: Bot,
+    title: 'Autonomous AI Agents',
+    desc: 'Multi-agent orchestration with LangGraph & CrewAI capable of autonomous task execution, continuous reasoning, code synthesis, and automated business workflows.',
+    badge: 'Agentic Workflows',
+    link: '/solutions/ai-agents-rag-mcp'
+  },
+  {
+    icon: Zap,
+    title: 'Custom AI Chatbots & Copilots',
+    desc: 'Domain-specialized conversational AI assistants deployed on Web, WhatsApp, and Slack with conversational memory, persona tuning, and enterprise security guardrails.',
+    badge: '24/7 Automation',
+    link: '/solutions/ai-agents-rag-mcp'
+  }
+];
+
 const faqData = [
-  { q: 'What industries do you specialize in?', a: 'We work across various sectors including Fintech, Healthtech, E-commerce, and Logistics, providing tailor-made digital transformation solutions.' },
-  { q: 'How long does a typical project take?', a: 'Project timelines vary based on complexity. A standard MVP typically takes 8-12 weeks, while large-scale enterprise solutions can span several months.' },
-  { q: 'Do you offer post-launch support?', a: 'Absolutely. We provide comprehensive maintenance and support packages to ensure your platform remains secure, updated, and high-performing.' },
-  { q: 'Which technologies do you use?', a: 'We specialize in modern stacks including React, Node.js, Python, AWS, and GCP, choosing the best tools for each unique project requirements.' },
+  { q: 'What is Enterprise RAG and how does it prevent AI hallucinations?', a: 'RAG (Retrieval-Augmented Generation) feeds your company’s private, up-to-date documents and databases into the AI context before it answers. This ensures answers are grounded 100% in your actual data, with verifiable source citations.' },
+  { q: 'How does Model Context Protocol (MCP) help my organization?', a: 'MCP provides a universal, standardized protocol for AI models to access internal company databases, file systems, GitHub, Jira, and custom APIs safely without custom brittle glue code.' },
+  { q: 'Can you build Autonomous AI Agents that execute tasks automatically?', a: 'Yes! Using LangGraph and multi-agent patterns, we create agent swarms where agents collaborate, review each other’s work, execute tool calls, and deliver finished deliverables without manual micromanagement.' },
+  { q: 'What industries do you specialize in?', a: 'We work across various sectors including Fintech, Healthtech, E-commerce, SaaS, and Logistics, providing tailor-made digital transformation and AI solutions.' },
+  { q: 'How long does a typical project take?', a: 'Project timelines vary based on complexity. An AI Copilot or Web MVP typically takes 4-8 weeks, while full enterprise SaaS platforms span 8-16 weeks.' },
+  { q: 'Do you offer post-launch support and maintenance?', a: 'Absolutely. We provide comprehensive SLA maintenance, LLM latency tuning, model updates, and infrastructure monitoring.' }
 ];
 
 const galleryImages = [
@@ -27,17 +61,63 @@ export function ServicesView() {
     <div className="pt-32 pb-20">
       <div className="container mx-auto px-6">
         {/* Header */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-primary/10 rounded-full mb-4 border border-primary/20">
+            <Sparkles className="w-4 h-4 text-primary animate-pulse" />
+            <span className="text-xs font-bold text-primary tracking-wider uppercase">Next-Gen AI & Digital Solutions</span>
+          </div>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-4xl md:text-6xl font-bold text-secondary mb-6"
           >
-            Digital <span className="text-gradient">Innovations</span>
+            Digital <span className="text-gradient">Innovations & AI</span>
           </motion.h1>
           <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-            Comprehensive end-to-end solutions designed to scale your business and enhance your digital presence.
+            From Enterprise RAG and MCP Integration to Multi-Agent Workflows, Custom SaaS, and High-Performance Web Apps.
           </p>
+        </div>
+
+        {/* AI & Agentic Suite Grid */}
+        <div className="mb-24">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-black text-secondary tracking-tight">Generative AI, RAG & MCP Engineering</h2>
+            <p className="text-gray-500 text-sm mt-2">Pioneering autonomous intelligence for forward-thinking enterprises.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {aiServices.map((ai, i) => (
+              <motion.div
+                key={ai.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="glass p-8 rounded-[2.5rem] border border-gray-200/80 shadow-xl hover:bg-secondary hover:text-white transition-all duration-500 group flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                      <ai.icon className="w-7 h-7" />
+                    </div>
+                    <span className="text-[10px] font-black uppercase tracking-widest text-primary group-hover:text-accent bg-primary/10 px-3 py-1 rounded-full">
+                      {ai.badge}
+                    </span>
+                  </div>
+
+                  <h3 className="text-2xl font-bold text-secondary group-hover:text-white mb-3">{ai.title}</h3>
+                  <p className="text-gray-500 group-hover:text-gray-300 text-sm leading-relaxed mb-6">{ai.desc}</p>
+                </div>
+
+                <Link
+                  to={ai.link}
+                  className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-primary group-hover:text-white group-hover:translate-x-2 transition-all mt-auto"
+                >
+                  View Details & Architecture <ArrowRight className="w-4 h-4" />
+                </Link>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
         {/* Detailed Services Grid */}

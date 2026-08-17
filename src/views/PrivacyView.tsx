@@ -52,7 +52,7 @@ export function PrivacyView() {
             </section>
 
             <div className="pt-12 border-t border-gray-100 mt-20 text-sm text-gray-400">
-              <p>Last updated: May 1, 2026. For any questions regarding this policy, please contact us at privacy@asaytech.com</p>
+              <p>Last updated: May 1, 2026. For any questions regarding this policy, please contact us at asayinfotech@gmail.com</p>
             </div>
           </div>
         </motion.div>

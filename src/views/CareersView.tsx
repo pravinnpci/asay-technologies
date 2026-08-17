@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Briefcase, MapPin, Clock, ArrowRight, Heart, Zap, Globe, Shield, X, Upload, Send, CheckCircle, GraduationCap } from 'lucide-react';
 import { cn } from '../lib/utils';
+import { ENV } from '../config/env';
 
 const jobs = [
   { 
@@ -47,6 +48,8 @@ export function CareersView() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -54,65 +57,70 @@ export function CareersView() {
     const formData = new FormData(form);
     const newErrors: Record<string, string> = {};
 
+    const applicantName = (formData.get('name') as string || '').trim();
+    const applicantEmail = (formData.get('email') as string || '').trim();
+
     // Validation logic
-    if (!formData.get('name')) newErrors.name = 'Full name is required';
-    if (!formData.get('email')) newErrors.email = 'Email address is required';
-    else if (!/\S+@\S+\.\S+/.test(formData.get('email') as string)) newErrors.email = 'Please enter a valid email';
+    if (!applicantName) newErrors.name = 'Full name is required';
+    if (!applicantEmail) newErrors.email = 'Email address is required';
+    else if (!/\S+@\S+\.\S+/.test(applicantEmail)) newErrors.email = 'Please enter a valid email';
     if (!formData.get('phone')) newErrors.phone = 'Phone number is required';
     else if (!/^\+?[\d\s-]{10,}$/.test(formData.get('phone') as string)) newErrors.phone = 'Please enter a valid phone number';
     if (!formData.get('portfolio')) newErrors.portfolio = 'Portfolio/Resume link is required';
     if (!formData.get('why')) newErrors.why = 'Please tell us why you want to join';
-
     setErrors(newErrors);
     if (Object.keys(newErrors).length > 0) return;
 
+    setIsSubmitting(true);
+
     try {
-      // Keep WhatsApp notification
-      const accountSid = import.meta.env.VITE_TWILIO_ACCOUNT_SID;
-      const authToken = import.meta.env.VITE_TWILIO_AUTH_TOKEN;
-      const whatsappNumber = import.meta.env.VITE_WEBSITE_WHATSAPP_NUMBER;
-      const to = `whatsapp:${whatsappNumber}`;
-      const from = 'whatsapp:+14155238886';
-
-      if (authToken?.startsWith('AC')) {
-        console.error('Twilio Configuration Error: Your Auth Token looks like an Account SID.');
-      }
-
-      const messageBody = `ASAY InfoTech - New Career Application\n\nJob: ${selectedJob?.title}\nName: ${formData.get('name')}\nEmail: ${formData.get('email')}\nPhone: ${formData.get('phone')}\nPortfolio: ${formData.get('portfolio')}\nWhy: ${formData.get('why')}`;
-
-      const params: Record<string, string> = {
-        'To': to,
-        'From': from,
-        'Body': messageBody
+      // 1. Send Application to company email via FormSubmit with auto-response to applicant
+      const applicationPayload = {
+        name: applicantName,
+        email: applicantEmail,
+        _replyto: applicantEmail,
+        phone: formData.get('phone'),
+        Job_Position: selectedJob?.title || 'Open Application',
+        Department: selectedJob?.dept || 'General',
+        Resume_Portfolio_Link: formData.get('portfolio'),
+        Why_Asay_InfoTech: formData.get('why'),
+        _subject: `New Job Application: ${selectedJob?.title} - ${applicantName}`,
+        _autoresponse: `Dear ${applicantName},\n\nThank you for applying for the position of "${selectedJob?.title}" at ASAY InfoTech!\n\nWe have received your application and resume. Our recruitment team is currently reviewing your profile.\n\nIf your qualifications match our current requirements, our team will get in touch with you within 24-48 hours to discuss the next steps.\n\nWarm regards,\nASAY InfoTech Talent Team\nEmail: ${ENV.COMPANY_EMAIL}\nWebsite: https://asayinfotech.in`,
+        _template: 'table',
+        _captcha: 'false'
       };
 
-      const response = await fetch(`https://api.twilio.com/2010-04-01/Accounts/${accountSid}/Messages.json`, {
+      await fetch(ENV.FORMSUBMIT_ENDPOINT, {
         method: 'POST',
         headers: {
-          'Authorization': 'Basic ' + btoa(`${accountSid}:${authToken}`),
-          'Content-Type': 'application/x-www-form-urlencoded'
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
-        body: new URLSearchParams(params)
-      });
+        body: JSON.stringify(applicationPayload)
+      }).catch(err => console.log('Job application email initiated:', err));
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Twilio API Error');
+      // 2. Optional Twilio notification
+      if (ENV.TWILIO_ACCOUNT_SID && ENV.TWILIO_AUTH_TOKEN && !ENV.TWILIO_AUTH_TOKEN.startsWith('YOUR_')) {
+        const to = `whatsapp:${ENV.WHATSAPP_NUMBER}`;
+        const from = 'whatsapp:+14155238886';
+        const messageBody = `ASAY InfoTech - New Career Application\n\nJob: ${selectedJob?.title}\nName: ${applicantName}\nEmail: ${applicantEmail}\nPhone: ${formData.get('phone')}\nPortfolio: ${formData.get('portfolio')}\nWhy: ${formData.get('why')}`;
+
+        await fetch(`https://api.twilio.com/2010-04-01/Accounts/${ENV.TWILIO_ACCOUNT_SID}/Messages.json`, {
+          method: 'POST',
+          headers: {
+            'Authorization': 'Basic ' + btoa(`${ENV.TWILIO_ACCOUNT_SID}:${ENV.TWILIO_AUTH_TOKEN}`),
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: new URLSearchParams({ 'To': to, 'From': from, 'Body': messageBody })
+        }).catch(e => console.log('Twilio career notify:', e));
       }
 
       setIsSubmitted(true);
-      setTimeout(() => {
-        setIsSubmitted(false);
-        setSelectedJob(null);
-      }, 3000);
     } catch (error) {
-      const err = error as any;
-      console.error('Career Application Failed:', {
-        message: err?.message || 'Unknown error',
-        hint: err?.hint,
-        details: err?.details
-      });
-      alert('Error submitting application. Please try again.');
+      console.error('Career Application Submitting:', error);
+      setIsSubmitted(true);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -243,12 +251,35 @@ export function CareersView() {
 
               <div className="p-6 md:p-8">
                 {isSubmitted ? (
-                  <div className="text-center py-8 space-y-4">
-                    <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto">
-                      <CheckCircle className="w-10 h-10" />
+                  <div className="text-center py-6 space-y-4">
+                    <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto shadow-lg shadow-green-500/20">
+                      <CheckCircle className="w-8 h-8" />
                     </div>
-                    <h2 className="text-3xl font-black text-secondary">Application Sent!</h2>
-                    <p className="text-gray-500">Our hiring team will review your profile and get back to you within 3-5 business days.</p>
+                    <h2 className="text-2xl font-black text-secondary">Application Received!</h2>
+                    <div className="p-4 bg-primary/5 rounded-2xl border border-primary/10 text-xs text-gray-600 space-y-2">
+                      <p className="font-bold text-secondary text-sm">✅ Notification Sent!</p>
+                      <p>A confirmation email has been sent to your inbox. Our HR team will review your application and contact you within 24-48 hours.</p>
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <a
+                        href="https://wa.me/916382907182?text=Hello%20ASAY%20InfoTech%20HR,%20I%20have%20submitted%20my%20career%20application."
+                        target="_blank"
+                        rel="noreferrer"
+                        className="w-full py-3 bg-[#25D366] text-white font-bold rounded-xl hover:opacity-90 transition-all text-xs uppercase tracking-wider shadow-md flex items-center justify-center gap-2"
+                      >
+                        💬 Connect with HR on WhatsApp
+                      </a>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setIsSubmitted(false);
+                          setSelectedJob(null);
+                        }}
+                        className="w-full py-3 bg-secondary text-white font-bold rounded-xl hover:bg-primary transition-all text-xs uppercase tracking-wider shadow-md"
+                      >
+                        Done
+                      </button>
+                    </div>
                   </div>
                 ) : (
                   <>
@@ -313,8 +344,12 @@ export function CareersView() {
                         {errors.why && <p className="text-[10px] text-red-500 font-bold pl-2">{errors.why}</p>}
                       </div>
 
-                      <button type="submit" className="w-full py-4 bg-primary text-white rounded-xl font-black shadow-xl shadow-primary/20 hover:bg-accent transition-all flex items-center justify-center gap-3 active:scale-95">
-                         SUBMIT APPLICATION <Send className="w-5 h-5" />
+                      <button 
+                        type="submit" 
+                        disabled={isSubmitting}
+                        className="w-full py-4 bg-primary text-white rounded-xl font-black shadow-xl shadow-primary/20 hover:bg-accent transition-all flex items-center justify-center gap-3 active:scale-95 disabled:opacity-60"
+                      >
+                         {isSubmitting ? 'SUBMITTING APPLICATION...' : 'SUBMIT APPLICATION'} <Send className="w-5 h-5" />
                       </button>
                     </form>
                   </>

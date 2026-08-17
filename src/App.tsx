@@ -11,6 +11,7 @@ import { ServicesView } from './views/ServicesView';
 import { CareersView } from './views/CareersView';
 import { ContactView } from './views/ContactView';
 import { PrivacyView } from './views/PrivacyView';
+import { SolutionDetailView } from './views/SolutionDetailView';
 import { FloatingActions } from './components/FloatingActions';
 import { ChatBot } from './components/ChatBot';
 import { cn } from './lib/utils';
@@ -61,6 +62,8 @@ export default function App() {
             <Route path="/about" element={<AboutView />} />
             <Route path="/testimonials" element={<TestimonialsView />} />
             <Route path="/services" element={<ServicesView />} />
+            <Route path="/services/:slug" element={<SolutionDetailView />} />
+            <Route path="/solutions/:slug" element={<SolutionDetailView />} />
             <Route path="/careers" element={<CareersView />} />
             <Route path="/contact" element={<ContactView />} />
             <Route path="/privacy" element={<PrivacyView />} />

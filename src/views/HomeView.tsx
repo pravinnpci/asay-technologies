@@ -1,24 +1,144 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Laptop, Database, Cloud, Smartphone, BarChart, Shield, ArrowRight, Linkedin, Twitter } from 'lucide-react';
+import { 
+  Laptop, Database, Cloud, Smartphone, BarChart, Shield, 
+  ArrowRight, Bot, Sparkles, Brain, Cpu, Network, MessageSquare, Zap, CheckCircle2,
+  Linkedin, Twitter
+} from 'lucide-react';
 import { Hero } from '../components/Hero';
 import { Stats } from '../components/Stats';
 import { Testimonials } from '../components/Testimonials';
 import { Link } from 'react-router-dom';
 
+const aiCapabilities = [
+  {
+    icon: Brain,
+    title: 'Enterprise RAG Systems',
+    subtitle: 'Retrieval-Augmented Generation',
+    desc: 'Query your private company documents, PDFs, and databases with zero hallucination using hybrid vector search (Pinecone, pgvector) and neural reranking.',
+    tags: ['Vector DBs', 'Semantic Search', 'Zero Hallucination', 'Source Citations'],
+    link: '/solutions/ai-agents-rag-mcp'
+  },
+  {
+    icon: Network,
+    title: 'Model Context Protocol (MCP)',
+    subtitle: 'Standardized Tool & System Integration',
+    desc: 'We build custom MCP servers connecting Claude, Gemini, and GPT directly with internal company APIs, live databases, and operational tools.',
+    tags: ['MCP Protocol', 'Tool Calling', 'DB Connectors', 'Enterprise APIs'],
+    link: '/solutions/ai-agents-rag-mcp'
+  },
+  {
+    icon: Cpu,
+    title: 'Autonomous AI Agents',
+    subtitle: 'Multi-Agent Task Swarms',
+    desc: 'Multi-agent orchestration with LangGraph and CrewAI that independently reason, self-correct, and execute complex multi-step workflows.',
+    tags: ['LangGraph', 'CrewAI', 'Agentic Workflows', 'Task Automation'],
+    link: '/solutions/ai-agents-rag-mcp'
+  },
+  {
+    icon: MessageSquare,
+    title: 'Custom AI Chatbots & Copilots',
+    subtitle: '24/7 Intelligent Conversational AI',
+    desc: 'Domain-trained AI chatbots with memory, guardrails, and role personalization across Web, WhatsApp, and Slack to automate customer engagement.',
+    tags: ['24/7 Support', 'WhatsApp AI', 'Slack Bot', 'Voice Copilots'],
+    link: '/solutions/ai-agents-rag-mcp'
+  }
+];
+
 const services = [
-  { icon: Laptop, title: 'Web Development', desc: 'Sleek, high-performance web applications built with modern frameworks.' },
-  { icon: Database, title: 'Custom SaaS', desc: 'Scalable cloud-native solutions for complex business challenges.' },
-  { icon: Cloud, title: 'Cloud Solutions', desc: 'Secure and efficient infrastructure optimization and migration.' },
-  { icon: Smartphone, title: 'Mobile Apps', desc: 'Intuitive cross-platform mobile experiences for iOS and Android.' },
-  { icon: BarChart, title: 'Data Analytics', desc: 'Transforming raw data into actionable business intelligence.' },
-  { icon: Shield, title: 'Cybersecurity', desc: 'Robust protection for your digital assets and user data.' },
+  { icon: Bot, title: 'AI Agents & RAG', desc: 'Autonomous agentic workflows, MCP server integrations, and enterprise RAG search.', link: '/solutions/ai-agents-rag-mcp' },
+  { icon: Laptop, title: 'Web Development', desc: 'Sleek, high-performance web applications built with React, Vite & Next.js.', link: '/solutions/web-app-development' },
+  { icon: Database, title: 'Custom SaaS', desc: 'Scalable cloud-native multi-tenant solutions for complex business challenges.', link: '/solutions/saas-platforms' },
+  { icon: Cloud, title: 'Cloud & DevOps', desc: 'Docker containerization, CI/CD automation, and high-availability cloud setups.', link: '/solutions/cloud-integration' },
+  { icon: Smartphone, title: 'Mobile Apps', desc: 'Intuitive cross-platform mobile experiences for iOS and Android devices.', link: '/services' },
+  { icon: Shield, title: 'Cybersecurity', desc: 'Robust protection for digital assets, encrypted storage, and user privacy.', link: '/services' },
 ];
 
 export function HomeView() {
   return (
     <div className="flex flex-col">
       <Hero />
+
+      {/* Cutting-Edge AI & Agentic Systems Showcase */}
+      <section className="py-24 bg-gradient-to-b from-[#091E3E] to-[#0d2850] text-white relative overflow-hidden">
+        {/* Glow decoration */}
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-accent/15 rounded-full blur-[140px] pointer-events-none" />
+
+        <div className="container mx-auto px-6 max-w-7xl relative z-10">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-primary/20 rounded-full mb-4 border border-primary/30 text-primary">
+              <Sparkles className="w-4 h-4 text-primary animate-pulse" />
+              <span className="text-xs font-black uppercase tracking-widest text-white">Next-Gen AI Engineering</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-4 text-white">
+              Enterprise <span className="text-gradient">RAG, MCP & AI Agents</span>
+            </h2>
+            <p className="text-gray-300 text-base leading-relaxed">
+              We build production-ready Generative AI systems — from private RAG vector search to standardized MCP tool servers and autonomous multi-agent task swarms.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {aiCapabilities.map((item, i) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="bg-white/5 backdrop-blur-xl border border-white/10 p-8 rounded-[2.5rem] hover:bg-white/10 hover:border-primary/50 transition-all duration-500 flex flex-col justify-between group shadow-2xl"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="w-14 h-14 rounded-2xl bg-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                      <item.icon className="w-7 h-7" />
+                    </div>
+                    <span className="text-[10px] font-black uppercase tracking-widest text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/20">
+                      Production Ready
+                    </span>
+                  </div>
+
+                  <h3 className="text-2xl font-bold text-white mb-1 group-hover:text-primary transition-colors">{item.title}</h3>
+                  <p className="text-primary text-xs font-bold uppercase tracking-wider mb-4">{item.subtitle}</p>
+                  <p className="text-gray-300 text-sm leading-relaxed mb-6">{item.desc}</p>
+                </div>
+
+                <div>
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {item.tags.map(tag => (
+                      <span key={tag} className="px-3 py-1 bg-white/5 border border-white/10 rounded-lg text-[11px] font-semibold text-gray-300">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  <Link
+                    to={item.link}
+                    className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-primary group-hover:text-white group-hover:translate-x-2 transition-all"
+                  >
+                    Explore {item.title} <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="mt-16 text-center">
+            <div className="inline-flex flex-col sm:flex-row items-center gap-4 bg-white/5 border border-white/10 p-4 sm:p-6 rounded-3xl backdrop-blur-md">
+              <span className="text-sm font-semibold text-gray-300">
+                Ready to deploy custom AI Agents, RAG, or MCP for your business?
+              </span>
+              <Link
+                to="/contact"
+                className="px-6 py-3 bg-primary text-white text-xs font-bold uppercase tracking-wider rounded-xl hover:bg-accent transition-all shadow-lg"
+              >
+                Schedule AI Architecture Call
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Storytelling Timeline Section */}
       <section className="py-20 bg-app-bg">
