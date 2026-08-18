@@ -150,10 +150,16 @@ export function HomeView() {
               <div className="absolute left-1/2 top-0 bottom-0 w-px bg-primary/30 hidden md:block" />
               
               {[
-                { year: '2022', title: 'The Vision', text: 'Asay InfoTech founded with a mission to simplify enterprise digital transformation.' },
+                { year: '2022', title: 'The Vision', text: 'ASAY InfoTech founded with a mission to simplify enterprise digital transformation.' },
                 { year: '2023', title: 'Scaling Up', text: 'Expanded our core team and launched our first international SaaS platform.' },
-                { year: '2024', title: 'Global Impact', text: 'Serving 100+ clients across 5 continents with cutting-edge cloud solutions.' },
-                { year: '2025', title: 'Innovation Lead', text: 'Integrating AI and modern architectures to redefine industry standards.' }
+                { year: '2024', title: 'Global Impact', text: 'Serving 150+ clients across 5 continents with cutting-edge cloud solutions.' },
+                { year: '2025', title: 'Innovation Lead', text: 'Integrating AI and modern architectures to redefine industry standards.' },
+                { 
+                  year: '2026', 
+                  title: 'Enterprise AI & Autonomous Agents', 
+                  text: 'Full-scale implementation of Autonomous AI Agents, Enterprise RAG pipelines, AI Chatbots, and Model Context Protocol (MCP) ecosystems for intelligent automation.',
+                  isCurrent: true 
+                }
               ].map((step, i) => (
                 <motion.div
                   key={step.year}
@@ -164,12 +170,25 @@ export function HomeView() {
                 >
                   <div className="flex-1 text-center md:text-right">
                     <div className={`${i % 2 === 0 ? 'md:pr-8' : 'md:pl-8 text-center md:text-left'}`}>
-                      <span className="text-4xl font-bold text-primary/40 mb-2 block">{step.year}</span>
-                      <h3 className="text-xl font-bold text-secondary mb-2">{step.title}</h3>
-                      <p className="text-gray-500">{step.text}</p>
+                      <div className="flex items-center gap-2 justify-center md:justify-end mb-1">
+                        {step.isCurrent && (
+                          <span className="px-2.5 py-0.5 bg-primary/10 text-primary border border-primary/30 rounded-full text-[10px] font-black uppercase tracking-wider animate-pulse">
+                            Active AI Roadmap
+                          </span>
+                        )}
+                        <span className={`text-4xl font-bold ${step.isCurrent ? 'text-primary' : 'text-primary/40'} block`}>
+                          {step.year}
+                        </span>
+                      </div>
+                      <h3 className={`text-xl font-bold ${step.isCurrent ? 'text-primary' : 'text-secondary'} mb-2`}>
+                        {step.title}
+                      </h3>
+                      <p className="text-gray-500 leading-relaxed">{step.text}</p>
                     </div>
                   </div>
-                  <div className="w-12 h-12 bg-secondary rounded-full border-4 border-white shadow-lg z-10 shrink-0" />
+                  <div className={`w-12 h-12 rounded-full border-4 border-white shadow-lg z-10 shrink-0 flex items-center justify-center ${step.isCurrent ? 'bg-primary ring-4 ring-primary/30 animate-pulse' : 'bg-secondary'}`}>
+                    {step.isCurrent && <div className="w-3 h-3 bg-white rounded-full animate-ping" />}
+                  </div>
                   <div className="flex-1" />
                 </motion.div>
               ))}
