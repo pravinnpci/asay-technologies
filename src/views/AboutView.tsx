@@ -53,9 +53,9 @@ export default function AboutView() {
             >
               <div className="aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl relative z-10 border-8 border-white">
                 <img 
-                  src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=800" 
-                  alt="Managing Director" 
-                  className="w-full h-full object-cover"
+                  src="/team/md.jpg" 
+                  alt="Pravinkumar A - Manager and MD" 
+                  className="w-full h-full object-cover object-top"
                 />
               </div>
               <div className="absolute -bottom-6 -right-6 lg:-bottom-10 lg:-right-10 glass p-8 rounded-3xl border-primary/20 shadow-2xl z-20 max-w-xs">
@@ -173,21 +173,21 @@ export default function AboutView() {
             {[
               {
                 name: 'Sivabarathi P',
-                role: 'CEO',
-                desc: 'Strategic leader driving the mission and vision of Asay InfoTech.',
-                image: 'https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&q=80&w=800'
+                role: 'Chief Executive Officer (CEO)',
+                desc: 'Strategic leader driving the mission, client partnerships, and corporate vision of ASAY InfoTech.',
+                image: '/team/ceo.jpg'
               },
               {
                 name: 'Premkumar A',
-                role: 'Chief Technology Officer',
-                desc: 'Technical mastermind driving innovation across our ecosystem.',
-                image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=800'
+                role: 'Chief Technology Officer (CTO)',
+                desc: 'Technical mastermind driving AI architectures, cloud ecosystems, and full-stack innovation.',
+                image: '/team/cto.jpg'
               },
               {
                 name: 'Pravinkumar A',
                 role: 'Manager and MD',
-                desc: 'Overseeing operations and ensuring technical and strategic excellence.',
-                image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=800'
+                desc: 'Overseeing global delivery operations and ensuring technical and strategic excellence.',
+                image: '/team/md.jpg'
               }
             ].map((member, i) => (
               <motion.div
