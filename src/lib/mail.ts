@@ -77,7 +77,7 @@ export async function sendEmailSubmission(data: FormSubmissionData): Promise<{ s
           company_email: ENV.COMPANY_EMAIL,
         };
 
-        const templateId = ENV.EMAILJS_TEMPLATE_ID || 'template_8evf7ap';
+        const templateId = ENV.EMAILJS_TEMPLATE_ID || 'template_iyhrbc5';
 
         const emailjsRes = await emailjs.send(
           ENV.EMAILJS_SERVICE_ID,
