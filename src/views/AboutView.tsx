@@ -172,9 +172,9 @@ export default function AboutView() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                name: 'Sivabarathi P',
-                role: 'Chief Executive Officer (CEO)',
-                desc: 'Strategic leader driving the mission, client partnerships, and corporate vision of ASAY InfoTech.',
+                name: 'Sivabarathi M',
+                role: 'CEO & Founder',
+                desc: 'Strategic visionary driving the mission, client partnerships, and corporate vision of ASAY InfoTech.',
                 image: '/team/ceo.jpg'
               },
               {
