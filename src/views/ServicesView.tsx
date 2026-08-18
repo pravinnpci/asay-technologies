@@ -123,9 +123,27 @@ export function ServicesView() {
         {/* Detailed Services Grid */}
         <div className="grid grid-cols-1 gap-12 mb-32">
           {[
-            { icon: Cpu, title: 'Strategic Consulting', text: 'We align technology with your business goals to drive long-term growth and efficiency.', color: 'from-blue-400 to-indigo-500' },
-            { icon: Globe, title: 'Global Scaling', text: 'Cloud-native architectures that support users worldwide with zero latency.', color: 'from-primary to-secondary' },
-            { icon: Zap, title: 'Rapid Prototyping', text: 'Turn your ideas into functional MVPs in record time without compromising quality.', color: 'from-orange-400 to-red-500' },
+            { 
+              icon: Cpu, 
+              title: 'Strategic Consulting', 
+              text: 'We align technology with your business goals to drive long-term growth and efficiency.', 
+              color: 'from-blue-400 to-indigo-500',
+              tags: ['Architecture Audit', 'Tech Roadmap & ROI', 'Cost Optimization', 'Security Compliance']
+            },
+            { 
+              icon: Globe, 
+              title: 'Global Scaling', 
+              text: 'Cloud-native architectures that support users worldwide with zero latency.', 
+              color: 'from-primary to-secondary',
+              tags: ['Edge CDN & Caching', 'Multi-Region Failover', 'Sub-100ms Latency', 'Auto-Scaling Clusters']
+            },
+            { 
+              icon: Zap, 
+              title: 'Rapid Prototyping', 
+              text: 'Turn your ideas into functional MVPs in record time without compromising quality.', 
+              color: 'from-orange-400 to-red-500',
+              tags: ['4-Week MVP Delivery', 'Interactive Figma UI', 'Core Feature Focus', 'Weekly Agile Sprints']
+            },
           ].map((item, i) => (
             <motion.div
               key={item.title}
@@ -141,9 +159,9 @@ export function ServicesView() {
                 <h2 className="text-3xl font-bold text-secondary mb-4">{item.title}</h2>
                 <p className="text-gray-500 text-lg leading-relaxed mb-8">{item.text}</p>
                 <div className="grid grid-cols-2 gap-4">
-                  {['Enterprise Ready', 'Custom APIs', '24/7 Security', 'Real-time Data'].map((tag) => (
+                  {item.tags.map((tag) => (
                     <div key={tag} className="flex items-center gap-2 text-sm font-bold text-gray-600">
-                      <div className="w-2 h-2 bg-primary rounded-full" />
+                      <div className="w-2 h-2 bg-primary rounded-full shrink-0" />
                       {tag}
                     </div>
                   ))}

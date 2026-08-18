@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 export function Hero() {
   return (
-    <section id="hero" className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-20">
+    <section id="hero" className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-36 sm:pt-44 pb-16">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 z-0">
         <motion.div
@@ -42,45 +42,34 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 glass rounded-full mb-6 border-primary/30"
+              className="inline-flex items-center gap-2 px-4 py-2 glass rounded-full mb-6 border-primary/30 shadow-sm"
             >
               <Zap className="w-4 h-4 text-primary" fill="currentColor" />
-              <span className="text-sm font-semibold text-secondary">AI Agents • Enterprise RAG • MCP Protocol • Web Apps</span>
+              <span className="text-xs sm:text-sm font-semibold text-secondary">AI Agents • Enterprise RAG • MCP Protocol • Web Apps</span>
             </motion.div>
 
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-tight">
               Transitioning Ideas into <br />
               <span className="text-gradient">Intelligent Digital Reality</span>
             </h1>
 
-            <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto lg:mx-0">
+            <p className="text-base sm:text-lg text-gray-600 mb-8 max-w-2xl mx-auto lg:mx-0">
               Asay InfoTech is a top-tier software and AI engineering company specializing in Autonomous AI Agents, Enterprise RAG, Model Context Protocol (MCP) integrations, and high-performance Web & Cloud solutions.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
               <Link
                 to="/contact"
-                className="px-8 py-4 bg-secondary text-white rounded-xl font-bold flex items-center gap-2 hover:bg-primary transition-all shadow-xl hover:-translate-y-1"
+                className="w-full sm:w-auto px-8 py-4 bg-secondary text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-primary transition-all shadow-xl hover:-translate-y-1"
               >
                 Get Started Today <ArrowRight className="w-5 h-5" />
               </Link>
               <Link
                 to="/services"
-                className="px-8 py-4 glass rounded-xl font-bold text-secondary hover:bg-gray-100 transition-all border-primary/20"
+                className="w-full sm:w-auto px-8 py-4 glass rounded-xl font-bold text-secondary hover:bg-gray-100 transition-all border-primary/20 text-center"
               >
                 Our Services
               </Link>
-            </div>
-
-            <div className="mt-12 flex items-center justify-center lg:justify-start gap-8 opacity-60">
-              <div className="flex items-center gap-2">
-                <Cpu className="w-5 h-5" />
-                <span className="text-sm font-medium">Modern Tech Stack</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Globe className="w-5 h-5" />
-                <span className="text-sm font-medium">Global Delivery</span>
-              </div>
             </div>
           </motion.div>
 
@@ -88,7 +77,7 @@ export function Hero() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="flex-1 relative"
+            className="flex-1 relative w-full"
           >
             <div className="relative glass p-4 rounded-[2rem] border-white/40 shadow-2xl overflow-hidden group">
               <img
@@ -109,8 +98,8 @@ export function Hero() {
                     <Rocket className="text-primary w-6 h-6" />
                   </div>
                   <div>
-                    <p className="text-2xl font-bold text-secondary">500+</p>
-                    <p className="text-xs text-gray-500 uppercase tracking-wider font-semibold">Success Stories</p>
+                    <p className="text-2xl font-bold text-secondary">350+</p>
+                    <p className="text-xs text-gray-500 uppercase tracking-wider font-semibold">Projects Delivered</p>
                   </div>
                 </div>
               </motion.div>

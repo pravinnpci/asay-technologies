@@ -4,8 +4,8 @@ import { Shield, Target, Users, Award, TrendingUp, Zap } from 'lucide-react';
 
 const stats = [
   { label: 'Years of Excellence', value: '3+', icon: Award },
-  { label: 'Global Clients', value: '350+', icon: Users },
-  { label: 'Projects Completed', value: '650+', icon: Target },
+  { label: 'Global Clients', value: '150+', icon: Users },
+  { label: 'Projects Completed', value: '350+', icon: Target },
   { label: 'Team Experts', value: '15+', icon: Zap },
 ];
 

@@ -1,5 +1,5 @@
-// Reliable Form & Auto-Response Email Dispatch Service
-import emailjs from '@emailjs/browser';
+// Reliable Form Submission Dispatch Service
+// Form data is routed to company email (asayinfotech@gmail.com) without sending auto-reply emails to the sender.
 import { ENV } from '../config/env';
 
 export interface FormSubmissionData {
@@ -26,13 +26,7 @@ export async function sendEmailSubmission(data: FormSubmissionData): Promise<{ s
       ? `New Newsletter Subscriber: ${data.email}`
       : `New ASAY InfoTech Inquiry: ${data.subject || 'General'} from ${data.name}`;
 
-    const autoresponseMessage = isCareer
-      ? `Dear ${data.name},\n\nThank you for applying for the position of "${data.jobTitle || 'Open Role'}" at ASAY InfoTech!\n\nWe have received your application and credentials successfully.\n\nOur recruitment team is reviewing your profile against our open requirements. If shortlisted, our HR team will contact you within 24-48 hours.\n\nBest regards,\nASAY InfoTech Talent Team\nEmail: ${ENV.COMPANY_EMAIL}\nWhatsApp: ${ENV.WHATSAPP_NUMBER}\nWebsite: https://asayinfotech.in`
-      : isNewsletter
-      ? `Thank you for subscribing to ASAY InfoTech Newsletter! You will receive our latest digital transformation case studies, tech insights, and company updates.\n\nBest regards,\nASAY InfoTech Team`
-      : `Dear ${data.name},\n\nThank you for contacting ASAY InfoTech!\n\nWe have successfully received your inquiry regarding "${data.subject || 'your project'}". Our engineering and consulting team will review your requirements and get back to you within 24 hours.\n\nFor urgent project inquiries, feel free to chat directly on WhatsApp at ${ENV.WHATSAPP_NUMBER}.\n\nBest regards,\nASAY InfoTech Client Relations\nEmail: ${ENV.COMPANY_EMAIL}\nWebsite: https://asayinfotech.in`;
-
-    // 1. Primary Dispatch to FormSubmit (notifies asayinfotech@gmail.com)
+    // 1. Dispatch Form Data to FormSubmit (delivers directly to asayinfotech@gmail.com)
     const formData = new FormData();
     formData.append('name', data.name);
     formData.append('email', data.email);
@@ -46,7 +40,6 @@ export async function sendEmailSubmission(data: FormSubmissionData): Promise<{ s
     if (data.why) formData.append('why_asay_infotech', data.why);
 
     formData.append('_subject', subject);
-    formData.append('_autoresponse', autoresponseMessage);
     formData.append('_template', 'table');
     formData.append('_captcha', 'false');
 
@@ -58,30 +51,7 @@ export async function sendEmailSubmission(data: FormSubmissionData): Promise<{ s
       body: formData
     }).catch(e => console.log('FormSubmit notify:', e));
 
-    // 2. Direct Acknowledgment Email to User via EmailJS (if configured)
-    if (ENV.EMAILJS_SERVICE_ID && ENV.EMAILJS_TEMPLATE_ID && ENV.EMAILJS_PUBLIC_KEY) {
-      try {
-        await emailjs.send(
-          ENV.EMAILJS_SERVICE_ID,
-          ENV.EMAILJS_TEMPLATE_ID,
-          {
-            to_name: data.name || 'Valued Visitor',
-            to_email: data.email,
-            reply_to: ENV.COMPANY_EMAIL,
-            subject: `ASAY InfoTech - Confirmation: We received your ${isCareer ? 'application' : 'inquiry'}`,
-            message: autoresponseMessage,
-            form_type: data.formType,
-            company_phone: ENV.WHATSAPP_NUMBER,
-            company_email: ENV.COMPANY_EMAIL,
-          },
-          ENV.EMAILJS_PUBLIC_KEY
-        );
-      } catch (emailjsErr) {
-        console.warn('EmailJS auto-ack dispatch error:', emailjsErr);
-      }
-    }
-
-    // 3. Twilio WhatsApp notification for Admin (optional)
+    // 2. Optional Twilio WhatsApp notification for Admin
     if (ENV.TWILIO_ACCOUNT_SID && ENV.TWILIO_AUTH_TOKEN && !ENV.TWILIO_AUTH_TOKEN.startsWith('YOUR_')) {
       const whatsappNumber = ENV.WHATSAPP_NUMBER;
       const to = `whatsapp:${whatsappNumber}`;

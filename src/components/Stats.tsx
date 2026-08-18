@@ -4,8 +4,8 @@ import { Users, Smile, Award, Briefcase } from 'lucide-react';
 
 const statData = [
   { icon: Award, label: 'Years of Excellence', value: 3, prefix: '+' },
-  { icon: Users, label: 'Global Clients', value: 350, prefix: '+' },
-  { icon: Briefcase, label: 'Projects Delivered', value: 650, prefix: '+' },
+  { icon: Users, label: 'Global Clients', value: 150, prefix: '+' },
+  { icon: Briefcase, label: 'Projects Delivered', value: 350, prefix: '+' },
   { icon: Smile, label: 'Team Experts', value: 15, prefix: '+' },
 ];
 

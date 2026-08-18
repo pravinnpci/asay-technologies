@@ -11,6 +11,8 @@ import { ServicesView } from './views/ServicesView';
 import { CareersView } from './views/CareersView';
 import { ContactView } from './views/ContactView';
 import { PrivacyView } from './views/PrivacyView';
+import { TermsView } from './views/TermsView';
+import { CookiesView } from './views/CookiesView';
 import { SolutionDetailView } from './views/SolutionDetailView';
 import { FloatingActions } from './components/FloatingActions';
 import { ChatBot } from './components/ChatBot';
@@ -36,20 +38,6 @@ function ScrollToTop() {
 }
 
 export default function App() {
-  const [showScrollTop, setShowScrollTop] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 400);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   return (
     <Router>
       <ScrollToTop />
@@ -67,28 +55,14 @@ export default function App() {
             <Route path="/careers" element={<CareersView />} />
             <Route path="/contact" element={<ContactView />} />
             <Route path="/privacy" element={<PrivacyView />} />
+            <Route path="/terms" element={<TermsView />} />
+            <Route path="/cookies" element={<CookiesView />} />
           </Routes>
         </main>
 
         <Footer />
         <FloatingActions />
         <ChatBot />
-
-        {/* Back To Top Button */}
-        <AnimatePresence>
-          {showScrollTop && (
-            <motion.button
-              initial={{ opacity: 0, scale: 0.5, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.5, y: 20 }}
-              onClick={scrollToTop}
-              className="fixed bottom-80 right-9 w-12 h-12 bg-white text-secondary rounded-full shadow-2xl flex items-center justify-center border border-primary/20 hover:bg-primary z-[100] group transition-all"
-              aria-label="Back to top"
-            >
-              <ChevronUp className="w-7 h-7 group-hover:text-white group-hover:-translate-y-1 transition-all" />
-            </motion.button>
-          )}
-        </AnimatePresence>
 
         {/* Global Decor */}
         <div className="pointer-events-none fixed inset-0 z-[-1] opacity-20">

@@ -136,64 +136,54 @@ export function Footer() {
               </div>
             </div>
 
-            <h4 className="text-sm font-bold text-white mb-4 uppercase tracking-wider">Payments Accepted</h4>
-            <div className="flex gap-4 mb-8">
-              <div className="px-3 py-1 bg-white/5 rounded-lg border border-white/10 text-[10px] font-bold text-gray-400 group hover:border-primary/50 transition-colors cursor-default">
-                <span className="text-primary">G</span>Pay
-              </div>
-              <div className="px-3 py-1 bg-white/5 rounded-lg border border-white/10 text-[10px] font-bold text-gray-400 group hover:border-primary/50 transition-colors cursor-default">
-                UPI
-              </div>
-              <div className="px-3 py-1 bg-white/5 rounded-lg border border-white/10 text-[10px] font-bold text-gray-400 group hover:border-primary/50 transition-colors cursor-default">
-                Bank Transfer
-              </div>
-            </div>
+            <div className="pt-2">
+              <h4 className="text-sm font-bold text-white mb-3 uppercase tracking-wider text-xs">Join Newsletter</h4>
+              <p className="text-gray-400 text-xs mb-3">Get the latest technology insights & project updates.</p>
 
-            <h4 className="text-sm font-bold text-white mb-3 uppercase tracking-wider text-xs">Join Newsletter</h4>
-            <p className="text-gray-400 text-xs mb-3">Get the latest technology insights & project updates.</p>
-
-            {newsletterStatus === 'success' ? (
-              <div className="p-3 bg-green-500/20 border border-green-500/40 rounded-xl flex items-center gap-2 text-green-400 text-xs font-semibold">
-                <CheckCircle2 className="w-4 h-4 shrink-0 text-green-400" />
-                <span>Subscribed! Check your inbox for confirmation.</span>
-              </div>
-            ) : (
-              <form onSubmit={handleNewsletterSubmit} className="space-y-2">
-                <div className="relative">
-                  <input
-                    type="email"
-                    required
-                    value={newsletterEmail}
-                    onChange={(e) => setNewsletterEmail(e.target.value)}
-                    placeholder="Enter your email address"
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/15 text-white placeholder:text-gray-500 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all pr-12 text-xs"
-                  />
-                  <button 
-                    type="submit" 
-                    disabled={newsletterStatus === 'loading'}
-                    className="absolute right-2 top-2 bottom-2 px-3 bg-primary text-white rounded-lg hover:bg-accent transition-colors disabled:opacity-50 flex items-center justify-center"
-                    aria-label="Subscribe to newsletter"
-                  >
-                    {newsletterStatus === 'loading' ? (
-                      <Loader2 className="w-4 h-4 animate-spin" />
-                    ) : (
-                      <ArrowRight className="w-4 h-4" />
-                    )}
-                  </button>
+              {newsletterStatus === 'success' ? (
+                <div className="p-3 bg-green-500/20 border border-green-500/40 rounded-xl flex items-center gap-2 text-green-400 text-xs font-semibold">
+                  <CheckCircle2 className="w-4 h-4 shrink-0 text-green-400" />
+                  <span>Subscribed! Check your inbox for confirmation.</span>
                 </div>
-                {newsletterStatus === 'error' && (
-                  <p className="text-[11px] text-red-400 pl-1">{newsletterMessage}</p>
-                )}
-              </form>
-            )}
+              ) : (
+                <form onSubmit={handleNewsletterSubmit} className="space-y-2">
+                  <div className="relative">
+                    <input
+                      type="email"
+                      required
+                      value={newsletterEmail}
+                      onChange={(e) => setNewsletterEmail(e.target.value)}
+                      placeholder="Enter your email address"
+                      className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/15 text-white placeholder:text-gray-500 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all pr-12 text-xs"
+                    />
+                    <button 
+                      type="submit" 
+                      disabled={newsletterStatus === 'loading'}
+                      className="absolute right-2 top-2 bottom-2 px-3 bg-primary text-white rounded-lg hover:bg-accent transition-colors disabled:opacity-50 flex items-center justify-center"
+                      aria-label="Subscribe to newsletter"
+                    >
+                      {newsletterStatus === 'loading' ? (
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                      ) : (
+                        <ArrowRight className="w-4 h-4" />
+                      )}
+                    </button>
+                  </div>
+                  {newsletterStatus === 'error' && (
+                    <p className="text-[11px] text-red-400 pl-1">{newsletterMessage}</p>
+                  )}
+                </form>
+              )}
+            </div>
           </div>
         </div>
 
         <div className="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-500 font-medium">
-          <p>© {currentYear} Asay InfoTech Inc. All rights reserved.</p>
+          <p>© {currentYear} ASAY InfoTech Inc. All rights reserved.</p>
           <div className="flex gap-8">
-            <a href="#" className="hover:text-primary transition-colors">Terms of Service</a>
-            <a href="#" className="hover:text-primary transition-colors">Cookies Settings</a>
+            <Link to="/terms" className="hover:text-primary transition-colors">Terms of Service</Link>
+            <Link to="/cookies" className="hover:text-primary transition-colors">Cookies Settings</Link>
+            <Link to="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link>
           </div>
         </div>
       </div>

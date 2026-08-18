@@ -5,21 +5,21 @@ import { cn } from '../lib/utils';
 
 const testimonials = [
   {
+    name: 'Rajesh Prabhu',
+    role: 'CEO, Shiva Medicals',
+    text: 'Working with the ASAY InfoTech team has been an incredible experience. Their customized enterprise software and digital systems streamlined our entire medical distribution network with outstanding reliability.',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150',
+  },
+  {
     name: 'Jason Panda',
-    role: 'CEO, Panda Holding Group LLC',
-    text: 'Working with the Asay Tech team has been an incredible experience. Their technical skills, attention to detail and customer service are unmatched. They’ve played a key role in our corporate strategy and growth.',
+    role: 'Founder, Panda Tech & Holdings',
+    text: 'ASAY InfoTech delivered our cloud enterprise platform ahead of schedule with exceptional quality. Their proactive approach to architecture and AI integrations saved us months of engineering time.',
     avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=150',
   },
   {
-    name: 'Sarah Jenkins',
-    role: 'Product Manager, Global Solutions',
-    text: 'Asay Technologies delivered our enterprise platform ahead of schedule with exceptional quality. Their proactive approach to problem-solving saved us months of development time.',
-    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150',
-  },
-  {
-    name: 'Michael Chen',
-    role: 'CTO, InnovateX',
-    text: 'The AI/ML integration provided by Asay Tech transformed how we handle our internal data analytics. Their expertise in modern engineering is truly top-notch.',
+    name: 'Sivamkumar',
+    role: 'CTO, Innovates',
+    text: 'The AI Agent and RAG pipeline provided by ASAY InfoTech transformed how we handle real-time enterprise data. Their engineering depth and responsive communication are truly world-class.',
     avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150',
   },
 ];

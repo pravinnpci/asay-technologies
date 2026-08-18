@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { 
   Laptop, Database, Cloud, Smartphone, Shield, ArrowRight, 
-  CheckCircle2, Layers, Cpu, Zap, Code2, Rocket, HelpCircle
+  CheckCircle2, Layers, Cpu, Zap, Code2, Rocket, HelpCircle,
+  Plus, Minus
 } from 'lucide-react';
+import { cn } from '../lib/utils';
 
 interface SolutionData {
   id: string;
@@ -177,6 +179,7 @@ const solutionsData: Record<string, SolutionData> = {
 export function SolutionDetailView() {
   const { slug } = useParams<{ slug: string }>();
   const solution = slug ? solutionsData[slug] : null;
+  const [activeFaq, setActiveFaq] = useState<number | null>(0);
 
   if (!solution) {
     return <Navigate to="/services" replace />;
@@ -319,9 +322,9 @@ export function SolutionDetailView() {
         </div>
       </section>
 
-      {/* FAQ Section */}
+      {/* FAQ Accordion Section */}
       <section className="py-20 bg-white border-t border-gray-100">
-        <div className="container mx-auto px-6 max-w-4xl">
+        <div className="container mx-auto px-6 max-w-3xl">
           <div className="text-center mb-16">
             <div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary mx-auto mb-4">
               <HelpCircle className="w-6 h-6" />
@@ -330,11 +333,45 @@ export function SolutionDetailView() {
             <p className="text-gray-500 text-sm">Common questions regarding our {solution.title} services.</p>
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-4">
             {solution.faqs.map((faq, i) => (
-              <div key={i} className="glass p-6 md:p-8 rounded-3xl border border-gray-100 shadow-sm">
-                <h4 className="text-lg font-bold text-secondary mb-3">{faq.q}</h4>
-                <p className="text-gray-500 text-sm leading-relaxed">{faq.a}</p>
+              <div 
+                key={i} 
+                className={cn(
+                  "rounded-2xl border border-gray-100 overflow-hidden transition-all duration-500 shadow-md",
+                  activeFaq === i 
+                    ? "bg-secondary scale-[1.01] ring-4 ring-primary/20 shadow-xl" 
+                    : "glass hover:bg-white/80"
+                )}
+              >
+                <button
+                  onClick={() => setActiveFaq(activeFaq === i ? null : i)}
+                  className={cn(
+                    "w-full px-6 md:px-8 py-5 flex items-center justify-between text-left transition-all duration-300",
+                    activeFaq === i ? "text-white" : "hover:bg-primary/5 text-secondary"
+                  )}
+                >
+                  <span className="font-bold text-base md:text-lg">{faq.q}</span>
+                  {activeFaq === i ? (
+                    <Minus className="w-5 h-5 text-accent shrink-0 ml-4" />
+                  ) : (
+                    <Plus className="w-5 h-5 text-primary shrink-0 ml-4 group-hover:rotate-90 transition-transform" />
+                  )}
+                </button>
+                <AnimatePresence>
+                  {activeFaq === i && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      className="px-6 md:px-8 pb-6 text-gray-200 leading-relaxed text-sm md:text-base"
+                    >
+                      <div className="pt-2 border-t border-white/10 text-white/90">
+                        {faq.a}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             ))}
           </div>
