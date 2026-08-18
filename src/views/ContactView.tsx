@@ -118,30 +118,6 @@ export function ContactView() {
                 className="rounded-[2rem]"
               ></iframe>
             </div>
-
-            {/* Payment Info */}
-            <div className="glass p-8 rounded-[2.5rem] border-white/40">
-              <h3 className="text-xl font-bold text-secondary mb-6 flex items-center gap-2">
-                <span className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center text-primary">₹</span>
-                Secure Payment Methods
-              </h3>
-              <div className="flex flex-wrap gap-4 items-center">
-                <div className="px-6 py-3 bg-white rounded-xl shadow-sm border border-gray-100 flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center text-white text-[10px] font-black italic">GPay</div>
-                  <div>
-                    <p className="text-[10px] uppercase tracking-widest font-black text-secondary">Pay on Google Pay</p>
-                    <p className="text-xs font-bold text-primary">+91 6382907182</p>
-                  </div>
-                </div>
-                <div className="px-6 py-3 bg-white rounded-xl shadow-sm border border-gray-100 flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white text-[10px] font-black italic">UPI</div>
-                  <div>
-                    <p className="text-[10px] uppercase tracking-widest font-black text-secondary">UPI ID</p>
-                    <p className="text-xs font-bold text-primary">asaytech@okicici</p>
-                  </div>
-                </div>
-              </div>
-            </div>
           </motion.div>
 
           {/* Contact Form */}
