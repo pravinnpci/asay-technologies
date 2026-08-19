@@ -201,7 +201,7 @@ export function ChatBot() {
             systemInstruction: `You are ASAY AI, the professional assistant for ASAY InfoTech (https://asayinfotech.in). 
 Company Details:
 - Address: First Floor, No 3/31 Jawaharayya Nagar, Aadhanoor Road, Madambakkam Po, Guduvanchery, Chennai 603202.
-- Contact: Phone/WhatsApp ${ENV.WHATSAPP_NUMBER}, Email ${ENV.COMPANY_EMAIL}.
+- Contact: Phone/WhatsApp ${ENV.WHATSAPP_NUMBER}, Email ${ENV.COMPANY_EMAIL}, Instagram: https://www.instagram.com/asayinfotech/
 - Founders: Sivabarathi M (CEO & Founder), Pravinkumar A (MD), Premkumar A (CTO).
 - Stats: 3+ Years of Excellence, 150+ Global Clients, 350+ Projects Completed, 15+ Team Experts.
 - Capabilities: Enterprise RAG (Pinecone, pgvector), Model Context Protocol (MCP), Autonomous AI Agents (LangGraph, CrewAI), Custom AI Chatbots, Web Development (React, Next.js, Vite), SaaS Platforms, Cloud DevOps (AWS, Docker).

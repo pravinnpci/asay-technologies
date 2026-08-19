@@ -55,13 +55,21 @@ export function Footer() {
               Empowering organizations with cutting-edge technology and innovative digital solutions for a fast-evolving world.
             </p>
             <div className="flex gap-4">
-              {[Twitter, Github, Linkedin, Instagram].map((Icon, i) => (
+              {[
+                { icon: Instagram, href: 'https://www.instagram.com/asayinfotech/', label: 'Instagram' },
+                { icon: Linkedin, href: 'https://www.linkedin.com', label: 'LinkedIn' },
+                { icon: Github, href: 'https://github.com/pravinnpci/asay-technologies', label: 'GitHub' },
+                { icon: Twitter, href: 'https://twitter.com', label: 'Twitter' }
+              ].map((item, i) => (
                 <a
                   key={i}
-                  href="#"
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={item.label}
                   className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center text-white/70 hover:bg-primary hover:text-white transition-all transform hover:-translate-y-1 border border-white/10"
                 >
-                  <Icon className="w-5 h-5" />
+                  <item.icon className="w-5 h-5" />
                 </a>
               ))}
             </div>
