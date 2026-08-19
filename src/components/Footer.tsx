@@ -58,7 +58,6 @@ export function Footer() {
               {[
                 { icon: Instagram, href: 'https://www.instagram.com/asayinfotech/', label: 'Instagram' },
                 { icon: Linkedin, href: 'https://www.linkedin.com', label: 'LinkedIn' },
-                { icon: Github, href: 'https://github.com/pravinnpci/asay-technologies', label: 'GitHub' },
                 { icon: Twitter, href: 'https://twitter.com', label: 'Twitter' }
               ].map((item, i) => (
                 <a
