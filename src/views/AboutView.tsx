@@ -54,12 +54,12 @@ export default function AboutView() {
               <div className="aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl relative z-10 border-8 border-white">
                 <img 
                   src="/team/md.jpg" 
-                  alt="Pravinkumar A - Manager and MD" 
+                  alt="Bakiyalakshmi - Manager and MD" 
                   className="w-full h-full object-cover object-top"
                 />
               </div>
               <div className="absolute -bottom-6 -right-6 lg:-bottom-10 lg:-right-10 glass p-8 rounded-3xl border-primary/20 shadow-2xl z-20 max-w-xs">
-                <h4 className="text-xl font-bold text-secondary mb-1">Pravinkumar A</h4>
+                <h4 className="text-xl font-bold text-secondary mb-1">Bakiyalakshmi</h4>
                 <p className="text-primary font-bold tracking-widest uppercase text-[10px]">Manager and MD</p>
               </div>
               <div className="absolute -top-10 -left-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl -z-10" />
@@ -184,9 +184,9 @@ export default function AboutView() {
                 image: '/team/cto.jpg'
               },
               {
-                name: 'Pravinkumar A',
+                name: 'Bakiyalakshmi',
                 role: 'Manager and MD',
-                desc: 'Overseeing global delivery operations and ensuring technical and strategic excellence.',
+                desc: 'Overseeing corporate leadership, strategic growth, and operational excellence at ASAY InfoTech.',
                 image: '/team/md.jpg'
               }
             ].map((member, i) => (

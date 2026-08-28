@@ -36,8 +36,8 @@ const siteKnowledgeBase: KnowledgeItem[] = [
   },
   {
     category: 'leadership',
-    keywords: ['ceo', 'md', 'director', 'founder', 'leadership', 'team', 'owner', 'head', 'manager', 'sivabarathi', 'pravin', 'premkumar'],
-    answer: "🏢 **ASAY InfoTech Leadership Team:**\n• **Sivabarathi M** - Chief Executive Officer (CEO & Founder)\n• **Pravinkumar A** - Manager and Managing Director (MD)\n• **Premkumar A** - Chief Technology Officer (CTO)\n\nOur team brings deep engineering excellence in Cloud, AI, and Full-Stack enterprise systems."
+    keywords: ['ceo', 'md', 'director', 'founder', 'leadership', 'team', 'owner', 'head', 'manager', 'sivabarathi', 'bakiyalakshmi', 'premkumar', 'bakiya'],
+    answer: "🏢 **ASAY InfoTech Leadership Team:**\n• **Sivabarathi M** - Chief Executive Officer (CEO & Founder)\n• **Bakiyalakshmi** - Manager and Managing Director (MD)\n• **Premkumar A** - Chief Technology Officer (CTO)\n\nOur team brings deep engineering excellence in Cloud, AI, and Full-Stack enterprise systems."
   },
   {
     category: 'about',
@@ -202,7 +202,7 @@ export function ChatBot() {
 Company Details:
 - Address: First Floor, No 3/31 Jawaharayya Nagar, Aadhanoor Road, Madambakkam Po, Guduvanchery, Chennai 603202.
 - Contact: Phone/WhatsApp ${ENV.WHATSAPP_NUMBER}, Email ${ENV.COMPANY_EMAIL}, Instagram: https://www.instagram.com/asayinfotech/
-- Founders: Sivabarathi M (CEO & Founder), Pravinkumar A (MD), Premkumar A (CTO).
+- Founders: Sivabarathi M (CEO & Founder), Bakiyalakshmi (MD), Premkumar A (CTO).
 - Stats: 3+ Years of Excellence, 150+ Global Clients, 350+ Projects Completed, 15+ Team Experts.
 - Capabilities: Enterprise RAG (Pinecone, pgvector), Model Context Protocol (MCP), Autonomous AI Agents (LangGraph, CrewAI), Custom AI Chatbots, Web Development (React, Next.js, Vite), SaaS Platforms, Cloud DevOps (AWS, Docker).
 - Careers: Senior React Developer, Cloud Architect, UI/UX Designer.
