@@ -200,7 +200,7 @@ export default function AboutView() {
               >
                 <div className="bg-white rounded-[3rem] p-6 shadow-xl border border-gray-100 hover:bg-secondary hover:text-white transition-all duration-500 h-full flex flex-col">
                   <div className="aspect-square rounded-[2rem] overflow-hidden mb-6 shrink-0">
-                    <img src={member.image} alt={member.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                    <img src={member.image} alt={member.name} className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-700" />
                   </div>
                   <h3 className="text-xl font-bold mb-1">{member.name}</h3>
                   <p className="text-primary font-bold uppercase text-[10px] tracking-widest mb-4 group-hover:text-accent">{member.role}</p>
