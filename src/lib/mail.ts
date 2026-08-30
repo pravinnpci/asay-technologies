@@ -57,78 +57,8 @@ export async function sendEmailSubmission(data: FormSubmissionData): Promise<{ s
       body: formData
     }).catch(e => console.log('FormSubmit notify:', e));
 
-    // 2. Direct Official Acknowledgment (ACK) Email to Submitter via Zoho ZeptoMail (help@asayinfotech.in)
-    let emailSentViaZepto = false;
-    if (ENV.ZEPTOMAIL_TOKEN) {
-      try {
-        const htmlContent = `
-          <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden;">
-            <div style="background: linear-gradient(135deg, #1e293b, #0f172a); padding: 24px; text-align: center;">
-              <h1 style="color: #ffffff; margin: 0; font-size: 22px; font-weight: 700; letter-spacing: 0.5px;">ASAY INFOTECH</h1>
-              <p style="color: #94a3b8; margin: 6px 0 0 0; font-size: 12px;">Enterprise Software & Autonomous AI Solutions</p>
-            </div>
-            <div style="padding: 28px 24px; color: #334155; line-height: 1.6; font-size: 14px;">
-              <h2 style="color: #0f172a; font-size: 17px; margin-top: 0;">Confirmation: We Received Your Submission</h2>
-              <p>Dear <b>${data.name || 'Valued Client'}</b>,</p>
-              <div style="background: #f8fafc; border-left: 4px solid #3b82f6; padding: 14px 16px; margin: 18px 0; border-radius: 4px; white-space: pre-line;">
-                ${autoresponseMessage}
-              </div>
-              <p style="margin-top: 20px; font-size: 13px; color: #64748b;">
-                Official Support: <a href="mailto:help@asayinfotech.in" style="color: #3b82f6; text-decoration: none;">help@asayinfotech.in</a><br/>
-                Website: <a href="https://asayinfotech.in" style="color: #3b82f6; text-decoration: none;">https://asayinfotech.in</a><br/>
-                WhatsApp: <a href="https://wa.me/916382907182" style="color: #10b981; text-decoration: none;">+91 63829 07182</a>
-              </p>
-            </div>
-            <div style="background: #f1f5f9; padding: 16px; text-align: center; font-size: 11px; color: #94a3b8; border-top: 1px solid #e2e8f0;">
-              &copy; 2026 ASAY InfoTech. All rights reserved. | Chennai, Tamil Nadu, India
-            </div>
-          </div>
-        `;
-
-        const zeptoRes = await fetch('https://api.zeptomail.in/v1.1/email', {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': `Zoho-enczapikey ${ENV.ZEPTOMAIL_TOKEN}`
-          },
-          body: JSON.stringify({
-            from: {
-              address: ENV.ZEPTOMAIL_FROM_EMAIL || 'help@asayinfotech.in',
-              name: ENV.ZEPTOMAIL_FROM_NAME || 'ASAY InfoTech Support'
-            },
-            to: [
-              {
-                email_address: {
-                  address: data.email,
-                  name: data.name || 'Valued Visitor'
-                }
-              }
-            ],
-            reply_to: [
-              {
-                address: ENV.ZEPTOMAIL_FROM_EMAIL || 'help@asayinfotech.in',
-                name: 'ASAY InfoTech Support'
-              }
-            ],
-            subject: `Confirmation: We received your ${isCareer ? 'job application' : isNewsletter ? 'newsletter subscription' : 'inquiry'} - ASAY InfoTech`,
-            htmlbody: htmlContent
-          })
-        });
-
-        if (zeptoRes.ok) {
-          emailSentViaZepto = true;
-          console.log('✅ Zoho ZeptoMail dispatched successfully from help@asayinfotech.in');
-        } else {
-          console.warn('ZeptoMail API response:', await zeptoRes.text());
-        }
-      } catch (zeptoErr) {
-        console.warn('ZeptoMail dispatch error:', zeptoErr);
-      }
-    }
-
-    // Fallback to EmailJS if ZeptoMail was not dispatched
-    if (!emailSentViaZepto && ENV.EMAILJS_SERVICE_ID && ENV.EMAILJS_PUBLIC_KEY) {
+    // 2. Direct Acknowledgment (ACK) Email to Submitter / Applicant via EmailJS
+    if (ENV.EMAILJS_SERVICE_ID && ENV.EMAILJS_PUBLIC_KEY) {
       try {
         emailjs.init({ publicKey: ENV.EMAILJS_PUBLIC_KEY });
 
@@ -141,10 +71,10 @@ export async function sendEmailSubmission(data: FormSubmissionData): Promise<{ s
           subject: `Confirmation: We received your ${isCareer ? 'job application' : isNewsletter ? 'newsletter subscription' : 'inquiry'} - ASAY InfoTech`,
           message: autoresponseMessage,
           phone: data.phone || 'N/A',
-          reply_to: 'help@asayinfotech.in',
+          reply_to: ENV.COMPANY_EMAIL,
           form_type: data.formType,
           company_phone: ENV.WHATSAPP_NUMBER,
-          company_email: 'help@asayinfotech.in',
+          company_email: ENV.COMPANY_EMAIL,
         };
 
         const templateId = ENV.EMAILJS_TEMPLATE_ID || 'template_iyhrbc5';
@@ -156,7 +86,7 @@ export async function sendEmailSubmission(data: FormSubmissionData): Promise<{ s
           ENV.EMAILJS_PUBLIC_KEY
         );
 
-        console.log('✅ EmailJS ACK Email Delivered Successfully:', emailjsRes);
+        console.log('✅ EmailJS ACK Email Delivered Successfully to customer:', emailjsRes);
       } catch (emailjsErr) {
         console.warn('EmailJS ACK dispatch info:', emailjsErr);
       }
