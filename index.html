@@ -22,6 +22,20 @@
     <meta name="twitter:title" content="ASAY InfoTech | Enterprise Software, AI & Cloud Solutions" />
     <meta name="twitter:description" content="Next-Generation Enterprise AI, Full-Stack Web Development, and Digital Transformation Services." />
 
+    <!-- Google AdSense Account Meta Tag (for Instant Verification) -->
+    <meta name="google-adsense-account" content="%VITE_GOOGLE_ADSENSE_ID%" />
+
+    <!-- Google AdSense Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=%VITE_GOOGLE_ADSENSE_ID%" crossorigin="anonymous"></script>
+
+    <!-- Google Analytics (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=%VITE_GOOGLE_ANALYTICS_ID%"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '%VITE_GOOGLE_ANALYTICS_ID%');
+    </script>
   </head>
   <body>
     <div id="root"></div>
