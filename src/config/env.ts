@@ -24,6 +24,11 @@ export const ENV = {
   TWILIO_AUTH_TOKEN: (import.meta.env.VITE_TWILIO_AUTH_TOKEN || '').trim(),
   TWILIO_CONTENT_SID: (import.meta.env.VITE_TWILIO_CONTENT_SID || '').trim(),
 
+  // Zoho ZeptoMail Configuration (help@asayinfotech.in)
+  ZEPTOMAIL_TOKEN: (import.meta.env.VITE_ZEPTOMAIL_TOKEN || '').trim(),
+  ZEPTOMAIL_FROM_EMAIL: import.meta.env.VITE_ZEPTOMAIL_FROM_EMAIL || 'help@asayinfotech.in',
+  ZEPTOMAIL_FROM_NAME: import.meta.env.VITE_ZEPTOMAIL_FROM_NAME || 'ASAY InfoTech Support',
+
   // Environment Mode
   IS_PROD: import.meta.env.PROD,
 };
