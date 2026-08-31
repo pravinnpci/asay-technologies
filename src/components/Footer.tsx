@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { Mail, Phone, MapPin, Twitter, Github, Linkedin, Instagram, ArrowRight, CheckCircle2, Loader2 } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Instagram, Youtube, ArrowRight, CheckCircle2, Loader2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Logo } from './Logo';
 import { ENV } from '../config/env';
@@ -67,6 +67,12 @@ export function Footer() {
                   href: 'https://www.instagram.com/asayinfotech/', 
                   label: 'Instagram',
                   color: 'hover:bg-gradient-to-tr hover:from-[#f09433] hover:via-[#dc2743] hover:to-[#bc1888]'
+                },
+                { 
+                  icon: Youtube, 
+                  href: 'https://www.youtube.com/channel/UCsx37uOKSyNx8aAPHyLgjtg', 
+                  label: 'YouTube',
+                  color: 'hover:bg-[#FF0000]'
                 },
                 { 
                   icon: Mail, 
