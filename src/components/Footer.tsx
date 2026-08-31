@@ -54,11 +54,36 @@ export function Footer() {
             <p className="text-gray-400 mb-8 leading-relaxed">
               Empowering organizations with cutting-edge technology and innovative digital solutions for a fast-evolving world.
             </p>
-            <div className="flex gap-4">
+            <div className="flex gap-3 sm:gap-4 flex-wrap">
               {[
-                { icon: Instagram, href: 'https://www.instagram.com/asayinfotech/', label: 'Instagram' },
-                { icon: Linkedin, href: 'https://www.linkedin.com', label: 'LinkedIn' },
-                { icon: Twitter, href: 'https://twitter.com', label: 'Twitter' }
+                { 
+                  icon: Linkedin, 
+                  href: 'https://www.linkedin.com/in/asay-infotech-web-app-development-278841432/', 
+                  label: 'LinkedIn',
+                  color: 'hover:bg-[#0A66C2]'
+                },
+                { 
+                  icon: Instagram, 
+                  href: 'https://www.instagram.com/asayinfotech/', 
+                  label: 'Instagram',
+                  color: 'hover:bg-gradient-to-tr hover:from-[#f09433] hover:via-[#dc2743] hover:to-[#bc1888]'
+                },
+                { 
+                  icon: Mail, 
+                  href: 'mailto:asayinfotech@gmail.com', 
+                  label: 'Email Us',
+                  color: 'hover:bg-[#EA4335]'
+                },
+                { 
+                  icon: () => (
+                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z" />
+                    </svg>
+                  ), 
+                  href: 'https://www.google.com/search?q=ASAY+InfoTech+Guduvanchery', 
+                  label: 'Google',
+                  color: 'hover:bg-[#4285F4]'
+                }
               ].map((item, i) => (
                 <a
                   key={i}
@@ -66,7 +91,8 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={item.label}
-                  className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center text-white/70 hover:bg-primary hover:text-white transition-all transform hover:-translate-y-1 border border-white/10"
+                  title={item.label}
+                  className={`w-10 h-10 bg-white/5 rounded-full flex items-center justify-center text-white/70 ${item.color} hover:text-white transition-all transform hover:-translate-y-1 border border-white/10`}
                 >
                   <item.icon className="w-5 h-5" />
                 </a>
