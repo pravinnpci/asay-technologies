@@ -46,8 +46,8 @@ jobs:
           VITE_TWILIO_ACCOUNT_SID: ${{ secrets.VITE_TWILIO_ACCOUNT_SID }}
           VITE_TWILIO_AUTH_TOKEN: ${{ secrets.VITE_TWILIO_AUTH_TOKEN }}
           VITE_TWILIO_CONTENT_SID: ${{ secrets.VITE_TWILIO_CONTENT_SID }}
-          VITE_GOOGLE_ANALYTICS_ID: ${{ secrets.VITE_GOOGLE_ANALYTICS_ID || 'G-X3P1LF2B4W' }}
-          VITE_GOOGLE_ADSENSE_ID: ${{ secrets.VITE_GOOGLE_ADSENSE_ID || 'ca-pub-5597737677308611' }}
+          VITE_GOOGLE_ANALYTICS_ID: ${{ secrets.VITE_GOOGLE_ANALYTICS_ID }}
+          VITE_GOOGLE_ADSENSE_ID: ${{ secrets.VITE_GOOGLE_ADSENSE_ID }}
 
       - name: SPA 404 Fallback
         run: cp dist/index.html dist/404.html
