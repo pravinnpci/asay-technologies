@@ -75,6 +75,16 @@ export function Footer() {
                   color: 'hover:bg-[#FF0000]'
                 },
                 { 
+                  icon: () => (
+                    <svg className="w-5 h-5 font-black" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M23 7.004h-3.477c-.502 0-.84.4-.84.974v1.895h3.917V12.5h-3.917v7.496H15.1v-7.496h-1.8v-2.627h1.8V7.545c0-2.317 1.488-3.549 3.823-3.549H23v3.008zM8.5 7.5h-4v2.373h4V12.5H4.5v7.496H1V7.5h1.5V4h4.5v3.5h1.5z" />
+                    </svg>
+                  ), 
+                  href: 'https://www.fiverr.com/users/u_27b035d746ff', 
+                  label: 'Fiverr (Hire Us Globally)',
+                  color: 'hover:bg-[#1DBF73]'
+                },
+                { 
                   icon: Mail, 
                   href: 'mailto:asayinfotech@gmail.com', 
                   label: 'Email Us',
