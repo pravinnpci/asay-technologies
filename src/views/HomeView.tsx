@@ -3,7 +3,7 @@ import { motion } from 'motion/react';
 import { 
   Laptop, Database, Cloud, Smartphone, BarChart, Shield, 
   ArrowRight, Bot, Sparkles, Brain, Cpu, Network, MessageSquare, Zap, CheckCircle2,
-  Linkedin, Twitter
+  Linkedin, Twitter, MapPin, Building2, Globe2
 } from 'lucide-react';
 import { Hero } from '../components/Hero';
 import { Stats } from '../components/Stats';
@@ -228,6 +228,71 @@ export function HomeView() {
                 </Link>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Regional & Local IT Presence Section (SEO Optimized for Guduvanchery, Tambaram, Chennai) */}
+      <section className="py-20 bg-gradient-to-b from-white to-gray-50 border-y border-gray-100">
+        <div className="container mx-auto px-6 max-w-7xl">
+          <div className="text-center max-w-3xl mx-auto mb-14">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold mb-3 uppercase tracking-wider">
+              <MapPin className="w-3.5 h-3.5" />
+              Regional Tech Hub & Global Delivery
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-secondary tracking-tight mb-4">
+              Leading <span className="text-primary">IT & Software Company</span> in Guduvanchery, Tambaram & Chennai
+            </h2>
+            <p className="text-gray-600 text-base leading-relaxed">
+              Headquartered in Guduvanchery, ASAY InfoTech delivers cutting-edge Autonomous AI Agents, Custom Web Applications, Enterprise ERPs, and Cloud Architecture for startups, enterprises, and institutions across Chennai, Tamil Nadu, and worldwide.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="p-8 rounded-3xl bg-white border border-gray-200/80 shadow-md hover:shadow-xl transition-all">
+              <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary mb-6">
+                <Building2 className="w-6 h-6" />
+              </div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Guduvanchery & GST Road HQ</h3>
+              <p className="text-gray-600 text-sm leading-relaxed mb-4">
+                Strategically positioned in Guduvanchery (Madambakkam / GST corridor), offering rapid on-site consultation, software prototyping, and agile project delivery for local businesses and institutions.
+              </p>
+              <div className="flex flex-wrap gap-1.5">
+                <span className="text-[11px] bg-gray-100 text-gray-700 px-2.5 py-1 rounded-md font-medium">Guduvanchery</span>
+                <span className="text-[11px] bg-gray-100 text-gray-700 px-2.5 py-1 rounded-md font-medium">Maraimalai Nagar</span>
+                <span className="text-[11px] bg-gray-100 text-gray-700 px-2.5 py-1 rounded-md font-medium">Chengalpattu</span>
+              </div>
+            </div>
+
+            <div className="p-8 rounded-3xl bg-white border border-gray-200/80 shadow-md hover:shadow-xl transition-all">
+              <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary mb-6">
+                <Laptop className="w-6 h-6" />
+              </div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Tambaram & Chennai Metro</h3>
+              <p className="text-gray-600 text-sm leading-relaxed mb-4">
+                Full-stack web application development, custom SaaS platforms, and enterprise AI engineering tailored for fast-growing companies and startups across Tambaram, Chromepet, Guindy & OMR IT corridor.
+              </p>
+              <div className="flex flex-wrap gap-1.5">
+                <span className="text-[11px] bg-gray-100 text-gray-700 px-2.5 py-1 rounded-md font-medium">Tambaram</span>
+                <span className="text-[11px] bg-gray-100 text-gray-700 px-2.5 py-1 rounded-md font-medium">Chennai OMR</span>
+                <span className="text-[11px] bg-gray-100 text-gray-700 px-2.5 py-1 rounded-md font-medium">Chromepet</span>
+              </div>
+            </div>
+
+            <div className="p-8 rounded-3xl bg-white border border-gray-200/80 shadow-md hover:shadow-xl transition-all">
+              <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary mb-6">
+                <Globe2 className="w-6 h-6" />
+              </div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Global Enterprise Delivery</h3>
+              <p className="text-gray-600 text-sm leading-relaxed mb-4">
+                Partnering with international clients across the US, UK, UAE, and Singapore to engineer resilient multi-tenant architectures, AI agent swarms, and high-concurrency cloud systems.
+              </p>
+              <div className="flex flex-wrap gap-1.5">
+                <span className="text-[11px] bg-gray-100 text-gray-700 px-2.5 py-1 rounded-md font-medium">Remote & Global</span>
+                <span className="text-[11px] bg-gray-100 text-gray-700 px-2.5 py-1 rounded-md font-medium">Fiverr Verified</span>
+                <span className="text-[11px] bg-gray-100 text-gray-700 px-2.5 py-1 rounded-md font-medium">24/7 Support</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>

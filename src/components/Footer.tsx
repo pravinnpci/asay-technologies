@@ -228,7 +228,22 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-500 font-medium">
+        {/* Regional SEO Area Badges */}
+        <div className="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-400">
+          <div className="flex items-center gap-2 flex-wrap">
+            <span className="font-bold text-white uppercase tracking-wider text-[11px]">Primary Service Areas:</span>
+            <span className="bg-white/5 px-2.5 py-1 rounded-md text-[11px] border border-white/10 text-gray-300">Guduvanchery (HQ)</span>
+            <span className="bg-white/5 px-2.5 py-1 rounded-md text-[11px] border border-white/10 text-gray-300">Tambaram</span>
+            <span className="bg-white/5 px-2.5 py-1 rounded-md text-[11px] border border-white/10 text-gray-300">Chennai (OMR / GST)</span>
+            <span className="bg-white/5 px-2.5 py-1 rounded-md text-[11px] border border-white/10 text-gray-300">Chengalpattu</span>
+            <span className="bg-white/5 px-2.5 py-1 rounded-md text-[11px] border border-white/10 text-gray-300">Global (US, UK, UAE, Singapore)</span>
+          </div>
+          <div className="text-[11px] text-gray-400">
+            Top-Rated IT & Software Agency in Tamil Nadu
+          </div>
+        </div>
+
+        <div className="mt-6 pt-6 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-500 font-medium">
           <p>© {currentYear} ASAY InfoTech Inc. All rights reserved.</p>
           <div className="flex gap-8">
             <Link to="/terms" className="hover:text-primary transition-colors">Terms of Service</Link>
