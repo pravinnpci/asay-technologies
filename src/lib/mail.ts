@@ -81,6 +81,10 @@ export async function sendEmailSubmission(data: FormSubmissionData): Promise<{ s
           form_type: data.formType,
           company_phone: ENV.WHATSAPP_NUMBER,
           company_email: ENV.COMPANY_EMAIL,
+          manager_name: 'Bakiyalakshmi',
+          md_name: 'Bakiyalakshmi',
+          sender_name: 'Bakiyalakshmi',
+          from_name: 'Bakiyalakshmi - ASAY InfoTech',
         };
 
         const templateId = ENV.EMAILJS_TEMPLATE_ID || 'template_iyhrbc5';
