@@ -27,10 +27,10 @@ export async function sendEmailSubmission(data: FormSubmissionData): Promise<{ s
       : `New ASAY InfoTech Inquiry: ${data.subject || 'General'} from ${data.name}`;
 
     const autoresponseMessage = isCareer
-      ? `Dear ${data.name},\n\nThank you for applying for the position of "${data.jobTitle || 'Open Role'}" at ASAY InfoTech!\n\nWe have received your application and credentials successfully.\n\nOur recruitment team is reviewing your profile against our open requirements. If shortlisted, our HR team will contact you within 24-48 hours.\n\nBest regards,\nASAY InfoTech Talent Team\nEmail: ${ENV.COMPANY_EMAIL}\nWhatsApp: ${ENV.WHATSAPP_NUMBER}\nWebsite: https://asayinfotech.in`
+      ? `Thank you for applying for the position of "${data.jobTitle || 'Open Role'}" at ASAY InfoTech.\n\nWe have received your application and credentials successfully. Our recruitment team is reviewing your profile against our open requirements and will reach out to you if shortlisted.`
       : isNewsletter
-      ? `Thank you for subscribing to ASAY InfoTech Newsletter! You will receive our latest digital transformation case studies, tech insights, and company updates.\n\nBest regards,\nASAY InfoTech Team`
-      : `Dear ${data.name},\n\nThank you for contacting ASAY InfoTech!\n\nWe have successfully received your inquiry regarding "${data.subject || 'your project'}". Our engineering and consulting team will review your requirements and get back to you within 24 hours.\n\nFor urgent project inquiries, feel free to chat directly on WhatsApp at ${ENV.WHATSAPP_NUMBER}.\n\nBest regards,\nASAY InfoTech Client Relations\nEmail: ${ENV.COMPANY_EMAIL}\nWebsite: https://asayinfotech.in`;
+      ? `Thank you for subscribing to ASAY InfoTech Newsletter! You will receive our latest digital transformation case studies, tech insights, and company updates directly in your inbox.`
+      : `Thank you for contacting ASAY InfoTech!\n\nWe have successfully received your inquiry regarding "${data.subject || 'your project'}".`;
 
     // 1. Primary Dispatch to FormSubmit via JSON (delivers lead directly to asayinfotech@gmail.com)
     const jsonPayload: Record<string, string> = {
