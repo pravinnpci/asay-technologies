@@ -149,6 +149,7 @@ export function Footer() {
                 { name: 'Home', path: '/' },
                 { name: 'About Us', path: '/about' },
                 { name: 'Services', path: '/services' },
+                { name: 'Blog & Insights', path: '/blog' },
                 { name: 'Success Stories', path: '/testimonials' },
                 { name: 'Careers', path: '/careers' },
                 { name: 'Privacy Policy', path: '/privacy' },

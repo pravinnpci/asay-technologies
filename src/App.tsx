@@ -14,6 +14,8 @@ import { PrivacyView } from './views/PrivacyView';
 import { TermsView } from './views/TermsView';
 import { CookiesView } from './views/CookiesView';
 import { SolutionDetailView } from './views/SolutionDetailView';
+import { BlogView } from './views/BlogView';
+import { BlogPostView } from './views/BlogPostView';
 import { FloatingActions } from './components/FloatingActions';
 import { ChatBot } from './components/ChatBot';
 import { cn } from './lib/utils';
@@ -53,6 +55,8 @@ export default function App() {
             <Route path="/services/:slug" element={<SolutionDetailView />} />
             <Route path="/solutions/:slug" element={<SolutionDetailView />} />
             <Route path="/careers" element={<CareersView />} />
+            <Route path="/blog" element={<BlogView />} />
+            <Route path="/blog/:slug" element={<BlogPostView />} />
             <Route path="/contact" element={<ContactView />} />
             <Route path="/privacy" element={<PrivacyView />} />
             <Route path="/terms" element={<TermsView />} />

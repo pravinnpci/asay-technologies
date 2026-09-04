@@ -84,9 +84,9 @@ export function Navbar() {
     { name: 'Home', href: '/' },
     { name: 'About Us', href: '/about' },
     { name: 'Services', href: '/services' },
+    { name: 'Blog', href: '/blog' },
     { name: 'Success Stories', href: '/testimonials' },
     { name: 'Careers', href: '/careers' },
-    { name: 'Privacy Policy', href: '/privacy' },
     { name: 'Contact', href: '/contact' },
   ];
 
