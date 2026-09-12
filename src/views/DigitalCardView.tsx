@@ -12,18 +12,16 @@ export function DigitalCardView() {
 
   // Business Card Data
   const cardData = {
-    name: 'Sivabarathi M',
-    title: 'Founder & Managing Director',
     company: 'ASAY INFOTECH',
-    tagline: 'Enterprise Software & E-Commerce Solutions',
+    tagline: 'Enterprise Software & E-Commerce Global Solutions',
     phone: '+916382907182',
     displayPhone: '+91 6382907182',
     email: 'asayinfotech@gmail.com',
     website: 'https://asayinfotech.in',
     displayWebsite: 'asayinfotech.in',
     address: 'First Floor, No 3/31 Jawahar Ayya Nagar, Aadhanoor Road, Madambakkam Po, Guduvanchery 603202',
-    mapUrl: 'https://maps.google.com/?q=12.86002,80.050441',
-    whatsapp: 'https://wa.me/916382907182?text=Hello%20Sivabarathi,%20I%20got%20your%20contact%20via%20ASAY%20InfoTech%20Smart%20Card.'
+    mapUrl: 'https://www.google.com/maps/place/Asay+Infotech/@12.8598736,80.0500226,17z/data=!4m6!3m5!1s0x3a52f712c1e16949:0xfcf005b861dad0cf!8m2!3d12.8600203!4d80.052914!16s%2Fg%2F11zx15hxjm?entry=ttu&g_ep=EgoyMDI2MDkwOS4wIKXMDSoASAFQAw%3D%3D',
+    whatsapp: 'https://wa.me/916382907182?text=Hello%20ASAY%20INFOTECH,%20I%20would%20like%20to%20inquire%20about%20your%20services.'
   };
 
   // Generate vCard (.vcf) download for 1-click Contact Saving
@@ -31,15 +29,14 @@ export function DigitalCardView() {
     const vCardData = [
       'BEGIN:VCARD',
       'VERSION:3.0',
-      'N:M;Sivabarathi;;;',
-      'FN:Sivabarathi M',
+      'FN:ASAY INFOTECH',
       'ORG:ASAY INFOTECH',
-      'TITLE:Founder & Managing Director',
+      'TITLE:Enterprise Software & E-Commerce Solutions',
       'TEL;TYPE=CELL,VOICE:+916382907182',
       'EMAIL;TYPE=WORK,INTERNET:asayinfotech@gmail.com',
       'URL:https://asayinfotech.in',
       'ADR;TYPE=WORK:;;First Floor\\, No 3/31 Jawahar Ayya Nagar\\, Aadhanoor Road;Guduvanchery;Tamil Nadu;603202;India',
-      'NOTE:Enterprise Software Engineering, Autonomous AI Agents & E-Commerce Global Export',
+      'NOTE:Enterprise Software Engineering, Autonomous AI Agents & E-Commerce Global Export. Google Maps: https://www.google.com/maps/place/Asay+Infotech/@12.8598736,80.0500226,17z',
       'END:VCARD'
     ].join('\r\n');
 
@@ -47,7 +44,7 @@ export function DigitalCardView() {
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.setAttribute('download', 'Sivabarathi_ASAY_INFOTECH.vcf');
+    link.setAttribute('download', 'ASAY_INFOTECH.vcf');
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -61,8 +58,8 @@ export function DigitalCardView() {
     if (navigator.share) {
       try {
         await navigator.share({
-          title: `${cardData.company} - ${cardData.name}`,
-          text: `Connect with ${cardData.name} (${cardData.company}) - Enterprise IT & E-Commerce.`,
+          title: cardData.company,
+          text: `Connect with ${cardData.company} - Enterprise IT & E-Commerce Solutions.`,
           url: window.location.href,
         });
       } catch {
@@ -102,15 +99,12 @@ export function DigitalCardView() {
           {/* Profile Details & Avatar */}
           <div className="px-6 pt-0 pb-8 relative -mt-16 text-center">
             {/* Logo / Profile Avatar */}
-            <div className="relative inline-block mb-3">
-              <div className="w-28 h-28 rounded-3xl bg-slate-950 p-1.5 ring-4 ring-slate-900 shadow-2xl mx-auto overflow-hidden">
+            <div className="relative inline-block mb-4">
+              <div className="w-28 h-28 rounded-3xl bg-white p-3 ring-4 ring-slate-900 shadow-2xl mx-auto flex items-center justify-center">
                 <img 
-                  src="/ASAY INFO Tech logo.png" 
-                  alt="ASAY InfoTech" 
-                  className="w-full h-full object-contain rounded-2xl bg-slate-900 p-2"
-                  onError={(e) => {
-                    e.currentTarget.style.display = 'none';
-                  }}
+                  src="/logo.png" 
+                  alt="ASAY InfoTech Logo" 
+                  className="w-full h-full object-contain"
                 />
               </div>
               <div className="absolute -bottom-1 -right-1 bg-emerald-500 text-white p-1 rounded-full shadow-lg border-2 border-slate-900">
@@ -118,11 +112,11 @@ export function DigitalCardView() {
               </div>
             </div>
 
-            <h1 className="text-2xl font-bold text-white tracking-tight">{cardData.name}</h1>
-            <p className="text-cyan-400 font-medium text-sm mt-0.5">{cardData.title}</p>
+            <h1 className="text-2xl font-bold text-white tracking-tight">{cardData.company}</h1>
+            <p className="text-cyan-400 font-medium text-xs sm:text-sm mt-1">{cardData.tagline}</p>
             <div className="inline-flex items-center gap-1 text-xs text-slate-400 bg-slate-800/80 px-3 py-1 rounded-full mt-2 border border-slate-700/60 font-medium">
               <Building2 className="w-3.5 h-3.5 text-cyan-400" />
-              <span>{cardData.company}</span>
+              <span>Guduvanchery, Chennai</span>
             </div>
 
             {/* Save to Phone Button (Primary Action) */}
@@ -134,7 +128,7 @@ export function DigitalCardView() {
                 {downloadSuccess ? (
                   <>
                     <Check className="w-5 h-5 text-slate-950" />
-                    <span>Contact Card Saved!</span>
+                    <span>Contact Saved to Phone!</span>
                   </>
                 ) : (
                   <>
@@ -217,7 +211,7 @@ export function DigitalCardView() {
                 <ArrowUpRight className="w-4 h-4 text-slate-500 group-hover:text-cyan-400 transition-colors" />
               </a>
 
-              {/* Office Address & Map */}
+              {/* Verified Google Maps Office Location */}
               <a
                 href={cardData.mapUrl}
                 target="_blank"
@@ -229,9 +223,9 @@ export function DigitalCardView() {
                     <MapPin className="w-5 h-5" />
                   </div>
                   <div>
-                    <p className="text-xs text-slate-400">Office Location</p>
+                    <p className="text-xs text-slate-400">Google Maps Verified Location</p>
                     <p className="text-xs font-medium text-slate-200 line-clamp-2 leading-relaxed">
-                      Jawahar Ayya Nagar, Guduvanchery, Chennai 603202
+                      Asay Infotech, Jawahar Ayya Nagar, Guduvanchery, Chennai 603202
                     </p>
                   </div>
                 </div>
