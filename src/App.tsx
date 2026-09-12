@@ -10,6 +10,7 @@ import { TestimonialsView } from './views/TestimonialsView';
 import { ServicesView } from './views/ServicesView';
 import { CareersView } from './views/CareersView';
 import { ContactView } from './views/ContactView';
+import { DigitalCardView } from './views/DigitalCardView';
 import { PrivacyView } from './views/PrivacyView';
 import { TermsView } from './views/TermsView';
 import { CookiesView } from './views/CookiesView';
@@ -58,6 +59,7 @@ export default function App() {
             <Route path="/blog" element={<BlogView />} />
             <Route path="/blog/:slug" element={<BlogPostView />} />
             <Route path="/contact" element={<ContactView />} />
+            <Route path="/card" element={<DigitalCardView />} />
             <Route path="/privacy" element={<PrivacyView />} />
             <Route path="/terms" element={<TermsView />} />
             <Route path="/cookies" element={<CookiesView />} />

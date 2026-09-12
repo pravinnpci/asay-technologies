@@ -46,6 +46,13 @@ const routes = [
     changefreq: 'monthly'
   },
   {
+    path: '/card',
+    title: 'Smart Digital Business Card | Sivabarathi M - ASAY InfoTech',
+    description: 'Connect with Sivabarathi M, Founder of ASAY InfoTech. Instant vCard contact save, direct WhatsApp, and IT services portfolio via Tap & QR.',
+    priority: '0.9',
+    changefreq: 'weekly'
+  },
+  {
     path: '/privacy',
     title: 'Privacy Policy | ASAY InfoTech Software Solutions',
     description: 'Privacy Policy for ASAY InfoTech explaining how we collect, safeguard, and process client and visitor data.',

@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Mail, Phone, MapPin, Send, CheckCircle, Globe, MessageSquare } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import QRCode from 'qrcode';
+import { Mail, Phone, MapPin, Send, CheckCircle, Globe, MessageSquare, QrCode, Smartphone, ArrowRight } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { ENV } from '../config/env';
 import { sendEmailSubmission } from '../lib/mail';
@@ -16,6 +18,22 @@ export function ContactView() {
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [qrCodeDataUrl, setQrCodeDataUrl] = useState<string>('');
+
+  useEffect(() => {
+    // Generate high resolution QR code linking directly to the Smart Card page
+    const cardUrl = 'https://asayinfotech.in/card';
+    QRCode.toDataURL(cardUrl, {
+      width: 320,
+      margin: 2,
+      color: {
+        dark: '#0f172a',
+        light: '#ffffff'
+      }
+    })
+      .then(url => setQrCodeDataUrl(url))
+      .catch(err => console.error('QR generation error:', err));
+  }, []);
 
   const validate = () => {
     const newErrors: Record<string, string> = {};
@@ -104,6 +122,57 @@ export function ContactView() {
                   </a>
                 </div>
               ))}
+            </div>
+
+            {/* Smart Digital Card & QR Scan Interactive Card */}
+            <div className="glass p-6 sm:p-8 rounded-[2.5rem] border-primary/20 bg-gradient-to-br from-secondary/95 via-secondary to-slate-900 text-white shadow-2xl relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-48 h-48 bg-primary/20 rounded-full blur-3xl pointer-events-none" />
+              
+              <div className="flex flex-col sm:flex-row items-center gap-6 relative z-10">
+                {/* QR Display */}
+                <div className="bg-white p-3 rounded-2xl shadow-xl shrink-0 text-center">
+                  {qrCodeDataUrl ? (
+                    <img 
+                      src={qrCodeDataUrl} 
+                      alt="ASAY InfoTech Contact QR" 
+                      className="w-32 h-32 rounded-xl object-contain mx-auto"
+                    />
+                  ) : (
+                    <div className="w-32 h-32 bg-slate-100 flex items-center justify-center rounded-xl text-slate-400">
+                      <QrCode className="w-10 h-10 animate-pulse" />
+                    </div>
+                  )}
+                  <p className="text-[10px] font-bold text-slate-800 uppercase tracking-wider mt-1.5 flex items-center justify-center gap-1">
+                    <Smartphone className="w-3 h-3 text-primary" /> Scan with Camera
+                  </p>
+                </div>
+
+                {/* Info Text & Direct Action */}
+                <div className="space-y-3 text-center sm:text-left flex-1">
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/20 text-primary-light text-xs font-semibold tracking-wide border border-primary/30">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    Tap & QR Smart Profile
+                  </div>
+
+                  <h3 className="text-xl font-bold text-white leading-tight">
+                    Instant Digital Business Card
+                  </h3>
+                  
+                  <p className="text-xs text-slate-300 leading-relaxed">
+                    Scan this QR code with any mobile camera or tap via NFC to immediately save our verified company contact details, WhatsApp & IT Services portfolio.
+                  </p>
+
+                  <div className="pt-1">
+                    <Link
+                      to="/card"
+                      className="inline-flex items-center gap-2 text-xs font-bold text-white bg-primary hover:bg-primary-dark px-4 py-2.5 rounded-xl transition-all shadow-md hover:shadow-primary/30 group"
+                    >
+                      <span>Open Smart Card View</span>
+                      <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* Google Map Mockup */}
