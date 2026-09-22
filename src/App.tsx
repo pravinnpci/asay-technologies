@@ -21,7 +21,7 @@ import { FloatingActions } from './components/FloatingActions';
 import { ChatBot } from './components/ChatBot';
 import { cn } from './lib/utils';
 
-// Scroll to top on route change
+// Scroll to top and sync canonical tag on route change
 function ScrollToTop() {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -33,8 +33,31 @@ function ScrollToTop() {
       document.documentElement.style.scrollBehavior = 'smooth';
     };
 
-    // Use a small timeout to ensure the route change and DOM updates have finished
     const timeoutId = setTimeout(handleScroll, 0);
+
+    // Dynamic Canonical URL Tag for Googlebot & SEO indexing
+    try {
+      let canonicalLink = document.querySelector<HTMLLinkElement>("link[rel='canonical']");
+      if (!canonicalLink) {
+        canonicalLink = document.createElement('link');
+        canonicalLink.setAttribute('rel', 'canonical');
+        document.head.appendChild(canonicalLink);
+      }
+      const cleanPath = pathname === '/' ? '' : pathname.replace(/\/+$/, '');
+      canonicalLink.setAttribute('href', `https://asayinfotech.in${cleanPath}`);
+    } catch (err) {
+      console.warn('Canonical update warning:', err);
+    }
+
+    // Refresh AdSense in SPA on page navigation
+    try {
+      if (typeof window !== 'undefined' && (window as any).adsbygoogle) {
+        ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
+      }
+    } catch (e) {
+      // ignore
+    }
+
     return () => clearTimeout(timeoutId);
   }, [pathname]);
   return null;

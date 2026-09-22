@@ -7,6 +7,7 @@ import {
   Linkedin, Twitter, MessageSquare
 } from 'lucide-react';
 import { BLOG_POSTS } from '../data/blogPosts';
+import { AdSenseBanner } from '../components/AdSenseBanner';
 
 export function BlogPostView() {
   const { slug } = useParams<{ slug: string }>();
@@ -227,9 +228,15 @@ export function BlogPostView() {
           </div>
         </div>
 
+        {/* Top In-Article AdSense Banner */}
+        <AdSenseBanner className="my-6 max-w-4xl mx-auto" />
+
         {/* Main Article Content */}
         <article className="bg-white rounded-3xl p-6 sm:p-10 lg:p-12 border border-gray-200/80 shadow-sm leading-relaxed">
           {renderMarkdownContent(post.content)}
+
+          {/* Bottom Article AdSense Banner */}
+          <AdSenseBanner className="my-8 max-w-3xl mx-auto" />
 
           {/* Tags Footer */}
           <div className="mt-12 pt-8 border-t border-gray-100">
