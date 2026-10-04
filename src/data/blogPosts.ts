@@ -79,7 +79,7 @@ Rather than relying on a single monolithic model to handle everything, modern ar
 
 ## 3. Real-World Business Impact & ROI
 
-Enterprises deploying ASAY InfoTech's autonomous AI swarms report:
+Enterprises deploying ASAI InfoTech's autonomous AI swarms report:
 * **78% reduction in manual tier-2 IT support tickets**.
 * **Zero-latency invoice reconciliation** across cross-border multi-currency transactions.
 * **Instant document comprehension and KYC verification** processing thousands of records per hour with 99.9% accuracy.
@@ -345,9 +345,9 @@ Speed must not come at the expense of delight. Modern motion libraries (such as 
 
 ---
 
-## The ASAY InfoTech Approach
+## The ASAI InfoTech Approach
 
-At ASAY InfoTech, we architect every web application with speed, accessibility, and rock-solid enterprise stability at its core. Contact our engineering team today to elevate your web presence.
+At ASAI InfoTech, we architect every web application with speed, accessibility, and rock-solid enterprise stability at its core. Contact our engineering team today to elevate your web presence.
     `
   }
 ];

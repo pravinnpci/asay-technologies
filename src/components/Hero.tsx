@@ -54,7 +54,7 @@ export function Hero() {
             </h1>
 
             <p className="text-base sm:text-lg text-gray-600 mb-8 max-w-2xl mx-auto lg:mx-0">
-              Asay InfoTech is a top-tier software and AI engineering company specializing in Autonomous AI Agents, Enterprise RAG, Model Context Protocol (MCP) integrations, and high-performance Web & Cloud solutions.
+              ASAI InfoTech is a top-tier software and AI engineering company specializing in Autonomous AI Agents, Enterprise RAG, Model Context Protocol (MCP) integrations, and high-performance Web & Cloud solutions.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">

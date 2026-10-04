@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { 
   Phone, Mail, Globe, MapPin, Download, Share2, MessageSquare, 
@@ -12,7 +12,7 @@ export function DigitalCardView() {
 
   // Business Card Data
   const cardData = {
-    company: 'ASAY INFOTECH',
+    company: 'ASAI INFOTECH',
     tagline: 'Enterprise Software & E-Commerce Global Solutions',
     phone: '+916382907182',
     displayPhone: '+91 6382907182',
@@ -29,8 +29,8 @@ export function DigitalCardView() {
     const vCardData = [
       'BEGIN:VCARD',
       'VERSION:3.0',
-      'FN:ASAY INFOTECH',
-      'ORG:ASAY INFOTECH',
+      'FN:ASAI INFOTECH',
+      'ORG:ASAI INFOTECH',
       'TITLE:Enterprise Software & E-Commerce Solutions',
       'TEL;TYPE=CELL,VOICE:+916382907182',
       'EMAIL;TYPE=WORK,INTERNET:asayinfotech@gmail.com',
@@ -103,7 +103,7 @@ export function DigitalCardView() {
               <div className="w-28 h-28 rounded-3xl bg-white p-3 ring-4 ring-slate-900 shadow-2xl mx-auto flex items-center justify-center">
                 <img 
                   src="/logo.png" 
-                  alt="ASAY InfoTech Logo" 
+                  alt="ASAI InfoTech Logo" 
                   className="w-full h-full object-contain"
                 />
               </div>
@@ -225,7 +225,7 @@ export function DigitalCardView() {
                   <div>
                     <p className="text-xs text-slate-400">Google Maps Verified Location</p>
                     <p className="text-xs font-medium text-slate-200 line-clamp-2 leading-relaxed">
-                      Asay Infotech, Jawahar Ayya Nagar, Guduvanchery, Chennai 603202
+                      ASAI InfoTech, Jawahar Ayya Nagar, Guduvanchery, Chennai 603202
                     </p>
                   </div>
                 </div>
@@ -255,7 +255,7 @@ export function DigitalCardView() {
             {/* Footer Brand */}
             <div className="mt-8 pt-4 border-t border-slate-800 text-center">
               <p className="text-[11px] text-slate-500">
-                Powered by <span className="font-semibold text-slate-400">ASAY INFOTECH</span> Smart Card Architecture
+                Powered by <span className="font-semibold text-slate-400">ASAI INFOTECH</span> Smart Card Architecture
               </p>
             </div>
 

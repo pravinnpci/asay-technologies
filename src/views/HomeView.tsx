@@ -150,7 +150,7 @@ export function HomeView() {
               <div className="absolute left-1/2 top-0 bottom-0 w-px bg-primary/30 hidden md:block" />
               
               {[
-                { year: '2022', title: 'The Vision', text: 'ASAY InfoTech founded with a mission to simplify enterprise digital transformation.' },
+                { year: '2022', title: 'The Vision', text: 'ASAI InfoTech founded with a mission to simplify enterprise digital transformation.' },
                 { year: '2023', title: 'Scaling Up', text: 'Expanded our core team and launched our first international SaaS platform.' },
                 { year: '2024', title: 'Global Impact', text: 'Serving 150+ clients across 5 continents with cutting-edge cloud solutions.' },
                 { year: '2025', title: 'Innovation Lead', text: 'Integrating AI and modern architectures to redefine industry standards.' },
@@ -244,7 +244,7 @@ export function HomeView() {
               Leading <span className="text-primary">IT & Software Company</span> in Guduvanchery, Tambaram & Chennai
             </h2>
             <p className="text-gray-600 text-base leading-relaxed">
-              Headquartered in Guduvanchery, ASAY InfoTech delivers cutting-edge Autonomous AI Agents, Custom Web Applications, Enterprise ERPs, and Cloud Architecture for startups, enterprises, and institutions across Chennai, Tamil Nadu, and worldwide.
+              Headquartered in Guduvanchery, ASAI InfoTech delivers cutting-edge Autonomous AI Agents, Custom Web Applications, Enterprise ERPs, and Cloud Architecture for startups, enterprises, and institutions across Chennai, Tamil Nadu, and worldwide.
             </p>
           </div>
 

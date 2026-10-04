@@ -221,7 +221,7 @@ export function BlogPostView() {
           <div className="absolute inset-0 bg-black/10 backdrop-blur-[0.5px]" />
           <div className="relative z-10 flex items-center justify-between">
             <div>
-              <span className="text-xs font-mono text-white/80 uppercase tracking-widest block mb-1">ASAY InfoTech Architecture Series</span>
+              <span className="text-xs font-mono text-white/80 uppercase tracking-widest block mb-1">ASAI InfoTech Architecture Series</span>
               <p className="text-lg sm:text-xl font-bold">{post.category} Comprehensive Guide</p>
             </div>
             <Sparkles className="w-8 h-8 text-white/70" />
@@ -263,7 +263,7 @@ export function BlogPostView() {
               <h4 className="text-base font-bold text-gray-900">{post.author.name}</h4>
               <span className="text-[11px] bg-primary/10 text-primary px-2 py-0.5 rounded font-semibold">Verified Author</span>
             </div>
-            <p className="text-xs text-gray-500 font-medium mb-3">{post.author.role} at ASAY InfoTech</p>
+            <p className="text-xs text-gray-500 font-medium mb-3">{post.author.role} at ASAI InfoTech</p>
             <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
               Passionate about building production-grade autonomous systems, distributed cloud backends, and enterprise web solutions that scale reliably to millions of users.
             </p>
@@ -317,7 +317,7 @@ export function BlogPostView() {
         <div className="mt-16 p-8 rounded-3xl bg-secondary text-white text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-6 relative overflow-hidden">
           <div className="relative z-10">
             <h3 className="text-xl font-bold mb-2">Ready to accelerate your next tech project?</h3>
-            <p className="text-gray-300 text-xs sm:text-sm">Get a high-performance solution built by ASAY InfoTech experts.</p>
+            <p className="text-gray-300 text-xs sm:text-sm">Get a high-performance solution built by ASAI InfoTech experts.</p>
           </div>
           <Link
             to="/contact"

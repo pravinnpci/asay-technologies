@@ -17,6 +17,11 @@ import { CookiesView } from './views/CookiesView';
 import { SolutionDetailView } from './views/SolutionDetailView';
 import { BlogView } from './views/BlogView';
 import { BlogPostView } from './views/BlogPostView';
+import { CoursesView } from './views/CoursesView';
+import { CourseDetailView } from './views/CourseDetailView';
+import { VerifyCertificateView } from './views/VerifyCertificateView';
+import { AdminView } from './views/AdminView';
+import { ErrorBoundary } from './components/ErrorBoundary';
 import { FloatingActions } from './components/FloatingActions';
 import { ChatBot } from './components/ChatBot';
 import { cn } from './lib/utils';
@@ -34,6 +39,63 @@ function ScrollToTop() {
     };
 
     const timeoutId = setTimeout(handleScroll, 0);
+
+    // Dynamic Route Title synchronization
+    const getRouteTitle = (path: string): string => {
+      if (path === '/' || path === '') {
+        return 'ASAI InfoTech | Leading IT & Software Company in Guduvanchery, Tambaram & Chennai | AI & Web Development';
+      }
+      if (path === '/verify-certificate' || path === '/verify') {
+        return 'ISO 9001:2015 Online Certificate Verification | ASAI InfoTech';
+      }
+      if (path === '/courses' || path === '/academy') {
+        return 'Tech Academy & ISO 9001:2015 Certified Courses | ASAI InfoTech Chennai';
+      }
+      if (path === '/admin') {
+        return 'Academy Management & Student Admissions Portal | ASAI InfoTech';
+      }
+      if (path === '/about') {
+        return 'About Us | ASAI InfoTech - Top IT & Software Company in Guduvanchery & Chennai';
+      }
+      if (path === '/services') {
+        return 'Enterprise IT Services & Software Solutions | ASAI InfoTech Guduvanchery, Chennai';
+      }
+      if (path.startsWith('/services/') || path.startsWith('/solutions/')) {
+        return 'Enterprise Engineering Solution | ASAI InfoTech Chennai';
+      }
+      if (path === '/testimonials') {
+        return 'Client Testimonials & Enterprise Reviews | ASAI InfoTech';
+      }
+      if (path === '/careers') {
+        return 'Careers at ASAI InfoTech | Join Leading Tech Innovators in Guduvanchery, Chennai';
+      }
+      if (path === '/contact') {
+        return 'Contact ASAI InfoTech | IT & Software Consultation in Guduvanchery, Chennai';
+      }
+      if (path === '/card') {
+        return 'Smart Digital Business Card | Sivabarathi M - ASAI InfoTech';
+      }
+      if (path === '/blog') {
+        return 'Tech Insights & Engineering Blog | ASAI InfoTech';
+      }
+      if (path.startsWith('/blog/')) {
+        return 'Tech Article & Engineering Deep-Dive | ASAI InfoTech Blog';
+      }
+      if (path === '/privacy') {
+        return 'Privacy Policy | ASAI InfoTech Software Solutions';
+      }
+      if (path === '/terms') {
+        return 'Terms of Service | ASAI InfoTech';
+      }
+      if (path === '/cookies') {
+        return 'Cookie Policy | ASAI InfoTech';
+      }
+      return 'ASAI InfoTech | Leading IT & Software Company in Guduvanchery, Tambaram & Chennai';
+    };
+
+    if (!pathname.startsWith('/courses/')) {
+      document.title = getRouteTitle(pathname);
+    }
 
     // Dynamic Canonical URL Tag for Googlebot & SEO indexing
     try {
@@ -78,6 +140,16 @@ export default function App() {
             <Route path="/services" element={<ServicesView />} />
             <Route path="/services/:slug" element={<SolutionDetailView />} />
             <Route path="/solutions/:slug" element={<SolutionDetailView />} />
+            <Route path="/academy" element={<CoursesView />} />
+            <Route path="/courses" element={<CoursesView />} />
+            <Route path="/courses/:courseId" element={<CourseDetailView />} />
+            <Route path="/verify-certificate" element={<VerifyCertificateView />} />
+            <Route path="/verify" element={<VerifyCertificateView />} />
+            <Route path="/admin" element={
+              <ErrorBoundary fallbackTitle="Admin Portal Recovery">
+                <AdminView />
+              </ErrorBoundary>
+            } />
             <Route path="/careers" element={<CareersView />} />
             <Route path="/blog" element={<BlogView />} />
             <Route path="/blog/:slug" element={<BlogPostView />} />

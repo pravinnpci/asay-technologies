@@ -134,7 +134,7 @@ export function ContactView() {
                   {qrCodeDataUrl ? (
                     <img 
                       src={qrCodeDataUrl} 
-                      alt="ASAY InfoTech Contact QR" 
+                      alt="ASAI InfoTech Contact QR" 
                       className="w-32 h-32 rounded-xl object-contain mx-auto"
                     />
                   ) : (

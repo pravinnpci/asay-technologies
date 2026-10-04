@@ -18,7 +18,7 @@ export function TermsView() {
             </div>
             <div>
               <h1 className="text-3xl md:text-4xl font-black text-secondary tracking-tight">Terms of Service</h1>
-              <p className="text-xs text-gray-400 font-medium">ASAY InfoTech Professional Agreement</p>
+              <p className="text-xs text-gray-400 font-medium">ASAI InfoTech Professional Agreement</p>
             </div>
           </div>
 
@@ -28,7 +28,7 @@ export function TermsView() {
                 <FileCheck className="w-5 h-5 text-primary" /> 1. Acceptance of Terms
               </h2>
               <p>
-                By accessing or using the website, software, or digital engineering services provided by <strong>ASAY InfoTech</strong> ("Company", "we", "our"), you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.
+                By accessing or using the website, software, or digital engineering services provided by <strong>ASAI InfoTech</strong> ("Company", "we", "our"), you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.
               </p>
             </section>
 

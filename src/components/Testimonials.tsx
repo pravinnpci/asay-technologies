@@ -7,19 +7,19 @@ const testimonials = [
   {
     name: 'Siva Medicals Team',
     role: 'Retail & Healthcare, Siva Medicals',
-    text: 'Working with ASAY InfoTech has been an incredible experience. Their customized healthcare web portal streamlined our customer discovery and 1-tap WhatsApp prescription delivery with outstanding reliability.',
+    text: 'Working with ASAI InfoTech has been an incredible experience. Their customized healthcare web portal streamlined our customer discovery and 1-tap WhatsApp prescription delivery with outstanding reliability.',
     avatar: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=150',
   },
   {
     name: 'Bupzo Marketplace',
     role: 'E-Commerce Platform, Bupzo',
-    text: 'ASAY InfoTech built our scalable multi-vendor e-commerce marketplace ahead of schedule with exceptional quality. Their robust vendor analytics and high-speed checkout transformed our online sales.',
+    text: 'ASAI InfoTech built our scalable multi-vendor e-commerce marketplace ahead of schedule with exceptional quality. Their robust vendor analytics and high-speed checkout transformed our online sales.',
     avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=150',
   },
   {
     name: 'Sivamkumar',
     role: 'CTO, Enterprise Partner',
-    text: 'The autonomous AI agent workflows and custom web platforms provided by ASAY InfoTech transformed our enterprise operations. Their engineering depth and 24/7 technical support are truly world-class.',
+    text: 'The autonomous AI agent workflows and custom web platforms provided by ASAI InfoTech transformed our enterprise operations. Their engineering depth and 24/7 technical support are truly world-class.',
     avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150',
   },
 ];

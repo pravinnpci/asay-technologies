@@ -8,7 +8,7 @@ export function FloatingActions() {
   const [isChatActive, setIsChatActive] = useState(false);
 
   const whatsappNumber = ENV.WHATSAPP_NUMBER.replace(/[^0-9+]/g, '');
-  const message = "Hi ASAY InfoTech, I'd like to inquire about your software and AI solutions.";
+  const message = "Hi ASAI InfoTech, I'd like to inquire about your software and AI solutions.";
   const whatsappUrl = `https://wa.me/${whatsappNumber.replace('+', '')}?text=${encodeURIComponent(message)}`;
 
   useEffect(() => {
@@ -103,7 +103,7 @@ export function FloatingActions() {
         whileHover={{ scale: 1.08, y: -2 }}
         whileTap={{ scale: 0.92 }}
         className="w-12 h-12 bg-primary text-white rounded-2xl flex items-center justify-center shadow-xl hover:shadow-primary/40 transition-all relative group"
-        aria-label="Call ASAY InfoTech"
+        aria-label="Call ASAI InfoTech"
       >
         <PhoneCall className="w-5 h-5" />
         <span className="absolute right-full mr-3 px-3 py-1.5 bg-secondary text-white text-xs font-bold rounded-xl opacity-0 group-hover:opacity-100 transition-opacity shadow-xl pointer-events-none whitespace-nowrap">

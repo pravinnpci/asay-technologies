@@ -31,7 +31,7 @@ export function CookiesView() {
             </div>
             <div>
               <h1 className="text-3xl md:text-4xl font-black text-secondary tracking-tight">Cookies Settings & Policy</h1>
-              <p className="text-xs text-gray-400 font-medium">ASAY InfoTech Transparency & Privacy Controls</p>
+              <p className="text-xs text-gray-400 font-medium">ASAI InfoTech Transparency & Privacy Controls</p>
             </div>
           </div>
 

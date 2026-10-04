@@ -1,6 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Send, X, Bot, User, Loader2, Sparkles, MapPin, Briefcase, Phone, Cpu, Users, ChevronDown, ChevronUp, CheckCircle, Database, Search } from 'lucide-react';
+import { 
+  Send, X, Bot, User, Loader2, Sparkles, MapPin, Briefcase, 
+  Phone, Cpu, Users, ChevronDown, ChevronUp, CheckCircle, Database, 
+  Search, GraduationCap, Award, Clock, BookOpen, ShieldCheck 
+} from 'lucide-react';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { cn } from '../lib/utils';
 import { ENV } from '../config/env';
@@ -8,7 +12,7 @@ import { ENV } from '../config/env';
 // ── 1. Full-Site Semantic Knowledge Corpus ──────────────────────────────────
 interface RAGKnowledgeChunk {
   id: string;
-  intent: 'identity' | 'leadership' | 'location' | 'contact' | 'services_ai' | 'services_web_cloud' | 'careers' | 'pricing_process' | 'greetings';
+  intent: 'identity' | 'leadership' | 'location' | 'contact' | 'services_ai' | 'services_web_cloud' | 'careers' | 'pricing_process' | 'greetings' | 'academy_courses' | 'student_guidelines' | 'enrollment_steps';
   title: string;
   sourceUri: string;
   sourceFile: string;
@@ -22,15 +26,15 @@ const RAG_CORPUS: RAGKnowledgeChunk[] = [
     title: 'Company Identity & Overview',
     sourceUri: 'https://asayinfotech.in/about',
     sourceFile: 'AboutView.tsx & HomeView.tsx',
-    content: `👋 **I am ASAY AI**, the official intelligent RAG assistant for **ASAY InfoTech** (https://asayinfotech.in).
+    content: `👋 **I am ASAI AI**, the official intelligent assistant for **ASAI InfoTech** (https://asayinfotech.in).
 
-🚀 **About ASAY InfoTech (Pvt Ltd):**
-Founded in 2022, ASAY InfoTech is an enterprise technology and Generative AI engineering company delivering production-grade digital solutions worldwide.
+🚀 **About ASAI InfoTech (Pvt Ltd):**
+Founded in 2022, ASAI InfoTech is an enterprise technology, Generative AI engineering, and ISO 9001:2015 certified software organization in Chennai.
 • **3+ Years** of Global Engineering Excellence
 • **150+ Global Clients** across US, UK, Middle East, and India
 • **350+ Projects Completed** (Enterprise AI, RAG, Web & SaaS Systems)
 • **15+ Core Technical Experts** (AI, Cloud Architects, Full-Stack Engineers)
-• **99.5% Client Satisfaction** with 24/7 SLA maintenance.`
+• **ISO 9001:2015 QMS Quality Certified Organization**.`
   },
   {
     id: 'corp_leadership',
@@ -38,9 +42,9 @@ Founded in 2022, ASAY InfoTech is an enterprise technology and Generative AI eng
     title: 'Executive Leadership Team',
     sourceUri: 'https://asayinfotech.in/about#leadership',
     sourceFile: 'AboutView.tsx',
-    content: `🏢 **ASAY InfoTech Executive Leadership:**
+    content: `🏢 **ASAI InfoTech Executive Leadership:**
 • **Sivabarathi M** — **Chief Executive Officer (CEO & Founder)**
-  *Strategic visionary driving global client partnerships, corporate vision, and AI expansion.*
+  *Authorized Signatory for ISO 9001:2015 Certificates & Technical Visionary driving global engineering partnerships.*
 • **Bakiyalakshmi** — **Manager and Managing Director (MD)**
   *Overseeing corporate leadership, operational governance, and project delivery excellence.*
 • **Premkumar A** — **Chief Technology Officer (CTO)**
@@ -52,11 +56,11 @@ Founded in 2022, ASAY InfoTech is an enterprise technology and Generative AI eng
     title: 'Headquarters & Office Address',
     sourceUri: 'https://asayinfotech.in/contact',
     sourceFile: 'ContactView.tsx',
-    content: `📍 **ASAY InfoTech Headquarters:**
+    content: `📍 **ASAI InfoTech Headquarters:**
 First Floor, No 3/31 Jawaharayya Nagar, Aadhanoor Road, Madambakkam Po, Guduvanchery, Chennai - 603202, Tamil Nadu, India.
 
 📌 **Landmark:** Near Madambakkam Post Office, Guduvanchery.
-🕒 **Office Hours:** Monday – Saturday (9:00 AM – 7:00 PM IST). In-person client meetings welcome with prior appointment.`
+🕒 **Office Hours:** Monday – Saturday (9:00 AM – 7:00 PM IST). In-person visits and students welcome with prior appointment.`
   },
   {
     id: 'corp_contact',
@@ -65,10 +69,78 @@ First Floor, No 3/31 Jawaharayya Nagar, Aadhanoor Road, Madambakkam Po, Guduvanc
     sourceUri: 'https://asayinfotech.in/contact',
     sourceFile: 'ContactView.tsx',
     content: `📞 **Official Contact Information:**
-• **Direct Phone / WhatsApp:** ${ENV.WHATSAPP_NUMBER}
-• **Official Email:** ${ENV.COMPANY_EMAIL}
-• **Instagram:** @asayinfotech
-• **Free Consultation:** Message us directly on WhatsApp or submit your project requirements on our **Contact** page for an instant architecture estimate!`
+• **Direct Phone / WhatsApp:** +91 6382907182
+• **Official Email:** asayinfotech@gmail.com
+• **UPI ID:** asayinfotech@okaxis
+• **Office Address:** Guduvanchery, Chennai - 603202
+• **Free Consultation:** Message us directly on WhatsApp or submit your requirements on our **Contact** page!`
+  },
+  {
+    id: 'academy_courses',
+    intent: 'academy_courses',
+    title: '10 IT Certification Courses & Live 5-6 PM Batch',
+    sourceUri: 'https://asayinfotech.in/courses',
+    sourceFile: 'coursesData.ts & CoursesView.tsx',
+    content: `🎓 **ASAI InfoTech Tech Academy Courses (10 Masterclasses):**
+Every course includes **Module 1.1 Free Video Preview on YouTube** + Daily Live Classes:
+
+1. **Python Full-Stack & Cloud Automation Masterclass** (₹1,999)
+2. **Java Full-Stack & Spring Boot Microservices** (₹2,499)
+3. **MERN Full-Stack Web Development & Cloud Deployment** (₹2,199)
+4. **Cloud DevOps, Docker, Kubernetes & CI/CD Pipelines** (₹2,499)
+5. **AWS Solutions Architect & Cloud Engineering** (₹2,299)
+6. **Data Science, Machine Learning & Generative AI** (₹2,499)
+7. **Automation Testing & Software QA (Selenium, Playwright & API)** (₹1,999)
+8. **Cybersecurity, SOC Analysis & Ethical Hacking Defense** (₹2,499)
+9. **Business Intelligence & Data Analytics (Power BI & SQL)** (₹1,999)
+10. **Modern Front-End Engineering & UI/UX (React 19 & Tailwind)** (₹1,999)
+
+⏰ **Live Batch Timing:** Daily **5:00 PM - 6:00 PM IST** (Monday to Friday).
+💻 **Platform:** Interactive Google Meet / Zoom + Live Doubt Clearing + HD Session Recordings.`
+  },
+  {
+    id: 'student_guidelines',
+    intent: 'student_guidelines',
+    title: 'Student Training Guidelines, Theory Track & Certification Process',
+    sourceUri: 'https://asayinfotech.in/verify-certificate',
+    sourceFile: 'VerifyCertificateView.tsx',
+    content: `📜 **Student Guidelines & Certification Roadmap:**
+
+📋 **1. Training Track (Theory + Hands-on):**
+• **Daily 5:00 PM – 6:00 PM IST Live Classes:** Attend interactive online sessions covering theory concepts, architecture, and live coding.
+• **Practical Assignments:** Complete weekly coding tasks and submit work to the mentor.
+• **Capstone Industry Project:** Develop an end-to-end production application and push code to your personal GitHub repository.
+
+🏆 **2. Dual Certification Requirements:**
+• **Course Completion Certificate:** Issued upon successful capstone review and attendance criteria.
+• **30-Day Internship Letter:** Practical experience certificate from ASAI InfoTech validating project work.
+• **Authorized Signatory:** Every certificate is signed by **Sivabarathi M** (Founder & Director, ASAI InfoTech).
+• **Tamper-Proof QR Code:** Scannable dynamic QR for immediate recruiter verification.
+
+🔍 **3. Online Verification:**
+• Anyone can verify authenticity at: **https://asayinfotech.in/verify?cert_id=YOUR-ID**
+• Only authentic, registered certificate IDs are verified in our active registry.`
+  },
+  {
+    id: 'enrollment_steps',
+    intent: 'enrollment_steps',
+    title: 'How Students Enroll & Payment Instructions',
+    sourceUri: 'https://asayinfotech.in/courses',
+    sourceFile: 'CourseDetailView.tsx',
+    content: `💳 **How to Enroll & Join the Daily 5-6 PM Batch:**
+
+1. **Select Your Course:** Visit **https://asayinfotech.in/courses** and choose your desired tech specialization.
+2. **Watch Free Preview:** Watch the Module 1.1 video free of cost directly on YouTube or on our course page.
+3. **Make UPI Payment:**
+   • **GPay / PhonePe / Paytm Mobile:** **+91 6382907182**
+   • **UPI ID:** **asayinfotech@okaxis**
+   • **Beneficiary Name:** ASAI INFOTECH PRIVATE LIMITED
+4. **Submit Admission Form:**
+   • Click **"Enroll Now"** on the course page.
+   • Enter your Name, Phone Number, Email, College/Company, and Payment Reference / UTR Number.
+5. **Admin Approval & Unlock:**
+   • Once submitted, our admin reviews the UTR and unlocks all lessons immediately!
+   • You receive an invite link for the live 5:00 PM - 6:00 PM Google Meet batch & tech WhatsApp group.`
   },
   {
     id: 'services_ai',
@@ -78,12 +150,12 @@ First Floor, No 3/31 Jawaharayya Nagar, Aadhanoor Road, Madambakkam Po, Guduvanc
     sourceFile: 'SolutionDetailView.tsx',
     content: `🧠 **Generative AI & Agentic Solutions:**
 1. **Enterprise RAG (Retrieval-Augmented Generation):**
-   * Connects LLMs directly to your private company data (PDFs, SQL/NoSQL databases, Docs) with zero hallucination.
-   * **Vector DBs:** Pinecone, pgvector (PostgreSQL), ChromaDB, Milvus with hybrid dense/sparse search and neural reranking.
+   * Connects LLMs directly to private business data with zero hallucination.
+   * **Vector DBs:** Pinecone, pgvector (PostgreSQL), ChromaDB, Milvus with hybrid dense/sparse search.
 2. **Model Context Protocol (MCP) Servers:**
-   * Custom MCP architectures connecting Claude, Gemini, and GPT directly with enterprise tools, databases, and APIs.
+   * Custom MCP architectures connecting Claude, Gemini, and GPT directly with enterprise tools and databases.
 3. **Autonomous AI Multi-Agent Swarms:**
-   * Agentic workflows built using LangGraph & CrewAI for autonomous planning, code generation, testing, and operations.`
+   * Built with LangGraph & CrewAI for autonomous planning and task execution.`
   },
   {
     id: 'services_web_cloud',
@@ -92,9 +164,9 @@ First Floor, No 3/31 Jawaharayya Nagar, Aadhanoor Road, Madambakkam Po, Guduvanc
     sourceUri: 'https://asayinfotech.in/services',
     sourceFile: 'ServicesView.tsx',
     content: `💻 **Full-Stack Software & Cloud Engineering:**
-• **Web Engineering:** React 19, Next.js, Vite, TypeScript, Tailwind CSS with Lighthouse 95+ performance scores.
-• **SaaS Platforms:** Multi-tenant isolated databases, automated subscription billing (Stripe, Razorpay), RBAC security.
-• **Cloud & DevOps:** AWS, Google Cloud, Docker, Kubernetes, Terraform, zero-downtime CI/CD automation.`
+• **Web Engineering:** React 19, Next.js, Vite, TypeScript, Tailwind CSS.
+• **SaaS Platforms:** Multi-tenant architectures, automated subscription billing (Stripe, Razorpay), RBAC.
+• **Cloud & DevOps:** AWS, Google Cloud, Docker, Kubernetes, Terraform, zero-downtime CI/CD.`
   },
   {
     id: 'careers_jobs',
@@ -102,24 +174,24 @@ First Floor, No 3/31 Jawaharayya Nagar, Aadhanoor Road, Madambakkam Po, Guduvanc
     title: 'Open Career Vacancies',
     sourceUri: 'https://asayinfotech.in/careers',
     sourceFile: 'CareersView.tsx',
-    content: `💼 **Current Career Openings at ASAY InfoTech:**
-1. **Senior React Developer** (3–5 Years Exp | B.E / B.Tech / MCA | Chennai HQ)
-2. **Cloud Infrastructure Architect** (5+ Years Exp | AWS, Kubernetes, Terraform | Chennai HQ)
-3. **Product UI/UX Designer** (2–4 Years Exp | Figma & Design Systems | Chennai HQ)
+    content: `💼 **Current Career Openings at ASAI InfoTech:**
+1. **Senior React Developer** (3–5 Years Exp | Chennai HQ)
+2. **Cloud Infrastructure Architect** (5+ Years Exp | AWS, Kubernetes | Chennai HQ)
+3. **Product UI/UX Designer** (2–4 Years Exp | Figma | Chennai HQ)
 4. **Technical Sales Lead** (4+ Years Exp | B2B IT Sales | Chennai HQ)
 
-👉 **How to Apply:** Visit **https://asayinfotech.in/careers**, select the role, and submit your resume. You will receive an instant email confirmation and WhatsApp interview scheduling!`
+👉 **How to Apply:** Visit **https://asayinfotech.in/careers** and submit your resume!`
   },
   {
     id: 'pricing_process',
     intent: 'pricing_process',
-    title: 'Project Pricing & 4-Step Engineering SDLC',
+    title: 'Project Pricing & Timelines',
     sourceUri: 'https://asayinfotech.in/services',
     sourceFile: 'ServicesView.tsx',
     content: `💡 **Pricing & Project Delivery:**
 • **MVP / Standard Web Apps:** 4–8 Weeks delivery.
 • **Enterprise SaaS & AI Systems:** 8–16 Weeks with weekly milestone demos.
-• **100% Free Initial Architecture Consultation:** Chat on WhatsApp (**${ENV.WHATSAPP_NUMBER}**) or email **${ENV.COMPANY_EMAIL}** to get a custom proposal!`
+• **100% Free Architecture Consultation:** WhatsApp (**+91 6382907182**) or email **asayinfotech@gmail.com**!`
   },
   {
     id: 'greetings',
@@ -127,16 +199,16 @@ First Floor, No 3/31 Jawaharayya Nagar, Aadhanoor Road, Madambakkam Po, Guduvanc
     title: 'Greetings & Introduction',
     sourceUri: 'https://asayinfotech.in',
     sourceFile: 'HomeView.tsx',
-    content: `Hello! 👋 Welcome to **ASAY InfoTech** (https://asayinfotech.in).
+    content: `Hello! 👋 Welcome to **ASAI InfoTech** (https://asayinfotech.in).
 
 I am your **RAG Semantic AI Assistant**. You can ask me about:
-• 🏢 **Office Location** (Chennai Guduvanchery)
-• 💼 **Open Career Vacancies**
-• 📞 **Contact Phone & WhatsApp**
-• 🧠 **Enterprise RAG, MCP & AI Agents**
-• 👥 **Executive Leadership Team** (CEO, MD, CTO)
+• 🎓 **Tech Courses Catalog (Python, Java, DevOps, Cloud, AI, QA)**
+• 📜 **Student Guidelines & ISO 9001:2015 Certification**
+• ⏰ **Daily 5:00 PM – 6:00 PM IST Live Classes**
+• 🏢 **Chennai Headquarters & Leadership Team**
+• 📞 **Admission / Consultation Contact**
 
-What can I assist you with today?`
+How can I assist you today?`
   }
 ];
 
@@ -144,26 +216,54 @@ What can I assist you with today?`
 function classifyQueryIntent(query: string): { chunk: RAGKnowledgeChunk; confidence: number; isOutOfDomain: boolean } {
   const q = query.toLowerCase().trim();
 
-  // A. Identity / Intro
+  // A. Greetings
   if (
-    q.includes('who are u') || q.includes('who are you') || q.includes('what is asay') ||
-    q.includes('who is asay') || q.includes('about asay') || q.includes('who made you') ||
-    q.includes('tell me about yourself') || q.includes('intro') || q.includes('profile')
+    q === 'hi' || q === 'hello' || q === 'hey' || q === 'vanakkam' || q.startsWith('good morning') ||
+    q.startsWith('good evening') || q === 'namaste'
   ) {
-    return { chunk: RAG_CORPUS.find(c => c.id === 'corp_identity')!, confidence: 0.99, isOutOfDomain: false };
+    return { chunk: RAG_CORPUS.find(c => c.id === 'greetings')!, confidence: 0.99, isOutOfDomain: false };
   }
 
-  // B. Leadership Team
+  // B. Student Guidelines & Certificate Verification
+  if (
+    q.includes('certificate') || q.includes('certification') || q.includes('iso') || 
+    q.includes('verify') || q.includes('verification') || q.includes('guideline') || 
+    q.includes('student') || q.includes('internship') || q.includes('track') || 
+    q.includes('theory') || q.includes('rule') || q.includes('exam') || q.includes('project submission')
+  ) {
+    return { chunk: RAG_CORPUS.find(c => c.id === 'student_guidelines')!, confidence: 0.99, isOutOfDomain: false };
+  }
+
+  // C. Courses & Live Batch
+  if (
+    q.includes('course') || q.includes('python') || q.includes('java') || q.includes('mern') ||
+    q.includes('devops') || q.includes('kubernetes') || q.includes('aws') || q.includes('testing') ||
+    q.includes('qa') || q.includes('cyber') || q.includes('power bi') || q.includes('5-6') ||
+    q.includes('batch') || q.includes('class') || q.includes('timing') || q.includes('evening') ||
+    q.includes('syllabus') || q.includes('academy')
+  ) {
+    return { chunk: RAG_CORPUS.find(c => c.id === 'academy_courses')!, confidence: 0.98, isOutOfDomain: false };
+  }
+
+  // D. How to Enroll & Payments
+  if (
+    q.includes('enroll') || q.includes('admission') || q.includes('join') || q.includes('pay') ||
+    q.includes('fee') || q.includes('gpay') || q.includes('phonepe') || q.includes('upi') ||
+    q.includes('utr') || q.includes('how to register') || q.includes('unlock')
+  ) {
+    return { chunk: RAG_CORPUS.find(c => c.id === 'enrollment_steps')!, confidence: 0.99, isOutOfDomain: false };
+  }
+
+  // E. Leadership Team
   if (
     q.includes('ceo') || q.includes('md') || q.includes('cto') || q.includes('leader') ||
-    q.includes('founder') || q.includes('director') || q.includes('manager') || q.includes('owner') ||
-    q.includes('sivabarathi') || q.includes('bakiyalakshmi') || q.includes('bakiya') ||
-    q.includes('premkumar') || q.includes('pravin') || q.includes('team') || q.includes('who is the boss')
+    q.includes('founder') || q.includes('director') || q.includes('sivabarathi') || 
+    q.includes('bakiyalakshmi') || q.includes('premkumar') || q.includes('team')
   ) {
     return { chunk: RAG_CORPUS.find(c => c.id === 'corp_leadership')!, confidence: 0.98, isOutOfDomain: false };
   }
 
-  // C. Location & Address
+  // F. Location & Address
   if (
     q.includes('location') || q.includes('address') || q.includes('office') || q.includes('where') ||
     q.includes('chennai') || q.includes('guduvanchery') || q.includes('madambakkam') ||
@@ -172,7 +272,7 @@ function classifyQueryIntent(query: string): { chunk: RAGKnowledgeChunk; confide
     return { chunk: RAG_CORPUS.find(c => c.id === 'corp_location')!, confidence: 0.99, isOutOfDomain: false };
   }
 
-  // D. Contact & WhatsApp
+  // G. Contact & WhatsApp
   if (
     q.includes('contact') || q.includes('phone') || q.includes('whatsapp') || q.includes('email') ||
     q.includes('call') || q.includes('mobile') || q.includes('number') || q.includes('reach') ||
@@ -181,52 +281,50 @@ function classifyQueryIntent(query: string): { chunk: RAGKnowledgeChunk; confide
     return { chunk: RAG_CORPUS.find(c => c.id === 'corp_contact')!, confidence: 0.98, isOutOfDomain: false };
   }
 
-  // E. Careers & Jobs
+  // H. Careers & Jobs
   if (
     q.includes('job') || q.includes('career') || q.includes('hiring') || q.includes('vacancy') ||
-    q.includes('apply') || q.includes('work') || q.includes('salary') || q.includes('interview') ||
-    q.includes('opening') || q.includes('resume') || q.includes('react developer') || q.includes('architect')
+    q.includes('apply') || q.includes('work') || q.includes('salary') || q.includes('resume')
   ) {
     return { chunk: RAG_CORPUS.find(c => c.id === 'careers_jobs')!, confidence: 0.99, isOutOfDomain: false };
   }
 
-  // F. AI Solutions (RAG, MCP, Agents)
+  // I. AI Solutions (RAG, MCP, Agents)
   if (
     q.includes('rag') || q.includes('vector') || q.includes('mcp') || q.includes('agent') ||
     q.includes('swarm') || q.includes('generative ai') || q.includes('pinecone') ||
-    q.includes('pgvector') || q.includes('hallucination') || q.includes('langgraph') ||
-    q.includes('crewai') || q.includes('llm') || q.includes('ai')
+    q.includes('langgraph') || q.includes('crewai') || q.includes('llm')
   ) {
     return { chunk: RAG_CORPUS.find(c => c.id === 'services_ai')!, confidence: 0.98, isOutOfDomain: false };
   }
 
-  // G. Web, SaaS & Cloud
+  // J. Web, SaaS & Cloud
   if (
-    q.includes('web') || q.includes('website') || q.includes('react') || q.includes('next') ||
-    q.includes('saas') || q.includes('cloud') || q.includes('aws') || q.includes('docker') ||
-    q.includes('devops') || q.includes('kubernetes') || q.includes('software') || q.includes('app')
+    q.includes('web') || q.includes('website') || q.includes('saas') || q.includes('cloud') ||
+    q.includes('software') || q.includes('app')
   ) {
     return { chunk: RAG_CORPUS.find(c => c.id === 'services_web_cloud')!, confidence: 0.97, isOutOfDomain: false };
   }
 
-  // H. Pricing & Timelines
+  // K. Pricing & Timelines
   if (
     q.includes('price') || q.includes('pricing') || q.includes('cost') || q.includes('quote') ||
-    q.includes('how much') || q.includes('budget') || q.includes('estimate') || q.includes('timeline')
+    q.includes('budget') || q.includes('estimate')
   ) {
     return { chunk: RAG_CORPUS.find(c => c.id === 'pricing_process')!, confidence: 0.97, isOutOfDomain: false };
   }
 
-  // I. Greetings
+  // L. Identity / Overview
   if (
-    q === 'hi' || q === 'hello' || q === 'hey' || q === 'vanakkam' || q.startsWith('good morning') ||
-    q.startsWith('good evening') || q === 'namaste'
+    q.includes('who are u') || q.includes('who are you') || q.includes('what is asai') ||
+    q.includes('who is asai') || q.includes('about asai') || q.includes('what is asay') ||
+    q.includes('tell me about yourself') || q.includes('profile')
   ) {
-    return { chunk: RAG_CORPUS.find(c => c.id === 'greetings')!, confidence: 0.99, isOutOfDomain: false };
+    return { chunk: RAG_CORPUS.find(c => c.id === 'corp_identity')!, confidence: 0.99, isOutOfDomain: false };
   }
 
-  // J. Out of Domain Guardrail Filter
-  const allowedGeneralWords = ['asay', 'infotech', 'help', 'services', 'products', 'thank', 'thanks'];
+  // Guardrail Check
+  const allowedGeneralWords = ['asai', 'asay', 'infotech', 'help', 'services', 'course', 'learn', 'thank', 'thanks'];
   const hasAllowedWord = allowedGeneralWords.some(w => q.includes(w));
 
   if (!hasAllowedWord && q.length > 8) {
@@ -246,7 +344,7 @@ export function ChatBot() {
   }[]>([
     { 
       role: 'model', 
-      text: "👋 Welcome to **ASAY InfoTech**!\n\nI am your **RAG Semantic AI Assistant**. I have complete indexed knowledge of our company services, leadership, Chennai headquarters, open jobs, and AI/Web capabilities.\n\nHow can I help your business today?" 
+      text: "👋 Welcome to **ASAI InfoTech**!\n\nI am your **RAG Semantic AI Assistant**. You can ask me about our **Tech Courses, Daily 5-6 PM Live Classes, ISO 9001:2015 Certificates, Student Guidelines, and Enterprise AI Solutions**.\n\nHow can I help you today?" 
     }
   ]);
   const [input, setInput] = useState('');
@@ -281,20 +379,18 @@ export function ChatBot() {
     setIsLoading(true);
 
     try {
-      // Step 1: Semantic Intent & RAG Chunk Retrieval
       setLivePipelineStep('🔍 1/3 Semantic Vector search across site corpus...');
-      await new Promise(r => setTimeout(r, 150));
+      await new Promise(r => setTimeout(r, 120));
 
       const classification = classifyQueryIntent(queryToSend);
 
-      // Guardrail Check
       if (classification.isOutOfDomain) {
         const elapsed = Math.round(performance.now() - startTime);
         setMessages(prev => [
           ...prev,
           {
             role: 'model',
-            text: `ℹ️ I am the dedicated AI assistant for **ASAY InfoTech** (https://asayinfotech.in).\n\nI specialize strictly in answering questions about our **Enterprise RAG & AI Agents, Web & SaaS Engineering, Leadership Team, Office Location, Open Jobs, and Project Quotes**.\n\nPlease ask about ASAY InfoTech's services or chat directly on WhatsApp (**${ENV.WHATSAPP_NUMBER}**)!`,
+            text: `ℹ️ I am the dedicated AI assistant for **ASAI InfoTech** (https://asayinfotech.in).\n\nI specialize in answering questions about our **Tech Certification Courses, Student Guidelines, Daily 5-6 PM Live Classes, ISO 9001:2015 Certificates, Office Location, and AI Engineering**.\n\nPlease ask about our courses or message directly on WhatsApp (**+91 6382907182**)!`,
             trace: {
               intent: 'Out-of-Domain Guardrail',
               source: 'https://asayinfotech.in',
@@ -309,9 +405,9 @@ export function ChatBot() {
       }
 
       setLivePipelineStep(`📄 2/3 Scraped chunk retrieved (${classification.chunk.sourceFile})...`);
-      await new Promise(r => setTimeout(r, 150));
+      await new Promise(r => setTimeout(r, 120));
 
-      setLivePipelineStep('🧠 3/3 Synthesizing grounded answer...');
+      setLivePipelineStep('🧠 3/3 Grounded synthesis active...');
       const apiKey = ENV.GEMINI_API_KEY;
       let finalReply: string | null = null;
 
@@ -320,14 +416,15 @@ export function ChatBot() {
           const genAI = new GoogleGenerativeAI(apiKey);
           const model = genAI.getGenerativeModel({
             model: "gemini-1.5-flash",
-            systemInstruction: `You are ASAY AI, the official assistant for ASAY InfoTech (https://asayinfotech.in).
+            systemInstruction: `You are ASAI AI, the official assistant for ASAI InfoTech (https://asayinfotech.in).
 Answer the user strictly using the provided RAG Context.
-Leadership: Sivabarathi M (CEO), Bakiyalakshmi (MD), Premkumar A (CTO).
-Location: First Floor, No 3/31 Jawaharayya Nagar, Aadhanoor Road, Madambakkam Po, Guduvanchery, Chennai 603202.
-Contact: WhatsApp ${ENV.WHATSAPP_NUMBER}, Email ${ENV.COMPANY_EMAIL}.`
+Leadership: Sivabarathi M (CEO & Founder, Authorized Signatory for ISO 9001:2015 Certificates), Bakiyalakshmi (MD), Premkumar A (CTO).
+Location: Guduvanchery, Chennai 603202.
+Contact: WhatsApp +91 6382907182, Email asayinfotech@gmail.com.
+Academy: Daily 5:00 PM - 6:00 PM IST interactive live batch, 10 certification courses, ISO 9001:2015 verified credential with QR code.`
           });
 
-          const ragPrompt = `RAG GROUNDED CONTEXT:\n${classification.chunk.content}\n\nUSER QUERY:\n${queryToSend}\n\nDeliver a concise, perfectly formatted answer with markdown bullets based strictly on the context.`;
+          const ragPrompt = `RAG GROUNDED CONTEXT:\n${classification.chunk.content}\n\nUSER QUERY:\n${queryToSend}\n\nDeliver a helpful, concise answer formatted with markdown bullets based strictly on the context.`;
           const result = await model.generateContent(ragPrompt);
           const response = await result.response;
           finalReply = response.text();
@@ -348,7 +445,7 @@ Contact: WhatsApp ${ENV.WHATSAPP_NUMBER}, Email ${ENV.COMPANY_EMAIL}.`
           role: 'model',
           text: finalReply || '',
           trace: {
-            intent: classification.chunk.title,
+            intent: classification.chunk.intent,
             source: classification.chunk.sourceUri,
             file: classification.chunk.sourceFile,
             latency: elapsed
@@ -356,7 +453,14 @@ Contact: WhatsApp ${ENV.WHATSAPP_NUMBER}, Email ${ENV.COMPANY_EMAIL}.`
         }
       ]);
     } catch (err) {
-      console.error('RAG Error:', err);
+      console.error('Chat processing error:', err);
+      setMessages(prev => [
+        ...prev,
+        {
+          role: 'model',
+          text: `For immediate assistance, please contact ASAI InfoTech support on WhatsApp at **+91 6382907182** or email **asayinfotech@gmail.com**.`
+        }
+      ]);
     } finally {
       setIsLoading(false);
       setLivePipelineStep(null);
@@ -364,150 +468,142 @@ Contact: WhatsApp ${ENV.WHATSAPP_NUMBER}, Email ${ENV.COMPANY_EMAIL}.`
   };
 
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9, y: 20, transformOrigin: 'bottom right' }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.9, y: 20 }}
-          className="fixed bottom-24 right-5 sm:right-6 z-[105] glass w-[320px] sm:w-[400px] h-[550px] max-h-[82vh] flex flex-col overflow-hidden shadow-3xl border border-white/60 rounded-[2.5rem]"
-        >
-          {/* Header */}
-          <div className="p-4 bg-secondary text-white flex items-center justify-between shadow-md">
-            <div className="flex items-center gap-3">
-              <div className="w-9 h-9 bg-primary/30 rounded-xl flex items-center justify-center border border-primary/40">
-                <Bot className="w-5 h-5 text-primary" />
-              </div>
-              <div>
-                <h3 className="font-bold text-sm tracking-tight text-white flex items-center gap-1.5">
-                  ASAY RAG Assistant
-                  <Sparkles className="w-3.5 h-3.5 text-primary animate-pulse" />
-                </h3>
-                <p className="text-[10px] text-emerald-400 font-mono font-semibold flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
-                  Live Semantic RAG Pipeline Active
-                </p>
-              </div>
-            </div>
-            <button 
-              onClick={() => setIsOpen(false)} 
-              className="hover:bg-white/10 p-2 rounded-xl transition-colors text-white/80 hover:text-white"
-              aria-label="Close Chat"
-            >
-              <X className="w-5 h-5" />
-            </button>
-          </div>
-
-          {/* Messages Container */}
-          <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50/80 text-xs">
-            {messages.map((m, i) => (
-              <div key={i} className={cn("flex items-start gap-2.5", m.role === 'user' ? "flex-row-reverse" : "")}>
-                <div className={cn(
-                  "w-7 h-7 rounded-lg flex items-center justify-center shrink-0 shadow-sm",
-                  m.role === 'model' ? "bg-primary text-white" : "bg-secondary text-white"
-                )}>
-                  {m.role === 'model' ? <Bot className="w-4 h-4" /> : <User className="w-4 h-4" />}
+    <>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            className="fixed bottom-24 right-4 sm:right-6 w-[calc(100vw-2rem)] sm:w-[420px] h-[580px] bg-white rounded-3xl shadow-2xl border border-gray-100 flex flex-col z-50 overflow-hidden"
+          >
+            {/* Header */}
+            <div className="p-4 bg-slate-900 text-white flex items-center justify-between border-b border-slate-800">
+              <div className="flex items-center gap-2.5">
+                <div className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center text-white shadow-sm">
+                  <Bot className="w-5 h-5" />
                 </div>
+                <div>
+                  <h3 className="font-bold text-sm tracking-tight flex items-center gap-1.5">
+                    <span>ASAI RAG Assistant</span>
+                    <Sparkles className="w-3.5 h-3.5 text-primary" />
+                  </h3>
+                  <div className="text-[10px] text-emerald-400 font-mono flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    <span>Live semantic RAG pipeline active</span>
+                  </div>
+                </div>
+              </div>
 
-                <div className="max-w-[85%] space-y-1.5">
-                  <div className={cn(
-                    "p-3.5 rounded-2xl leading-relaxed shadow-sm whitespace-pre-line font-medium",
-                    m.role === 'model' 
-                      ? "bg-white text-gray-800 rounded-tl-none border border-gray-100" 
-                      : "bg-primary text-white rounded-tr-none"
-                  )}>
-                    {m.text}
+              <button 
+                onClick={() => setIsOpen(false)}
+                className="p-1 rounded-lg text-gray-400 hover:text-white transition-colors"
+                aria-label="Close Assistant"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Messages Area */}
+            <div ref={scrollRef} className="flex-1 p-4 overflow-y-auto space-y-3.5 text-xs">
+              {messages.map((msg, i) => (
+                <div key={i} className={cn("flex flex-col", msg.role === 'user' ? "items-end" : "items-start")}>
+                  <div className="flex items-start gap-2 max-w-[88%]">
+                    {msg.role === 'model' && (
+                      <div className="w-6 h-6 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0 mt-0.5">
+                        <Bot className="w-3.5 h-3.5" />
+                      </div>
+                    )}
+                    <div className={cn(
+                      "p-3.5 rounded-2xl leading-relaxed whitespace-pre-wrap break-words shadow-2xs",
+                      msg.role === 'user' 
+                        ? "bg-primary text-white font-medium rounded-tr-xs" 
+                        : "bg-gray-50 text-gray-800 border border-gray-100 rounded-tl-xs"
+                    )}>
+                      {msg.text}
+                    </div>
                   </div>
 
-                  {/* Real-time RAG Telemetry Trace Accordion */}
-                  {m.trace && (
-                    <div className="bg-gray-100/90 border border-gray-200 rounded-xl p-2 text-[10px] font-mono text-gray-600">
-                      <div 
+                  {/* Trace details dropdown */}
+                  {msg.trace && (
+                    <div className="mt-1 ml-8 max-w-[85%]">
+                      <button
                         onClick={() => setExpandedTraceIdx(expandedTraceIdx === i ? null : i)}
-                        className="flex items-center justify-between cursor-pointer font-bold text-gray-700 hover:text-primary transition"
+                        className="text-[9px] font-mono text-gray-400 hover:text-primary flex items-center gap-1 transition-colors"
                       >
-                        <span className="flex items-center gap-1">
-                          <Search className="w-3 h-3 text-primary" />
-                          <span>RAG Trace: {m.trace.intent}</span>
-                        </span>
-                        <span className="flex items-center gap-1 text-[9px] text-emerald-600 font-bold">
-                          <span>{m.trace.latency}ms</span>
-                          {expandedTraceIdx === i ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
-                        </span>
-                      </div>
+                        <Database className="w-2.5 h-2.5" />
+                        <span>RAG Verified ({msg.trace.latency}ms)</span>
+                        {expandedTraceIdx === i ? <ChevronUp className="w-2.5 h-2.5" /> : <ChevronDown className="w-2.5 h-2.5" />}
+                      </button>
 
                       {expandedTraceIdx === i && (
-                        <div className="mt-1.5 pt-1.5 border-t border-gray-200 space-y-0.5 text-[9px] text-gray-500">
-                          <div>📁 <b>Indexed Source:</b> {m.trace.file}</div>
-                          <div>🔗 <b>URI:</b> {m.trace.source}</div>
-                          <div>⚡ <b>Status:</b> Grounded & Verified (0% Hallucination)</div>
+                        <div className="mt-1 p-2 rounded-xl bg-gray-900 text-gray-300 font-mono text-[9px] space-y-1">
+                          <div><span className="text-gray-500">Intent:</span> {msg.trace.intent}</div>
+                          <div><span className="text-gray-500">Source:</span> {msg.trace.source}</div>
+                          <div><span className="text-gray-500">Document:</span> {msg.trace.file}</div>
                         </div>
                       )}
                     </div>
                   )}
                 </div>
-              </div>
-            ))}
+              ))}
 
-            {/* Live Step Progress Indicator */}
-            {isLoading && (
-              <div className="bg-blue-50 border border-blue-200/80 rounded-xl p-2.5 space-y-1 text-xs text-blue-900 font-mono shadow-sm animate-pulse ml-9">
-                <div className="flex items-center gap-2 font-bold text-[11px]">
-                  <Loader2 className="w-3.5 h-3.5 animate-spin text-primary" />
-                  <span>RAG Engine Processing...</span>
+              {isLoading && (
+                <div className="flex items-center gap-2 p-3 rounded-2xl bg-gray-50 border border-gray-100 w-fit text-[11px] text-gray-600">
+                  <Loader2 className="w-3.5 h-3.5 text-primary animate-spin" />
+                  <span>{livePipelineStep || 'Executing semantic vector search...'}</span>
                 </div>
-                <div className="text-[10px] text-blue-700 pl-5">
-                  {livePipelineStep || 'Executing semantic vector search...'}
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* Quick Action Suggestion Chips */}
-          <div className="px-3 py-2 bg-white/95 border-t border-gray-100 flex gap-2 overflow-x-auto text-[10px] scrollbar-none">
-            {[
-              { label: 'Office Location', query: 'Where is ASAY InfoTech office location in Chennai?', icon: MapPin },
-              { label: 'Open Jobs', query: 'What open career jobs and vacancies are available at ASAY InfoTech?', icon: Briefcase },
-              { label: 'Contact Details', query: 'What are the official contact phone numbers and WhatsApp of ASAY InfoTech?', icon: Phone },
-              { label: 'AI & RAG Solutions', query: 'What Enterprise RAG, MCP, and AI Agent services does ASAY InfoTech build?', icon: Cpu },
-              { label: 'Leadership Team', query: 'Who is the CEO, MD, and CTO of ASAY InfoTech?', icon: Users },
-            ].map((chip) => {
-              const IconComp = chip.icon;
-              return (
-                <button
-                  key={chip.label}
-                  onClick={() => handleSend(chip.query)}
-                  className="px-2.5 py-1 bg-primary/10 hover:bg-primary hover:text-white text-secondary font-bold rounded-lg transition-colors whitespace-nowrap flex items-center gap-1 shadow-sm active:scale-95"
-                >
-                  <IconComp className="w-3 h-3" />
-                  <span>{chip.label}</span>
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Chat Input */}
-          <div className="p-3 bg-white border-t border-gray-100">
-            <div className="relative flex items-center gap-2">
-              <input
-                type="text"
-                placeholder="Ask about ASAY AI, jobs, office location, contact..."
-                className="w-full pl-4 pr-12 py-3 bg-gray-50 rounded-xl outline-none focus:ring-2 focus:ring-primary/40 transition-all font-medium text-xs border border-gray-200"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-              />
-              <button 
-                onClick={() => handleSend()} 
-                disabled={!input.trim() || isLoading} 
-                className="absolute right-1.5 p-2 bg-secondary text-white rounded-lg hover:bg-primary transition-all disabled:opacity-40 active:scale-95"
-              >
-                <Send className="w-4 h-4" />
-              </button>
+              )}
             </div>
-          </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+
+            {/* Quick Action Suggestion Chips */}
+            <div className="px-3 py-2 bg-white/95 border-t border-gray-100 flex gap-2 overflow-x-auto text-[10px] scrollbar-none">
+              {[
+                { label: '🎓 10 Tech Courses', query: 'What certification courses are taught at ASAI InfoTech?', icon: GraduationCap },
+                { label: '📜 Student Guidelines', query: 'What are the student guidelines, theory track, and capstone project requirements to get the ISO 9001 certificate?', icon: BookOpen },
+                { label: '⏰ 5-6 PM Live Batch', query: 'Tell me about the Daily Evening 5-6 PM IST live batch and how to join.', icon: Clock },
+                { label: '💳 How to Enroll', query: 'How do students enroll and submit payment UTR reference?', icon: Award },
+                { label: '📍 Office Location', query: 'Where is ASAI InfoTech office located in Chennai?', icon: MapPin },
+                { label: '📞 Contact Details', query: 'What is the contact phone and WhatsApp number of ASAI InfoTech?', icon: Phone },
+              ].map((chip) => {
+                const IconComp = chip.icon;
+                return (
+                  <button
+                    key={chip.label}
+                    onClick={() => handleSend(chip.query)}
+                    className="px-2.5 py-1 bg-primary/10 hover:bg-primary hover:text-white text-secondary font-bold rounded-lg transition-colors whitespace-nowrap flex items-center gap-1 shadow-2xs active:scale-95"
+                  >
+                    <IconComp className="w-3 h-3" />
+                    <span>{chip.label}</span>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Chat Input */}
+            <div className="p-3 bg-white border-t border-gray-100">
+              <div className="relative flex items-center gap-2">
+                <input
+                  type="text"
+                  placeholder="Ask about courses, certificates, student guidelines..."
+                  className="w-full pl-4 pr-12 py-3 bg-gray-50 rounded-xl outline-none focus:ring-2 focus:ring-primary/40 transition-all font-medium text-xs border border-gray-200"
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  onKeyDown={(e) => e.key === 'Enter' && handleSend()}
+                />
+                <button 
+                  onClick={() => handleSend()}
+                  disabled={isLoading || !input.trim()}
+                  className="absolute right-2 p-2 bg-primary text-white rounded-lg hover:bg-primary/95 transition-all disabled:opacity-40"
+                  aria-label="Send query"
+                >
+                  <Send className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }

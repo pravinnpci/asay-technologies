@@ -24,13 +24,13 @@ export async function sendEmailSubmission(data: FormSubmissionData): Promise<{ s
       ? `New Job Application: ${data.jobTitle || 'Career Opportunity'} - ${data.name}`
       : isNewsletter
       ? `New Newsletter Subscriber: ${data.email}`
-      : `New ASAY InfoTech Inquiry: ${data.subject || 'General'} from ${data.name}`;
+      : `New ASAI InfoTech Inquiry: ${data.subject || 'General'} from ${data.name}`;
 
     const autoresponseMessage = isCareer
-      ? `Thank you for applying for the position of "${data.jobTitle || 'Open Role'}" at ASAY InfoTech.\n\nWe have received your application and credentials successfully. Our recruitment team is reviewing your profile against our open requirements and will reach out to you if shortlisted.`
+      ? `Thank you for applying for the position of "${data.jobTitle || 'Open Role'}" at ASAI InfoTech.\n\nWe have received your application and credentials successfully. Our recruitment team is reviewing your profile against our open requirements and will reach out to you if shortlisted.`
       : isNewsletter
-      ? `Thank you for subscribing to ASAY InfoTech Newsletter! You will receive our latest digital transformation case studies, tech insights, and company updates directly in your inbox.`
-      : `Thank you for contacting ASAY InfoTech!\n\nWe have successfully received your inquiry regarding "${data.subject || 'your project'}".`;
+      ? `Thank you for subscribing to ASAI InfoTech Newsletter! You will receive our latest digital transformation case studies, tech insights, and company updates directly in your inbox.`
+      : `Thank you for contacting ASAI InfoTech!\n\nWe have successfully received your inquiry regarding "${data.subject || 'your project'}".`;
 
     // 1. Primary Dispatch to FormSubmit via JSON (delivers lead directly to asayinfotech@gmail.com)
     const jsonPayload: Record<string, string> = {
@@ -74,7 +74,7 @@ export async function sendEmailSubmission(data: FormSubmissionData): Promise<{ s
           to_email: data.email,
           email: data.email,
           title: data.jobTitle || data.subject || (isNewsletter ? 'Newsletter Subscription' : 'General Inquiry'),
-          subject: `Confirmation: We received your ${isCareer ? 'job application' : isNewsletter ? 'newsletter subscription' : 'inquiry'} - ASAY InfoTech`,
+          subject: `Confirmation: We received your ${isCareer ? 'job application' : isNewsletter ? 'newsletter subscription' : 'inquiry'} - ASAI InfoTech`,
           message: autoresponseMessage,
           phone: data.phone || 'N/A',
           reply_to: ENV.COMPANY_EMAIL,
@@ -84,7 +84,7 @@ export async function sendEmailSubmission(data: FormSubmissionData): Promise<{ s
           manager_name: 'Bakiyalakshmi',
           md_name: 'Bakiyalakshmi',
           sender_name: 'Bakiyalakshmi',
-          from_name: 'Bakiyalakshmi - ASAY InfoTech',
+          from_name: 'Bakiyalakshmi - ASAI InfoTech',
         };
 
         const templateId = ENV.EMAILJS_TEMPLATE_ID || 'template_iyhrbc5';
@@ -99,7 +99,7 @@ export async function sendEmailSubmission(data: FormSubmissionData): Promise<{ s
 
         // 2b. Send Admin Lead Alert to asayinfotech@gmail.com
         const adminParams = {
-          to_name: 'ASAY InfoTech Admin',
+          to_name: 'ASAI InfoTech Admin',
           name: data.name || 'New Lead',
           to_email: ENV.COMPANY_EMAIL,
           email: data.email,

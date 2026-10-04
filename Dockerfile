@@ -41,13 +41,15 @@ RUN rm /etc/nginx/conf.d/default.conf
 # Copy built files from the build stage
 COPY --from=build /app/dist /usr/share/nginx/html
 
-# Create a robust configuration for React Router (SPA)
+# Create a robust configuration for React Router (SPA) with relative redirects
 RUN echo 'server { \
     listen 80; \
+    port_in_redirect off; \
+    absolute_redirect off; \
     location / { \
         root /usr/share/nginx/html; \
         index index.html; \
-        try_files $uri $uri/ /index.html; \
+        try_files $uri $uri/index.html /index.html; \
     } \
 }' > /etc/nginx/conf.d/default.conf
 
