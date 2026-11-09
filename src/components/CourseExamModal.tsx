@@ -88,7 +88,7 @@ export function CourseExamModal({ isOpen, onClose, courseId, courseTitle }: Cour
     try {
       setIsDownloading(true);
       const pdfBytes = await generateCertificatePdf(issuedCert);
-      downloadPdfBlob(pdfBytes, `ASAI_INFOTECH_CERTIFICATE_${issuedCert.certificateId}.pdf`);
+      downloadPdfBlob(pdfBytes, `ASAY_INFOTECH_CERTIFICATE_${issuedCert.certificateId}.pdf`);
     } catch (err) {
       console.error('Download error:', err);
       alert('Failed to generate PDF. Please try again.');

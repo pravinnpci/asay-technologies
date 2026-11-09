@@ -33,12 +33,18 @@ export class ErrorBoundary extends Component<Props, State> {
 
   private handleResetCache = () => {
     try {
-      localStorage.removeItem('asai_academy_courses');
-      localStorage.removeItem('asai_academy_enrollments');
-      localStorage.removeItem('asai_academy_certificates');
-      localStorage.removeItem('asai_user_unlocked_courses');
-      localStorage.removeItem('asai_current_logged_in_student');
-      localStorage.removeItem('asai_exam_results_history');
+      localStorage.removeItem('asay_academy_courses');
+    localStorage.removeItem('asai_academy_courses');
+      localStorage.removeItem('asay_academy_enrollments');
+    localStorage.removeItem('asai_academy_enrollments');
+      localStorage.removeItem('asay_academy_certificates');
+    localStorage.removeItem('asai_academy_certificates');
+      localStorage.removeItem('asay_user_unlocked_courses');
+    localStorage.removeItem('asai_user_unlocked_courses');
+      localStorage.removeItem('asay_current_logged_in_student');
+    localStorage.removeItem('asai_current_logged_in_student');
+      localStorage.removeItem('asay_exam_results_history');
+    localStorage.removeItem('asai_exam_results_history');
     } catch (e) {
       console.warn('Cache clear error:', e);
     }

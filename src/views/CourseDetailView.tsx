@@ -46,7 +46,7 @@ export function CourseDetailView() {
     const found = list.find(c => c.id === courseId) || null;
     setCourse(found);
     if (found) {
-      document.title = `${found.title} | ASAI InfoTech Academy`;
+      document.title = `${found.title} | ASAY InfoTech Academy`;
     }
     if (found?.modules[0]?.lessons[0]) {
       setActiveLesson(found.modules[0].lessons[0]);
@@ -56,8 +56,8 @@ export function CourseDetailView() {
       setCurrentStudent(getLoggedInStudent());
     };
     syncAuth();
-    window.addEventListener('asai-student-auth-change', syncAuth);
-    return () => window.removeEventListener('asai-student-auth-change', syncAuth);
+    window.addEventListener('asay-student-auth-change', syncAuth);
+    return () => window.removeEventListener('asay-student-auth-change', syncAuth);
   }, [courseId]);
 
   useEffect(() => {
@@ -105,9 +105,9 @@ export function CourseDetailView() {
   const handleDownloadSampleCert = async () => {
     try {
       setDownloadingCert(true);
-      const sample = sampleCertificates['ASAI-2026-PY-1082'];
+      const sample = (sampleCertificates['ASAY-2026-PY-1082'] || sampleCertificates['ASAI-2026-PY-1082']);
       const pdfBytes = await generateCertificatePdf(sample);
-      downloadPdfBlob(pdfBytes, `ASAI_INFOTECH_CERTIFICATE_${sample.certificateId}.pdf`);
+      downloadPdfBlob(pdfBytes, `ASAY_INFOTECH_CERTIFICATE_${sample.certificateId}.pdf`);
     } catch (err) {
       console.error('Failed to generate sample cert:', err);
       alert('Could not generate sample certificate. Please try again.');
@@ -142,7 +142,7 @@ export function CourseDetailView() {
   };
 
   const whatsappEnrollUrl = `https://wa.me/916382907182?text=${encodeURIComponent(
-    `Hello Asai Infotech! I want to enroll in "${course.title}" (${course.price} Live Evening 5-6 PM Batch). Please assist me with joining.`
+    `Hello ASAY InfoTech! I want to enroll in "${course.title}" (${course.price} Live Evening 5-6 PM Batch). Please assist me with joining.`
   )}`;
 
   return (

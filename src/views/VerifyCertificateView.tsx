@@ -13,7 +13,7 @@ export function VerifyCertificateView() {
   const queryParams = new URLSearchParams(location.search);
   const certIdFromQuery = queryParams.get('cert_id') || queryParams.get('id') || '';
 
-  const [searchId, setSearchId] = useState<string>(certIdFromQuery || 'ASAI-2026-PY-1082');
+  const [searchId, setSearchId] = useState<string>(certIdFromQuery || 'ASAY-2026-PY-1082');
   const [currentCert, setCurrentCert] = useState<VerifiedCertificate | null>(null);
   const [notFound, setNotFound] = useState<boolean>(false);
   const [qrCodeDataUrl, setQrCodeDataUrl] = useState<string>('');
@@ -28,10 +28,16 @@ export function VerifyCertificateView() {
     }
 
     const cleanId = rawClean.toUpperCase().replace(/\s+/g, '');
+    const asayNormalized = cleanId.replace(/^ASAI-/, 'ASAY-');
     const asaiNormalized = cleanId.replace(/^ASAY-/, 'ASAI-');
     const registry = getCertificatesRegistry();
 
     // 1. Direct match on normalized ID or raw clean ID
+    if (registry[asayNormalized]) {
+      setCurrentCert(registry[asayNormalized]);
+      setNotFound(false);
+      return;
+    }
     if (registry[asaiNormalized]) {
       setCurrentCert(registry[asaiNormalized]);
       setNotFound(false);
@@ -46,7 +52,7 @@ export function VerifyCertificateView() {
     // 2. Search by key endsWith or partial code (e.g. "PY-1082" or "1082")
     const matchKey = Object.keys(registry).find(key => {
       const upKey = key.toUpperCase();
-      return upKey === asaiNormalized || 
+      return upKey === asayNormalized || upKey === asaiNormalized || 
              upKey.endsWith(cleanId) || 
              cleanId.endsWith(upKey.split('-').slice(-2).join('-')) ||
              (cleanId.length >= 4 && upKey.includes(cleanId));
@@ -74,19 +80,19 @@ export function VerifyCertificateView() {
   useEffect(() => {
     const qParams = new URLSearchParams(location.search);
     const qId = qParams.get('cert_id') || qParams.get('id');
-    const toCheck = qId || searchId || 'ASAI-2026-PY-1082';
+    const toCheck = qId || searchId || 'ASAY-2026-PY-1082';
     if (qId) setSearchId(qId);
     performVerification(toCheck);
   }, [location.search]);
 
   useEffect(() => {
     if (currentCert) {
-      document.title = `Verified: ${currentCert.studentName} (${currentCert.certificateId}) | ASAI InfoTech ISO Registry`;
+      document.title = `Verified: ${currentCert.studentName} (${currentCert.certificateId}) | ASAY InfoTech ISO Registry`;
       QRCode.toDataURL(currentCert.credentialUrl, { width: 150, margin: 1 })
         .then(url => setQrCodeDataUrl(url))
         .catch(err => console.error('QR code generation error:', err));
     } else {
-      document.title = 'ISO 9001:2015 Online Certificate Verification | ASAI InfoTech';
+      document.title = 'ISO 9001:2015 Online Certificate Verification | ASAY InfoTech';
     }
   }, [currentCert]);
 
@@ -95,7 +101,7 @@ export function VerifyCertificateView() {
     try {
       setIsDownloading(true);
       const pdfBytes = await generateCertificatePdf(currentCert);
-      downloadPdfBlob(pdfBytes, `ASAI_INFOTECH_CERTIFICATE_${currentCert.certificateId}.pdf`);
+      downloadPdfBlob(pdfBytes, `ASAY_INFOTECH_CERTIFICATE_${currentCert.certificateId}.pdf`);
     } catch (err) {
       console.error('PDF Download failed:', err);
       alert('Failed to generate PDF certificate.');
@@ -124,7 +130,7 @@ export function VerifyCertificateView() {
             ISO 9001:2015 Certificate Online Verification
           </h1>
           <p className="text-sm sm:text-base text-gray-600 max-w-2xl">
-            Real-time verification registry for authentic ISO 9001:2015 credentials, course completions, and internship letters issued by ASAI InfoTech.
+            Real-time verification registry for authentic ISO 9001:2015 credentials, course completions, and internship letters issued by ASAY InfoTech.
           </p>
         </div>
 
@@ -140,7 +146,7 @@ export function VerifyCertificateView() {
                 type="text"
                 value={searchId}
                 onChange={(e) => setSearchId(e.target.value)}
-                placeholder="e.g. ASAI-2026-PY-1082"
+                placeholder="e.g. ASAY-2026-PY-1082"
                 className="w-full pl-12 pr-4 py-3.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm font-semibold uppercase tracking-wider text-gray-900"
               />
             </div>
@@ -258,7 +264,7 @@ export function VerifyCertificateView() {
                 {currentCert.internshipCompleted && (
                   <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs sm:text-sm font-semibold flex items-center gap-2.5">
                     <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
-                    <span>Includes 30-Day Practical Industry Internship Experience at ASAI InfoTech</span>
+                    <span>Includes 30-Day Practical Industry Internship Experience at ASAY InfoTech</span>
                   </div>
                 )}
 
@@ -270,7 +276,7 @@ export function VerifyCertificateView() {
                       Sivabarathi M
                     </div>
                     <div className="text-xs text-gray-500 font-medium">
-                      Founder & Director, ASAI InfoTech
+                      Founder & Director, ASAY InfoTech
                     </div>
                   </div>
                   <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold self-start sm:self-center">
@@ -312,7 +318,7 @@ export function VerifyCertificateView() {
             {/* Organization Footer Note */}
             <div className="pt-4 border-t border-gray-100 text-xs text-gray-400 flex flex-col sm:flex-row items-center justify-between gap-2">
               <div>
-                Issued by <strong>ASAI InfoTech Private Limited</strong> • Quality Management System ISO 9001:2015
+                Issued by <strong>ASAY InfoTech Private Limited</strong> • Quality Management System ISO 9001:2015
               </div>
               <div className="text-primary font-semibold">
                 Permanent Verification URL: {currentCert.credentialUrl}

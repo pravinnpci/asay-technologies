@@ -26,10 +26,10 @@ const RAG_CORPUS: RAGKnowledgeChunk[] = [
     title: 'Company Identity & Overview',
     sourceUri: 'https://asayinfotech.in/about',
     sourceFile: 'AboutView.tsx & HomeView.tsx',
-    content: `👋 **I am ASAI AI**, the official intelligent assistant for **ASAI InfoTech** (https://asayinfotech.in).
+    content: `👋 **I am ASAY AI**, the official intelligent assistant for **ASAY InfoTech** (https://asayinfotech.in).
 
-🚀 **About ASAI InfoTech (Pvt Ltd):**
-Founded in 2022, ASAI InfoTech is an enterprise technology, Generative AI engineering, and ISO 9001:2015 certified software organization in Chennai.
+🚀 **About ASAY InfoTech (Pvt Ltd):**
+Founded in 2022, ASAY InfoTech is an enterprise technology, Generative AI engineering, and ISO 9001:2015 certified software organization in Chennai.
 • **3+ Years** of Global Engineering Excellence
 • **150+ Global Clients** across US, UK, Middle East, and India
 • **350+ Projects Completed** (Enterprise AI, RAG, Web & SaaS Systems)
@@ -42,7 +42,7 @@ Founded in 2022, ASAI InfoTech is an enterprise technology, Generative AI engine
     title: 'Executive Leadership Team',
     sourceUri: 'https://asayinfotech.in/about#leadership',
     sourceFile: 'AboutView.tsx',
-    content: `🏢 **ASAI InfoTech Executive Leadership:**
+    content: `🏢 **ASAY InfoTech Executive Leadership:**
 • **Sivabarathi M** — **Chief Executive Officer (CEO & Founder)**
   *Authorized Signatory for ISO 9001:2015 Certificates & Technical Visionary driving global engineering partnerships.*
 • **Bakiyalakshmi** — **Manager and Managing Director (MD)**
@@ -56,7 +56,7 @@ Founded in 2022, ASAI InfoTech is an enterprise technology, Generative AI engine
     title: 'Headquarters & Office Address',
     sourceUri: 'https://asayinfotech.in/contact',
     sourceFile: 'ContactView.tsx',
-    content: `📍 **ASAI InfoTech Headquarters:**
+    content: `📍 **ASAY InfoTech Headquarters:**
 First Floor, No 3/31 Jawaharayya Nagar, Aadhanoor Road, Madambakkam Po, Guduvanchery, Chennai - 603202, Tamil Nadu, India.
 
 📌 **Landmark:** Near Madambakkam Post Office, Guduvanchery.
@@ -81,7 +81,7 @@ First Floor, No 3/31 Jawaharayya Nagar, Aadhanoor Road, Madambakkam Po, Guduvanc
     title: '10 IT Certification Courses & Live 5-6 PM Batch',
     sourceUri: 'https://asayinfotech.in/courses',
     sourceFile: 'coursesData.ts & CoursesView.tsx',
-    content: `🎓 **ASAI InfoTech Tech Academy Courses (10 Masterclasses):**
+    content: `🎓 **ASAY InfoTech Tech Academy Courses (10 Masterclasses):**
 Every course includes **Module 1.1 Free Video Preview on YouTube** + Daily Live Classes:
 
 1. **Python Full-Stack & Cloud Automation Masterclass** (₹1,999)
@@ -113,8 +113,8 @@ Every course includes **Module 1.1 Free Video Preview on YouTube** + Daily Live 
 
 🏆 **2. Dual Certification Requirements:**
 • **Course Completion Certificate:** Issued upon successful capstone review and attendance criteria.
-• **30-Day Internship Letter:** Practical experience certificate from ASAI InfoTech validating project work.
-• **Authorized Signatory:** Every certificate is signed by **Sivabarathi M** (Founder & Director, ASAI InfoTech).
+• **30-Day Internship Letter:** Practical experience certificate from ASAY InfoTech validating project work.
+• **Authorized Signatory:** Every certificate is signed by **Sivabarathi M** (Founder & Director, ASAY InfoTech).
 • **Tamper-Proof QR Code:** Scannable dynamic QR for immediate recruiter verification.
 
 🔍 **3. Online Verification:**
@@ -134,7 +134,7 @@ Every course includes **Module 1.1 Free Video Preview on YouTube** + Daily Live 
 3. **Make UPI Payment:**
    • **GPay / PhonePe / Paytm Mobile:** **+91 6382907182**
    • **UPI ID:** **asayinfotech@okaxis**
-   • **Beneficiary Name:** ASAI INFOTECH PRIVATE LIMITED
+   • **Beneficiary Name:** ASAY INFOTECH PRIVATE LIMITED
 4. **Submit Admission Form:**
    • Click **"Enroll Now"** on the course page.
    • Enter your Name, Phone Number, Email, College/Company, and Payment Reference / UTR Number.
@@ -174,7 +174,7 @@ Every course includes **Module 1.1 Free Video Preview on YouTube** + Daily Live 
     title: 'Open Career Vacancies',
     sourceUri: 'https://asayinfotech.in/careers',
     sourceFile: 'CareersView.tsx',
-    content: `💼 **Current Career Openings at ASAI InfoTech:**
+    content: `💼 **Current Career Openings at ASAY InfoTech:**
 1. **Senior React Developer** (3–5 Years Exp | Chennai HQ)
 2. **Cloud Infrastructure Architect** (5+ Years Exp | AWS, Kubernetes | Chennai HQ)
 3. **Product UI/UX Designer** (2–4 Years Exp | Figma | Chennai HQ)
@@ -199,7 +199,7 @@ Every course includes **Module 1.1 Free Video Preview on YouTube** + Daily Live 
     title: 'Greetings & Introduction',
     sourceUri: 'https://asayinfotech.in',
     sourceFile: 'HomeView.tsx',
-    content: `Hello! 👋 Welcome to **ASAI InfoTech** (https://asayinfotech.in).
+    content: `Hello! 👋 Welcome to **ASAY InfoTech** (https://asayinfotech.in).
 
 I am your **RAG Semantic AI Assistant**. You can ask me about:
 • 🎓 **Tech Courses Catalog (Python, Java, DevOps, Cloud, AI, QA)**
@@ -344,7 +344,7 @@ export function ChatBot() {
   }[]>([
     { 
       role: 'model', 
-      text: "👋 Welcome to **ASAI InfoTech**!\n\nI am your **RAG Semantic AI Assistant**. You can ask me about our **Tech Courses, Daily 5-6 PM Live Classes, ISO 9001:2015 Certificates, Student Guidelines, and Enterprise AI Solutions**.\n\nHow can I help you today?" 
+      text: "👋 Welcome to **ASAY InfoTech**!\n\nI am your **RAG Semantic AI Assistant**. You can ask me about our **Tech Courses, Daily 5-6 PM Live Classes, ISO 9001:2015 Certificates, Student Guidelines, and Enterprise AI Solutions**.\n\nHow can I help you today?" 
     }
   ]);
   const [input, setInput] = useState('');
@@ -390,7 +390,7 @@ export function ChatBot() {
           ...prev,
           {
             role: 'model',
-            text: `ℹ️ I am the dedicated AI assistant for **ASAI InfoTech** (https://asayinfotech.in).\n\nI specialize in answering questions about our **Tech Certification Courses, Student Guidelines, Daily 5-6 PM Live Classes, ISO 9001:2015 Certificates, Office Location, and AI Engineering**.\n\nPlease ask about our courses or message directly on WhatsApp (**+91 6382907182**)!`,
+            text: `ℹ️ I am the dedicated AI assistant for **ASAY InfoTech** (https://asayinfotech.in).\n\nI specialize in answering questions about our **Tech Certification Courses, Student Guidelines, Daily 5-6 PM Live Classes, ISO 9001:2015 Certificates, Office Location, and AI Engineering**.\n\nPlease ask about our courses or message directly on WhatsApp (**+91 6382907182**)!`,
             trace: {
               intent: 'Out-of-Domain Guardrail',
               source: 'https://asayinfotech.in',
@@ -416,7 +416,7 @@ export function ChatBot() {
           const genAI = new GoogleGenerativeAI(apiKey);
           const model = genAI.getGenerativeModel({
             model: "gemini-1.5-flash",
-            systemInstruction: `You are ASAI AI, the official assistant for ASAI InfoTech (https://asayinfotech.in).
+            systemInstruction: `You are ASAY AI, the official assistant for ASAY InfoTech (https://asayinfotech.in).
 Answer the user strictly using the provided RAG Context.
 Leadership: Sivabarathi M (CEO & Founder, Authorized Signatory for ISO 9001:2015 Certificates), Bakiyalakshmi (MD), Premkumar A (CTO).
 Location: Guduvanchery, Chennai 603202.
@@ -458,7 +458,7 @@ Academy: Daily 5:00 PM - 6:00 PM IST interactive live batch, 10 certification co
         ...prev,
         {
           role: 'model',
-          text: `For immediate assistance, please contact ASAI InfoTech support on WhatsApp at **+91 6382907182** or email **asayinfotech@gmail.com**.`
+          text: `For immediate assistance, please contact ASAY InfoTech support on WhatsApp at **+91 6382907182** or email **asayinfotech@gmail.com**.`
         }
       ]);
     } finally {
@@ -485,7 +485,7 @@ Academy: Daily 5:00 PM - 6:00 PM IST interactive live batch, 10 certification co
                 </div>
                 <div>
                   <h3 className="font-bold text-sm tracking-tight flex items-center gap-1.5">
-                    <span>ASAI RAG Assistant</span>
+                    <span>ASAY RAG Assistant</span>
                     <Sparkles className="w-3.5 h-3.5 text-primary" />
                   </h3>
                   <div className="text-[10px] text-emerald-400 font-mono flex items-center gap-1">
@@ -559,12 +559,12 @@ Academy: Daily 5:00 PM - 6:00 PM IST interactive live batch, 10 certification co
             {/* Quick Action Suggestion Chips */}
             <div className="px-3 py-2 bg-white/95 border-t border-gray-100 flex gap-2 overflow-x-auto text-[10px] scrollbar-none">
               {[
-                { label: '🎓 10 Tech Courses', query: 'What certification courses are taught at ASAI InfoTech?', icon: GraduationCap },
+                { label: '🎓 10 Tech Courses', query: 'What certification courses are taught at ASAY InfoTech?', icon: GraduationCap },
                 { label: '📜 Student Guidelines', query: 'What are the student guidelines, theory track, and capstone project requirements to get the ISO 9001 certificate?', icon: BookOpen },
                 { label: '⏰ 5-6 PM Live Batch', query: 'Tell me about the Daily Evening 5-6 PM IST live batch and how to join.', icon: Clock },
                 { label: '💳 How to Enroll', query: 'How do students enroll and submit payment UTR reference?', icon: Award },
-                { label: '📍 Office Location', query: 'Where is ASAI InfoTech office located in Chennai?', icon: MapPin },
-                { label: '📞 Contact Details', query: 'What is the contact phone and WhatsApp number of ASAI InfoTech?', icon: Phone },
+                { label: '📍 Office Location', query: 'Where is ASAY InfoTech office located in Chennai?', icon: MapPin },
+                { label: '📞 Contact Details', query: 'What is the contact phone and WhatsApp number of ASAY InfoTech?', icon: Phone },
               ].map((chip) => {
                 const IconComp = chip.icon;
                 return (

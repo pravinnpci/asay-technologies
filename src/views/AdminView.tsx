@@ -61,7 +61,7 @@ export function AdminView() {
   const [newCertName, setNewCertName] = useState('');
   const [newCertCourse, setNewCertCourse] = useState('Python Full-Stack & Cloud Automation Masterclass');
   const [newCertGrade, setNewCertGrade] = useState('A+ (Distinction)');
-  const [newCertId, setNewCertId] = useState(`ASAI-${new Date().getFullYear()}-PY-${Math.floor(1000 + Math.random() * 9000)}`);
+  const [newCertId, setNewCertId] = useState(`ASAY-${new Date().getFullYear()}-PY-${Math.floor(1000 + Math.random() * 9000)}`);
   const [newCertSkills, setNewCertSkills] = useState('Python 3.12, FastAPI, Automation Scripting, Docker, Cloud CI/CD');
   const [certSuccessMsg, setCertSuccessMsg] = useState('');
   const [editingCert, setEditingCert] = useState<VerifiedCertificate | null>(null);
@@ -312,7 +312,7 @@ export function AdminView() {
     
     // Reset form with new random ID
     setNewCertName('');
-    setNewCertId(`ASAI-${new Date().getFullYear()}-PY-${Math.floor(1000 + Math.random() * 9000)}`);
+    setNewCertId(`ASAY-${new Date().getFullYear()}-PY-${Math.floor(1000 + Math.random() * 9000)}`);
     setTimeout(() => setCertSuccessMsg(''), 4000);
   };
 
@@ -344,7 +344,7 @@ export function AdminView() {
   const handleDownloadCertPdf = async (cert: VerifiedCertificate) => {
     try {
       const pdfBytes = await generateCertificatePdf(cert);
-      downloadPdfBlob(pdfBytes, `ASAI_INFOTECH_CERTIFICATE_${cert.certificateId}.pdf`);
+      downloadPdfBlob(pdfBytes, `ASAY_INFOTECH_CERTIFICATE_${cert.certificateId}.pdf`);
     } catch (err) {
       alert('Failed to generate PDF certificate.');
     }
@@ -372,7 +372,7 @@ export function AdminView() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `asai-academy-state-${new Date().toISOString().slice(0, 10)}.json`;
+    a.download = `asay-academy-state-${new Date().toISOString().slice(0, 10)}.json`;
     a.click();
     URL.revokeObjectURL(url);
   };
@@ -440,7 +440,7 @@ export function AdminView() {
               <span>Academy Management & Certification Engine</span>
             </div>
             <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
-              Asai Infotech Academy Admin Portal
+              ASAY InfoTech Academy Admin Portal
             </h1>
             <p className="text-xs sm:text-sm text-gray-500 mt-1 max-w-2xl leading-relaxed">
               Full real-time in-place editing for courses, video lessons, student admissions, and tamper-proof ISO 9001:2015 QR certificates.
@@ -1333,7 +1333,7 @@ export function AdminView() {
                 Zero-Database Git State Persistence & Backup
               </h2>
               <p className="text-xs sm:text-sm text-gray-500 leading-relaxed max-w-3xl">
-                As per your architectural design, Asai Infotech operates with zero external database dependencies. All modifications you make to courses, YouTube preview URLs, approved students, and ISO certificates are held locally in your browser. Copying or downloading this state JSON allows you to commit it directly into your GitHub repository or transfer it across devices without losing any data.
+                As per your architectural design, ASAY InfoTech operates with zero external database dependencies. All modifications you make to courses, YouTube preview URLs, approved students, and ISO certificates are held locally in your browser. Copying or downloading this state JSON allows you to commit it directly into your GitHub repository or transfer it across devices without losing any data.
               </p>
             </div>
 

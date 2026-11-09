@@ -42,7 +42,7 @@ export async function generateCertificatePdf(cert: VerifiedCertificate): Promise
   });
 
   // Header: Company Name & ISO Accreditation
-  const orgName = 'ASAI INFOTECH';
+  const orgName = 'ASAY INFOTECH';
   const orgWidth = fontBold.widthOfTextAtSize(orgName, 26);
   page.drawText(orgName, {
     x: (width - orgWidth) / 2,
@@ -245,7 +245,7 @@ export async function generateCertificatePdf(cert: VerifiedCertificate): Promise
     color: rgb(0.15, 0.2, 0.35)
   });
 
-  const sigTitle = 'Founder & Director, ASAI InfoTech';
+  const sigTitle = 'Founder & Director, ASAY InfoTech';
   const sigTitleWidth = fontRegular.widthOfTextAtSize(sigTitle, 8.5);
   page.drawText(sigTitle, {
     x: width - 170 - (sigTitleWidth / 2),

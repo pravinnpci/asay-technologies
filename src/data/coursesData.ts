@@ -87,7 +87,7 @@ export interface StudentCourseStatus {
 export const paymentConfig = {
   upiId: 'asayinfotech@okaxis',
   gpayPhone: '+91 6382907182',
-  accountHolder: 'ASAI INFOTECH PRIVATE LIMITED',
+  accountHolder: 'ASAY INFOTECH PRIVATE LIMITED',
   bankName: 'Axis Bank / HDFC Bank',
   notes: 'Pay using Google Pay, PhonePe, Paytm or any UPI App to +91 6382907182 or asayinfotech@okaxis. Enter UTR / Transaction Reference ID.'
 };
@@ -113,7 +113,7 @@ export const coursesData: Course[] = [
       days: 'Monday to Friday',
       mode: 'Interactive Live Online (Google Meet / Zoom + Live Doubt Clearing)',
       nextBatchDate: 'Upcoming Monday',
-      mentor: 'Senior Software Engineer, Asai Infotech'
+      mentor: 'Senior Software Engineer, ASAY InfoTech'
     },
     certification: {
       title: 'ISO 9001:2015 Quality Certified Python Automation Professional',
@@ -224,7 +224,7 @@ export const coursesData: Course[] = [
       days: 'Monday to Friday',
       mode: 'Interactive Live Online (Google Meet / Zoom + Code Review)',
       nextBatchDate: 'Upcoming Monday',
-      mentor: 'Principal Architect, Asai Infotech'
+      mentor: 'Principal Architect, ASAY InfoTech'
     },
     certification: {
       title: 'ISO 9001:2015 Quality Certified Enterprise Java Architect',
@@ -308,7 +308,7 @@ export const coursesData: Course[] = [
       days: 'Monday to Friday',
       mode: 'Interactive Live Online (Google Meet / Zoom + Project Building)',
       nextBatchDate: 'Upcoming Monday',
-      mentor: 'Full-Stack Lead Engineer, Asai Infotech'
+      mentor: 'Full-Stack Lead Engineer, ASAY InfoTech'
     },
     certification: {
       title: 'ISO 9001:2015 Certified Full-Stack Web Engineer',
@@ -392,7 +392,7 @@ export const coursesData: Course[] = [
       days: 'Monday to Friday',
       mode: 'Interactive Live Online (Google Meet / Zoom + Real Cloud Cluster Labs)',
       nextBatchDate: 'Upcoming Monday',
-      mentor: 'DevOps & Cloud Architect, Asai Infotech'
+      mentor: 'DevOps & Cloud Architect, ASAY InfoTech'
     },
     certification: {
       title: 'ISO 9001:2015 Quality Certified Cloud DevOps Engineer',
@@ -476,7 +476,7 @@ export const coursesData: Course[] = [
       days: 'Monday to Friday',
       mode: 'Interactive Live Online (Google Meet / Zoom + AWS Hands-on Labs)',
       nextBatchDate: 'Upcoming Monday',
-      mentor: 'AWS Certified Solutions Architect, Asai Infotech'
+      mentor: 'AWS Certified Solutions Architect, ASAY InfoTech'
     },
     certification: {
       title: 'ISO 9001:2015 Certified Cloud Solutions Architect',
@@ -560,7 +560,7 @@ export const coursesData: Course[] = [
       days: 'Monday to Friday',
       mode: 'Interactive Live Online (Google Meet / Zoom + Jupyter Notebooks)',
       nextBatchDate: 'Upcoming Monday',
-      mentor: 'AI/ML Lead Scientist, Asai Infotech'
+      mentor: 'AI/ML Lead Scientist, ASAY InfoTech'
     },
     certification: {
       title: 'ISO 9001:2015 Certified Data Scientist & AI Engineer',
@@ -644,7 +644,7 @@ export const coursesData: Course[] = [
       days: 'Monday to Friday',
       mode: 'Interactive Live Online (Google Meet / Zoom + Real Framework Labs)',
       nextBatchDate: 'Upcoming Monday',
-      mentor: 'QA Automation Lead, Asai Infotech'
+      mentor: 'QA Automation Lead, ASAY InfoTech'
     },
     certification: {
       title: 'ISO 9001:2015 Certified Test Automation Specialist',
@@ -728,7 +728,7 @@ export const coursesData: Course[] = [
       days: 'Monday to Friday',
       mode: 'Interactive Live Online (Google Meet / Zoom + Virtual Lab Drills)',
       nextBatchDate: 'Upcoming Monday',
-      mentor: 'Cybersecurity Engineer, Asai Infotech'
+      mentor: 'Cybersecurity Engineer, ASAY InfoTech'
     },
     certification: {
       title: 'ISO 9001:2015 Certified Cyber Defense & Ethical Hacking Professional',
@@ -812,7 +812,7 @@ export const coursesData: Course[] = [
       days: 'Monday to Friday',
       mode: 'Interactive Live Online (Google Meet / Zoom + Real Corporate Datasets)',
       nextBatchDate: 'Upcoming Monday',
-      mentor: 'BI Analyst & Data Consultant, Asai Infotech'
+      mentor: 'BI Analyst & Data Consultant, ASAY InfoTech'
     },
     certification: {
       title: 'ISO 9001:2015 Certified Business Intelligence & Data Analytics Specialist',
@@ -896,7 +896,7 @@ export const coursesData: Course[] = [
       days: 'Monday to Friday',
       mode: 'Interactive Live Online (Google Meet / Zoom + Figma-to-Code Reviews)',
       nextBatchDate: 'Upcoming Monday',
-      mentor: 'Senior UI/UX Engineer, Asai Infotech'
+      mentor: 'Senior UI/UX Engineer, ASAY InfoTech'
     },
     certification: {
       title: 'ISO 9001:2015 Certified Front-End UI/UX Engineer',
@@ -962,77 +962,85 @@ export const coursesData: Course[] = [
 ];
 
 export const defaultCertificates: Record<string, VerifiedCertificate> = {
-  'ASAI-2026-PY-1082': {
-    certificateId: 'ASAI-2026-PY-1082',
+  'ASAY-2026-PY-1082': {
+    certificateId: 'ASAY-2026-PY-1082',
     studentName: 'Karthik Subramanian',
     courseTitle: 'Python Full-Stack & Cloud Automation Masterclass',
     issueDate: 'October 01, 2026',
     grade: 'A+ (Distinction)',
     status: 'VERIFIED_ACTIVE',
-    credentialUrl: 'https://asayinfotech.in/verify?cert_id=ASAI-2026-PY-1082',
+    credentialUrl: 'https://asayinfotech.in/verify?cert_id=ASAY-2026-PY-1082',
     skillsAcquired: ['Python 3.12', 'FastAPI', 'Automation Scripts', 'Web Scraping', 'Docker & Cloud Deployment'],
     internshipCompleted: true
   },
-  'ASAI-2026-JV-2041': {
-    certificateId: 'ASAI-2026-JV-2041',
+  'ASAY-2026-JV-2041': {
+    certificateId: 'ASAY-2026-JV-2041',
     studentName: 'Priya Dharshini',
     courseTitle: 'Java Full-Stack & Spring Boot Microservices Masterclass',
     issueDate: 'September 28, 2026',
     grade: 'A (Excellence)',
     status: 'VERIFIED_ACTIVE',
-    credentialUrl: 'https://asayinfotech.in/verify?cert_id=ASAI-2026-JV-2041',
+    credentialUrl: 'https://asayinfotech.in/verify?cert_id=ASAY-2026-JV-2041',
     skillsAcquired: ['Java 21', 'Spring Boot 3', 'Spring Data JPA', 'Microservices', 'PostgreSQL'],
     internshipCompleted: true
   },
-  'ASAI-2026-K8S-3091': {
-    certificateId: 'ASAI-2026-K8S-3091',
+  'ASAY-2026-K8S-3091': {
+    certificateId: 'ASAY-2026-K8S-3091',
     studentName: 'Vigneshwaran M',
     courseTitle: 'Cloud DevOps, Docker, Kubernetes & CI/CD Pipelines',
     issueDate: 'September 22, 2026',
     grade: 'A+ (Distinction)',
     status: 'VERIFIED_ACTIVE',
-    credentialUrl: 'https://asayinfotech.in/verify?cert_id=ASAI-2026-K8S-3091',
+    credentialUrl: 'https://asayinfotech.in/verify?cert_id=ASAY-2026-K8S-3091',
     skillsAcquired: ['Docker', 'Kubernetes Orchestration', 'Helm Charts', 'GitHub Actions CI/CD', 'Ingress & TLS'],
     internshipCompleted: true
   },
-  'ASAI-2026-AI-4012': {
-    certificateId: 'ASAI-2026-AI-4012',
+  'ASAY-2026-AI-4012': {
+    certificateId: 'ASAY-2026-AI-4012',
     studentName: 'Ananya Ramesh',
     courseTitle: 'Data Science, Machine Learning & Generative AI Masterclass',
     issueDate: 'October 02, 2026',
     grade: 'A+ (Distinction)',
     status: 'VERIFIED_ACTIVE',
-    credentialUrl: 'https://asayinfotech.in/verify?cert_id=ASAI-2026-AI-4012',
+    credentialUrl: 'https://asayinfotech.in/verify?cert_id=ASAY-2026-AI-4012',
     skillsAcquired: ['Python', 'Pandas & NumPy', 'Scikit-Learn', 'Generative AI', 'LangChain & RAG'],
     internshipCompleted: true
   },
-  'ASAI-2026-QA-5023': {
-    certificateId: 'ASAI-2026-QA-5023',
+  'ASAY-2026-QA-5023': {
+    certificateId: 'ASAY-2026-QA-5023',
     studentName: 'Sathish Kumar R',
     courseTitle: 'Automation Testing & Software QA Masterclass (Selenium, Playwright & API)',
     issueDate: 'September 29, 2026',
     grade: 'A (Excellence)',
     status: 'VERIFIED_ACTIVE',
-    credentialUrl: 'https://asayinfotech.in/verify?cert_id=ASAI-2026-QA-5023',
+    credentialUrl: 'https://asayinfotech.in/verify?cert_id=ASAY-2026-QA-5023',
     skillsAcquired: ['Selenium WebDriver', 'Playwright', 'Postman API', 'TestNG', 'CI/CD Automation'],
     internshipCompleted: true
   }
 };
 
+
+// Backward compatibility aliases
+defaultCertificates['ASAI-2026-PY-1082'] = defaultCertificates['ASAY-2026-PY-1082'];
+defaultCertificates['ASAI-2026-JV-2041'] = defaultCertificates['ASAY-2026-JV-2041'];
+defaultCertificates['ASAI-2026-K8S-3091'] = defaultCertificates['ASAY-2026-K8S-3091'];
+defaultCertificates['ASAI-2026-AI-4012'] = defaultCertificates['ASAY-2026-AI-4012'];
+defaultCertificates['ASAI-2026-QA-5023'] = defaultCertificates['ASAY-2026-QA-5023'];
+
 export const sampleCertificates = defaultCertificates;
 
 // Storage keys
 const STORAGE_KEYS = {
-  COURSES: 'asai_academy_courses',
-  ENROLLMENTS: 'asai_academy_enrollments',
-  CERTIFICATES: 'asai_academy_certificates',
-  USER_ENROLLED_COURSES: 'asai_user_unlocked_courses'
+  COURSES: 'asay_academy_courses',
+  ENROLLMENTS: 'asay_academy_enrollments',
+  CERTIFICATES: 'asay_academy_certificates',
+  USER_ENROLLED_COURSES: 'asay_user_unlocked_courses'
 };
 
 export function getCoursesFromStorage(): Course[] {
   if (typeof window === 'undefined') return coursesData;
   try {
-    const raw = localStorage.getItem(STORAGE_KEYS.COURSES);
+    const raw = localStorage.getItem(STORAGE_KEYS.COURSES) || localStorage.getItem('asai_academy_courses');
     if (raw) {
       const parsed = JSON.parse(raw);
       if (Array.isArray(parsed) && parsed.length > 0) return parsed;
@@ -1077,7 +1085,7 @@ export const GRADE_OPTIONS = [
 export function getEnrollmentsFromStorage(): StudentEnrollment[] {
   if (typeof window === 'undefined') return [];
   try {
-    const raw = localStorage.getItem(STORAGE_KEYS.ENROLLMENTS);
+    const raw = localStorage.getItem(STORAGE_KEYS.ENROLLMENTS) || localStorage.getItem('asai_academy_enrollments');
     if (raw) return JSON.parse(raw);
   } catch (e) {
     console.warn('Error reading enrollments', e);
@@ -1160,7 +1168,8 @@ export function addEnrollmentToStorage(enr: Omit<StudentEnrollment, 'id' | 'enro
   current.unshift(newEnr);
   if (typeof window !== 'undefined') {
     localStorage.setItem(STORAGE_KEYS.ENROLLMENTS, JSON.stringify(current));
-    window.dispatchEvent(new CustomEvent('asai-student-auth-change'));
+    window.dispatchEvent(new CustomEvent('asay-student-auth-change'));
+  window.dispatchEvent(new CustomEvent('asai-student-auth-change'));
   }
   return newEnr;
 }
@@ -1179,7 +1188,8 @@ export function addEnrollmentDirect(enr: StudentEnrollment): void {
     if (withCreds.status === 'APPROVED_UNLOCKED') {
       unlockCourseForUser(withCreds.courseId);
     }
-    window.dispatchEvent(new CustomEvent('asai-student-auth-change'));
+    window.dispatchEvent(new CustomEvent('asay-student-auth-change'));
+  window.dispatchEvent(new CustomEvent('asai-student-auth-change'));
   }
 }
 
@@ -1195,7 +1205,8 @@ export function updateEnrollment(enr: StudentEnrollment): void {
       if (session && (session.id === enr.id || session.email === enr.email || session.phone === enr.phone)) {
         localStorage.setItem(LOGGED_IN_STUDENT_KEY, JSON.stringify(enr));
       }
-      window.dispatchEvent(new CustomEvent('asai-student-auth-change'));
+      window.dispatchEvent(new CustomEvent('asay-student-auth-change'));
+  window.dispatchEvent(new CustomEvent('asai-student-auth-change'));
     }
   }
 }
@@ -1250,7 +1261,8 @@ export function updateEnrollmentStatus(id: string, status: 'PENDING_APPROVAL' | 
           localStorage.setItem(LOGGED_IN_STUDENT_KEY, JSON.stringify(session));
         }
       }
-      window.dispatchEvent(new CustomEvent('asai-student-auth-change'));
+      window.dispatchEvent(new CustomEvent('asay-student-auth-change'));
+  window.dispatchEvent(new CustomEvent('asai-student-auth-change'));
     }
   }
 }
@@ -1291,17 +1303,18 @@ export function adminAssignCoursesToStudent(studentIdOrEmailOrPhone: string, cou
       }
     }
     courseIds.forEach(cid => unlockCourseForUser(cid));
-    window.dispatchEvent(new CustomEvent('asai-student-auth-change'));
+    window.dispatchEvent(new CustomEvent('asay-student-auth-change'));
+  window.dispatchEvent(new CustomEvent('asai-student-auth-change'));
   }
 }
 
 // ---------------- STUDENT AUTH SESSION HELPERS ----------------
-const LOGGED_IN_STUDENT_KEY = 'asai_current_logged_in_student';
+const LOGGED_IN_STUDENT_KEY = 'asay_current_logged_in_student';
 
 export function getLoggedInStudent(): StudentEnrollment | null {
   if (typeof window === 'undefined') return null;
   try {
-    const raw = localStorage.getItem(LOGGED_IN_STUDENT_KEY);
+    const raw = localStorage.getItem(LOGGED_IN_STUDENT_KEY) || localStorage.getItem('asai_current_logged_in_student');
     if (raw) return JSON.parse(raw);
   } catch (e) {
     // ignore
@@ -1402,7 +1415,8 @@ export function studentLogin(identifier: string, pass: string): { success: boole
   if (typeof window !== 'undefined') {
     localStorage.setItem(LOGGED_IN_STUDENT_KEY, JSON.stringify(student));
     allUnlocked.forEach(cid => unlockCourseForUser(cid));
-    window.dispatchEvent(new CustomEvent('asai-student-auth-change'));
+    window.dispatchEvent(new CustomEvent('asay-student-auth-change'));
+  window.dispatchEvent(new CustomEvent('asai-student-auth-change'));
   }
 
   return { success: true, student, message: 'Login successful!' };
@@ -1411,7 +1425,8 @@ export function studentLogin(identifier: string, pass: string): { success: boole
 export function studentLogout(): void {
   if (typeof window !== 'undefined') {
     localStorage.removeItem(LOGGED_IN_STUDENT_KEY);
-    window.dispatchEvent(new CustomEvent('asai-student-auth-change'));
+    window.dispatchEvent(new CustomEvent('asay-student-auth-change'));
+  window.dispatchEvent(new CustomEvent('asai-student-auth-change'));
   }
 }
 
@@ -1437,7 +1452,7 @@ export function deleteEnrollmentFromStorage(id: string): void {
 export function getUnlockedCourses(): string[] {
   if (typeof window === 'undefined') return [];
   try {
-    const raw = localStorage.getItem(STORAGE_KEYS.USER_ENROLLED_COURSES);
+    const raw = localStorage.getItem(STORAGE_KEYS.USER_ENROLLED_COURSES) || localStorage.getItem('asai_user_unlocked_courses');
     if (raw) return JSON.parse(raw);
   } catch (e) {
     // ignore
@@ -1458,7 +1473,7 @@ export function getCertificatesRegistry(): Record<string, VerifiedCertificate> {
   let certs: Record<string, VerifiedCertificate> = { ...defaultCertificates };
   if (typeof window !== 'undefined') {
     try {
-      const raw = localStorage.getItem(STORAGE_KEYS.CERTIFICATES);
+      const raw = localStorage.getItem(STORAGE_KEYS.CERTIFICATES) || localStorage.getItem('asai_academy_certificates');
       if (raw) {
         const parsed = JSON.parse(raw);
         if (typeof parsed === 'object' && parsed !== null) {

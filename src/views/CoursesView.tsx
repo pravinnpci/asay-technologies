@@ -24,8 +24,8 @@ export function CoursesView() {
     setCourses(getCoursesFromStorage());
     setStudentUser(getLoggedInStudent());
     const syncAuth = () => setStudentUser(getLoggedInStudent());
-    window.addEventListener('asai-student-auth-change', syncAuth);
-    return () => window.removeEventListener('asai-student-auth-change', syncAuth);
+    window.addEventListener('asay-student-auth-change', syncAuth);
+    return () => window.removeEventListener('asay-student-auth-change', syncAuth);
   }, []);
 
   const categories = ['All', ...Array.from(new Set(courses.map(c => c.category)))];
@@ -41,7 +41,7 @@ export function CoursesView() {
     },
     {
       q: 'What is the credibility of the ISO 9001:2015 Certification?',
-      a: 'Asai Infotech is an ISO 9001:2015 Quality Management Certified Technology Organization. Every issued certificate features a tamper-proof dynamic QR code. Recruiters, HRs, and universities can scan it to immediately verify the student credentials, grades, and internship verification directly on our official registry.'
+      a: 'ASAY InfoTech is an ISO 9001:2015 Quality Management Certified Technology Organization. Every issued certificate features a tamper-proof dynamic QR code. Recruiters, HRs, and universities can scan it to immediately verify the student credentials, grades, and internship verification directly on our official registry.'
     },
     {
       q: 'Is this suitable for College Students & Freshers?',
@@ -154,7 +154,7 @@ export function CoursesView() {
                 </div>
               </div>
               <a 
-                href="https://wa.me/916382907182?text=Hi%20Asai%20Infotech,%20I%20am%20interested%20in%20the%20Daily%205-6%20PM%20Live%20Batch." 
+                href="https://wa.me/916382907182?text=Hi%20ASAY%20InfoTech,%20I%20am%20interested%20in%20the%20Daily%205-6%20PM%20Live%20Batch." 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto px-6 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-xs text-center shadow-lg shadow-emerald-500/25 transition-all flex items-center justify-center gap-1.5"
@@ -314,7 +314,7 @@ export function CoursesView() {
                 ISO 9001:2015 Dynamic QR Code Certification
               </h2>
               <p className="text-gray-600 text-xs sm:text-sm leading-relaxed mb-5">
-                Every certificate issued by Asai Infotech contains a tamper-proof dynamic QR code. Recruiters, HR departments, and institutions can scan the code to instantly verify student grades and capstone project performance on our official registry.
+                Every certificate issued by ASAY InfoTech contains a tamper-proof dynamic QR code. Recruiters, HR departments, and institutions can scan the code to instantly verify student grades and capstone project performance on our official registry.
               </p>
 
               <div className="space-y-2.5 mb-6 text-xs sm:text-sm text-gray-700">
@@ -346,7 +346,7 @@ export function CoursesView() {
               <div className="flex items-center justify-between mb-4">
                 <div>
                   <div className="text-[10px] uppercase font-bold tracking-wider text-indigo-900">
-                    ASAI INFOTECH ACADEMY
+                    ASAY INFOTECH ACADEMY
                   </div>
                   <div className="text-xs font-semibold text-gray-500">
                     ISO 9001:2015 Certified Technology Credential
@@ -367,7 +367,7 @@ export function CoursesView() {
 
               <div className="flex items-center justify-between text-xs text-gray-600 pt-2 border-t border-gray-100">
                 <div>
-                  <div className="font-bold text-gray-900">ID: ASAI-2026-PY-1082</div>
+                  <div className="font-bold text-gray-900">ID: ASAY-2026-PY-1082</div>
                   <div className="text-emerald-600 font-semibold text-[11px]">Status: VERIFIED & ACTIVE</div>
                 </div>
                 <div className="p-1.5 bg-white rounded-lg border border-gray-200">

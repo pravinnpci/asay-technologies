@@ -214,7 +214,7 @@ export function getExamForCourse(courseId: string, courseTitle?: string): Course
   };
 }
 
-const EXAM_RESULTS_STORAGE_KEY = 'asai_exam_results_history';
+const EXAM_RESULTS_STORAGE_KEY = 'asay_exam_results_history';
 
 export function getExamResultsHistory(): ExamResult[] {
   if (typeof window === 'undefined') return [];
@@ -235,7 +235,7 @@ export function getExamResultsHistory(): ExamResult[] {
       passed: true,
       grade: 'A+ (Distinction)',
       submittedAt: 'Oct 01, 2026',
-      certificateId: 'ASAI-2026-PY-1082'
+      certificateId: 'ASAY-2026-PY-1082'
     },
     {
       studentName: 'Priya Dharshini',
@@ -247,7 +247,7 @@ export function getExamResultsHistory(): ExamResult[] {
       passed: true,
       grade: 'A (Excellence)',
       submittedAt: 'Sep 28, 2026',
-      certificateId: 'ASAI-2026-JV-2041'
+      certificateId: 'ASAY-2026-JV-2041'
     }
   ];
 }
@@ -271,7 +271,7 @@ export function submitExamAndIssueCertificate(
   const dateStr = new Date().toLocaleDateString('en-US', { month: 'long', day: '2-digit', year: 'numeric' });
   const randomSuffix = Math.floor(1000 + Math.random() * 9000);
   const courseCode = courseId.slice(0, 3).toUpperCase();
-  const certId = `ASAI-2026-${courseCode}-${randomSuffix}`;
+  const certId = `ASAY-2026-${courseCode}-${randomSuffix}`;
 
   let certificate: VerifiedCertificate | undefined;
 
@@ -313,6 +313,7 @@ export function submitExamAndIssueCertificate(
     const history = getExamResultsHistory();
     history.unshift(result);
     localStorage.setItem(EXAM_RESULTS_STORAGE_KEY, JSON.stringify(history));
+    window.dispatchEvent(new CustomEvent('asay-exam-submitted', { detail: result }));
     window.dispatchEvent(new CustomEvent('asai-exam-submitted', { detail: result }));
   }
 

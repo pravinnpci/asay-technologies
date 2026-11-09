@@ -144,7 +144,7 @@ export function Navbar() {
               <Logo className="w-full h-full" size={40} />
             </div>
             <span className="text-lg sm:text-xl font-black tracking-tighter text-secondary">
-              ASAI <span className="text-primary">InfoTech</span>
+              ASAY <span className="text-primary">InfoTech</span>
             </span>
           </Link>
 

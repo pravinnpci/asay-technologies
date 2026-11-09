@@ -48,7 +48,7 @@ export function Footer() {
                 <Logo className="w-full h-full" size={40} />
               </div>
               <span className="text-xl font-bold tracking-tight text-white">
-                ASAI <span className="text-primary">InfoTech</span>
+                ASAY <span className="text-primary">InfoTech</span>
               </span>
             </Link>
             <p className="text-gray-400 mb-8 leading-relaxed">
@@ -246,7 +246,7 @@ export function Footer() {
         </div>
 
         <div className="mt-6 pt-6 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-500 font-medium">
-          <p>© {currentYear} ASAI InfoTech Inc. All rights reserved.</p>
+          <p>© {currentYear} ASAY InfoTech Inc. All rights reserved.</p>
           <div className="flex gap-8">
             <Link to="/terms" className="hover:text-primary transition-colors">Terms of Service</Link>
             <Link to="/cookies" className="hover:text-primary transition-colors">Cookies Settings</Link>

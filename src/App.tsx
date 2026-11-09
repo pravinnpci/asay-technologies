@@ -43,54 +43,54 @@ function ScrollToTop() {
     // Dynamic Route Title synchronization
     const getRouteTitle = (path: string): string => {
       if (path === '/' || path === '') {
-        return 'ASAI InfoTech | Leading IT & Software Company in Guduvanchery, Tambaram & Chennai | AI & Web Development';
+        return 'ASAY InfoTech | Leading IT & Software Company in Guduvanchery, Tambaram & Chennai | AI & Web Development';
       }
       if (path === '/verify-certificate' || path === '/verify') {
-        return 'ISO 9001:2015 Online Certificate Verification | ASAI InfoTech';
+        return 'ISO 9001:2015 Online Certificate Verification | ASAY InfoTech';
       }
       if (path === '/courses' || path === '/academy') {
-        return 'Tech Academy & ISO 9001:2015 Certified Courses | ASAI InfoTech Chennai';
+        return 'Tech Academy & ISO 9001:2015 Certified Courses | ASAY InfoTech Chennai';
       }
       if (path === '/admin') {
-        return 'Academy Management & Student Admissions Portal | ASAI InfoTech';
+        return 'Academy Management & Student Admissions Portal | ASAY InfoTech';
       }
       if (path === '/about') {
-        return 'About Us | ASAI InfoTech - Top IT & Software Company in Guduvanchery & Chennai';
+        return 'About Us | ASAY InfoTech - Top IT & Software Company in Guduvanchery & Chennai';
       }
       if (path === '/services') {
-        return 'Enterprise IT Services & Software Solutions | ASAI InfoTech Guduvanchery, Chennai';
+        return 'Enterprise IT Services & Software Solutions | ASAY InfoTech Guduvanchery, Chennai';
       }
       if (path.startsWith('/services/') || path.startsWith('/solutions/')) {
-        return 'Enterprise Engineering Solution | ASAI InfoTech Chennai';
+        return 'Enterprise Engineering Solution | ASAY InfoTech Chennai';
       }
       if (path === '/testimonials') {
-        return 'Client Testimonials & Enterprise Reviews | ASAI InfoTech';
+        return 'Client Testimonials & Enterprise Reviews | ASAY InfoTech';
       }
       if (path === '/careers') {
-        return 'Careers at ASAI InfoTech | Join Leading Tech Innovators in Guduvanchery, Chennai';
+        return 'Careers at ASAY InfoTech | Join Leading Tech Innovators in Guduvanchery, Chennai';
       }
       if (path === '/contact') {
-        return 'Contact ASAI InfoTech | IT & Software Consultation in Guduvanchery, Chennai';
+        return 'Contact ASAY InfoTech | IT & Software Consultation in Guduvanchery, Chennai';
       }
       if (path === '/card') {
-        return 'Smart Digital Business Card | Sivabarathi M - ASAI InfoTech';
+        return 'Smart Digital Business Card | Sivabarathi M - ASAY InfoTech';
       }
       if (path === '/blog') {
-        return 'Tech Insights & Engineering Blog | ASAI InfoTech';
+        return 'Tech Insights & Engineering Blog | ASAY InfoTech';
       }
       if (path.startsWith('/blog/')) {
-        return 'Tech Article & Engineering Deep-Dive | ASAI InfoTech Blog';
+        return 'Tech Article & Engineering Deep-Dive | ASAY InfoTech Blog';
       }
       if (path === '/privacy') {
-        return 'Privacy Policy | ASAI InfoTech Software Solutions';
+        return 'Privacy Policy | ASAY InfoTech Software Solutions';
       }
       if (path === '/terms') {
-        return 'Terms of Service | ASAI InfoTech';
+        return 'Terms of Service | ASAY InfoTech';
       }
       if (path === '/cookies') {
-        return 'Cookie Policy | ASAI InfoTech';
+        return 'Cookie Policy | ASAY InfoTech';
       }
-      return 'ASAI InfoTech | Leading IT & Software Company in Guduvanchery, Tambaram & Chennai';
+      return 'ASAY InfoTech | Leading IT & Software Company in Guduvanchery, Tambaram & Chennai';
     };
 
     if (!pathname.startsWith('/courses/')) {
